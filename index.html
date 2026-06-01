@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Alex Wang</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1a18;
+    --muted: #6b6b64;
+    --accent: #1D9E75;
+    --accent-light: #E1F5EE;
+    --bg: #f9f7f2;
+    --surface: #ffffff;
+    --border: rgba(0,0,0,0.1);
+    --tag-bg: #f0ede6;
+    --tag-text: #4a4a42;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(249,247,242,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2.5rem;
+    height: 56px;
+  }
+
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  .hero {
+    min-height: 88vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5rem 2.5rem 4rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+  }
+
+  .hero-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+  }
+
+  .hero-name em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    font-size: 1.2rem;
+    color: var(--muted);
+    font-weight: 300;
+    margin-bottom: 2.5rem;
+    max-width: 560px;
+    line-height: 1.5;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--ink);
+    color: #fff;
+    padding: 0.65rem 1.4rem;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-primary:hover { background: var(--accent); transform: translateY(-1px); }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: transparent;
+    color: var(--ink);
+    padding: 0.65rem 1.4rem;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    transition: border-color 0.2s, transform 0.15s;
+    cursor: pointer;
+  }
+
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+
+  .contact-strip {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .contact-item:hover { color: var(--accent); }
+
+  .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--border); }
+
+  section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 5rem 2.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+    max-width: 80px;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .skill-group h4 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+    color: var(--ink);
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .tag {
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    font-size: 12px;
+    font-family: 'DM Mono', monospace;
+    padding: 3px 10px;
+    border-radius: 4px;
+  }
+
+  .tag-accent {
+    background: var(--accent-light);
+    color: #0F6E56;
+  }
+
+  .exp-list { display: flex; flex-direction: column; gap: 2.5rem; }
+
+  .exp-item {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .exp-meta {
+    text-align: right;
+    padding-top: 3px;
+  }
+
+  .exp-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+
+  .exp-company {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  .exp-role {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+
+  .exp-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .exp-bullets li {
+    font-size: 14px;
+    color: var(--muted);
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .exp-bullets li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.4rem;
+    transition: border-color 0.2s, transform 0.2s;
+    cursor: default;
+  }
+
+  .project-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+  }
+
+  .project-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+  }
+
+  .project-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.05rem;
+    color: var(--ink);
+  }
+
+  .project-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    white-space: nowrap;
+    margin-left: 8px;
+  }
+
+  .project-desc {
+    font-size: 13.5px;
+    color: var(--muted);
+    margin-bottom: 1rem;
+    line-height: 1.55;
+  }
+
+  .edu-cards { display: flex; flex-direction: column; gap: 1.25rem; }
+
+  .edu-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .edu-school {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+
+  .edu-degree {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .edu-note {
+    font-size: 12px;
+    color: var(--accent);
+    margin-top: 6px;
+    font-style: italic;
+  }
+
+  .edu-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    white-space: nowrap;
+    text-align: right;
+    margin-top: 3px;
+  }
+
+  .footer {
+    text-align: center;
+    padding: 3rem 2.5rem;
+    border-top: 1px solid var(--border);
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .lang-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+  }
+
+  .lang-pill {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 5px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .lang-flag { font-size: 16px; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero > * {
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .hero > *:nth-child(1) { animation-delay: 0.05s; }
+  .hero > *:nth-child(2) { animation-delay: 0.15s; }
+  .hero > *:nth-child(3) { animation-delay: 0.25s; }
+  .hero > *:nth-child(4) { animation-delay: 0.35s; }
+  .hero > *:nth-child(5) { animation-delay: 0.45s; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#top" class="nav-logo">AW</a>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="hero" id="top">
+  <p class="hero-eyebrow">CS Student &amp; Software Developer</p>
+  <h1 class="hero-name">Alex<br/><em>Wang</em></h1>
+  <p class="hero-sub">Building thoughtful software at the intersection of AI and systems — currently studying Computer Science at McGill University.</p>
+  <div class="hero-ctas">
+    <a href="#projects" class="btn-primary">View Projects ↓</a>
+    <a href="mailto:awang.ottawa@gmail.com" class="btn-outline">Get in touch →</a>
+  </div>
+  <div class="contact-strip">
+    <a href="mailto:awang.ottawa@gmail.com" class="contact-item">awang.ottawa@gmail.com</a>
+    <span class="dot"></span>
+    <a href="https://github.com/alex-wang55" target="_blank" class="contact-item">github / alex-wang55</a>
+    <span class="dot"></span>
+    <span class="contact-item">Ottawa · Montreal</span>
+  </div>
+</div>
+
+<section id="skills">
+  <p class="section-label">Skills</p>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <h4>Languages</h4>
+      <div class="tags">
+        <span class="tag tag-accent">Python</span>
+        <span class="tag tag-accent">C / C++</span>
+        <span class="tag tag-accent">Java</span>
+        <span class="tag">HTML</span>
+        <span class="tag">Bash</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h4>Tools & Platforms</h4>
+      <div class="tags">
+        <span class="tag">Git / GitHub</span>
+        <span class="tag">Linux</span>
+        <span class="tag">Jira</span>
+        <span class="tag">BitBucket</span>
+        <span class="tag">CMocka</span>
+        <span class="tag">VSCode</span>
+        <span class="tag">MongoDB</span>
+        <span class="tag">Flask</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h4>AI & APIs</h4>
+      <div class="tags">
+        <span class="tag tag-accent">Gemini API</span>
+        <span class="tag tag-accent">ElevenLabs API</span>
+        <span class="tag tag-accent">OpenAI</span>
+        <span class="tag tag-accent">Google ADK</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h4>Languages spoken</h4>
+      <div class="lang-row">
+        <span class="lang-pill"><span class="lang-flag">🇨🇦</span> English</span>
+        <span class="lang-pill"><span class="lang-flag">🇫🇷</span> French</span>
+        <span class="lang-pill"><span class="lang-flag">🇨🇳</span> Mandarin</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <p class="section-label">Experience</p>
+  <div class="exp-list">
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-date">May – Aug 2025</div>
+        <div class="exp-company">Ciena</div>
+        <div class="exp-date" style="margin-top:2px">Ottawa, ON</div>
+      </div>
+      <div>
+        <h3 class="exp-role">Software Developer Intern</h3>
+        <ul class="exp-bullets">
+          <li>Developed AI memory leak detection and analysis agent in C</li>
+          <li>Implemented system logging facility Sherlog in C/C++ and Python</li>
+          <li>Built unit tests to verify code quality and design using CMocka</li>
+          <li>Maintained and integrated software repository in Git and BitBucket</li>
+          <li>Delivered demos and tutorials on AI memory agent</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-date">July 2022</div>
+        <div class="exp-company">Coder Sports Academy</div>
+        <div class="exp-date" style="margin-top:2px">Ottawa, ON</div>
+      </div>
+      <div>
+        <h3 class="exp-role">Co-op Student</h3>
+        <ul class="exp-bullets">
+          <li>Assisted in teaching coding fundamentals to students in Python</li>
+          <li>Supported development of coding exercises and learning materials</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="projects">
+  <p class="section-label">Projects &amp; Hackathons</p>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-top">
+        <div class="project-name">McHacks 13</div>
+        <span class="project-date">Jan 2026</span>
+      </div>
+      <p class="project-desc">AI-powered mock interview tool. Analyzes your resume, generates contextual interview questions, and uses text-to-speech for a realistic experience.</p>
+      <div class="tags">
+        <span class="tag">Python</span>
+        <span class="tag">Flask</span>
+        <span class="tag tag-accent">Gemini API</span>
+        <span class="tag tag-accent">ElevenLabs API</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top">
+        <div class="project-name">Blog Generator</div>
+        <span class="project-date">Dec 2025</span>
+      </div>
+      <p class="project-desc">CLI tool that leverages the OpenAI API to generate full blog posts from any user-supplied prompt, built entirely in Python.</p>
+      <div class="tags">
+        <span class="tag">Python</span>
+        <span class="tag tag-accent">OpenAI</span>
+        <span class="tag">Git</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top">
+        <div class="project-name">CodeJam 15</div>
+        <span class="project-date">Nov 2025</span>
+      </div>
+      <p class="project-desc">Minigame GUI with a persistent leaderboard system. Leveraged OOP design patterns and File I/O to track and display high scores across sessions.</p>
+      <div class="tags">
+        <span class="tag">Java</span>
+        <span class="tag">OOP / OOD</span>
+        <span class="tag">File I/O</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="education">
+  <p class="section-label">Education</p>
+  <div class="edu-cards">
+
+    <div class="edu-card">
+      <div>
+        <div class="edu-school">McGill University</div>
+        <div class="edu-degree">BSc Computer Science — Montreal, QC</div>
+        <div class="edu-note">Data Structures, Algorithms, Software Systems, Linear Algebra, Discrete Mathematics</div>
+      </div>
+      <div class="edu-date">Aug 2024 – Present</div>
+    </div>
+
+    <div class="edu-card">
+      <div>
+        <div class="edu-school">West Carleton Secondary School</div>
+        <div class="edu-degree">High School Diploma with Distinction — Ottawa, ON</div>
+        <div class="edu-note">OCDSB Silver Medal Award · Distinction in Advanced Functions</div>
+      </div>
+      <div class="edu-date">Sep 2020 – Jun 2024</div>
+    </div>
+
+  </div>
+</section>
+
+<section id="contact" style="padding-bottom: 2rem;">
+  <p class="section-label">Contact</p>
+  <p style="font-size: 1.5rem; font-family: 'DM Serif Display', serif; max-width: 480px; line-height: 1.4; margin-bottom: 2rem;">Have a project or opportunity? I'd love to hear from you.</p>
+  <div style="display:flex; gap: 1rem; flex-wrap: wrap;">
+    <a href="mailto:awang.ottawa@gmail.com" class="btn-primary">awang.ottawa@gmail.com →</a>
+    <a href="tel:+13435738677" class="btn-outline">+1 (343) 573-8677</a>
+  </div>
+</section>
+
+<div class="footer">
+  <p>© 2026 Alex Wang · Ottawa, ON · Built with care</p>
+</div>
+
+</body>
+</html>
