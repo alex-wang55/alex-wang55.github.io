@@ -80,6 +80,16 @@
     transition: color 0.2s;
   }
 
+  #progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    width: 0%;
+    background: linear-gradient(90deg, var(--accent), #34d399);
+    z-index: 200;
+    transition: width .1s linear;
+  }
+
   .nav-links a:hover { color: var(--accent); }
 
   .nav-links a.active { color: var(--accent); }
@@ -491,6 +501,8 @@
 </head>
 <body>
 
+<div id="progress"></div>
+
 <nav>
   <a href="#top" class="nav-logo">AW</a>
   <div class="nav-right">
@@ -779,6 +791,14 @@
 </div>
 
 <script>
+  // Scroll progress bar
+  const progressBar = document.getElementById('progress');
+  addEventListener('scroll', () => {
+    const h = document.documentElement;
+    const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+    progressBar.style.width = pct + '%';
+  }, { passive: true });
+
   // Fade in sections on scroll
   const revealObs = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
