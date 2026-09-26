@@ -105,19 +105,68 @@
 
   .nav-right { display: flex; align-items: center; gap: 1.5rem; }
 
-  .theme-btn {
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--ink);
-    width: 32px; height: 32px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 14px;
-    transition: border-color .2s, transform .2s;
-    padding: 0;
+  #page {
+    transform-origin: center center;
+    backface-visibility: hidden;
   }
-  .theme-btn:hover { border-color: var(--accent); transform: rotate(20deg); }
+  #page.flip-out { animation: flipOut .42s cubic-bezier(.55,.06,.68,.19) forwards; }
+  #page.flip-in  { animation: flipIn  .42s cubic-bezier(.22,.9,.36,1) forwards; }
+
+  @keyframes flipOut {
+    from { transform: perspective(1800px) rotateY(0deg) scale(1); }
+    to   { transform: perspective(1800px) rotateY(-90deg) scale(.94); }
+  }
+  @keyframes flipIn {
+    from { transform: perspective(1800px) rotateY(90deg) scale(.94); }
+    to   { transform: perspective(1800px) rotateY(0deg) scale(1); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #page.flip-out, #page.flip-in { animation: none; }
+  }
+
+  .flip-btn {
+    position: relative;
+    background: var(--ink);
+    color: var(--bg);
+    border: none;
+    cursor: pointer;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: 7px 16px;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    transition: background .2s, transform .15s, color .2s;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .flip-btn:hover { background: var(--accent); color: #fff; transform: translateY(-1px); }
+  .flip-btn:active { transform: scale(.96); }
+  .flip-btn:disabled { opacity: .6; cursor: default; }
+
+  .flip-btn .ico {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px; height: 14px;
+    transition: transform .35s ease;
+  }
+  .flip-btn .ico svg { width: 14px; height: 14px; display: block; }
+  .flip-btn:hover .ico { transform: rotate(25deg); }
+
+  .flip-btn::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -60%;
+    width: 40%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent);
+    animation: sweep 3.4s ease-in-out infinite;
+  }
+  @keyframes sweep { 0%,70% { left: -60%; } 100% { left: 120%; } }
 
   .reveal {
     opacity: 0;
@@ -503,6 +552,8 @@
 
 <div id="progress"></div>
 
+<div id="page">
+
 <nav>
   <a href="#top" class="nav-logo">AW</a>
   <div class="nav-right">
@@ -513,7 +564,10 @@
       <li><a href="#education" class="nav-a">Education</a></li>
       <li><a href="#contact" class="nav-a">Contact</a></li>
     </ul>
-    <button class="theme-btn" id="themeBtn" title="Toggle dark mode" aria-label="Toggle dark mode">🌙</button>
+    <button class="flip-btn" id="flipBtn" title="Toggle dark mode" aria-label="Toggle dark mode">
+      <span class="ico" id="ico"></span>
+      <span id="btnLabel">Click me</span>
+    </button>
   </div>
 </nav>
 
@@ -790,6 +844,8 @@
   <p>© 2026 Alex Wang · Ottawa, ON · Built with care</p>
 </div>
 
+</div><!-- /#page -->
+
 <script>
   // Scroll progress bar
   const progressBar = document.getElementById('progress');
@@ -820,17 +876,63 @@
     if (el) navObs.observe(el);
   });
 
-  // Dark mode toggle (remembers your choice)
-  const themeBtn = document.getElementById('themeBtn');
+  // Dark mode with page-flip animation
+  const page    = document.getElementById('page');
+  const flipBtn = document.getElementById('flipBtn');
+  const ico     = document.getElementById('ico');
+  const btnLabel = document.getElementById('btnLabel');
+
+  const MOON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+  const SUN  = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>';
+
+  const DUR = 420;
+  let hasClicked = false;
+
+  // Restore saved theme on load, no animation
   if (localStorage.getItem('theme') === 'dark') {
     document.body.classList.add('dark');
-    themeBtn.textContent = '☀️';
+    ico.innerHTML = SUN;
+    btnLabel.textContent = 'Light';
+    hasClicked = true;
+  } else {
+    ico.innerHTML = MOON;
   }
-  themeBtn.onclick = () => {
-    document.body.classList.toggle('dark');
-    const isDark = document.body.classList.contains('dark');
-    themeBtn.textContent = isDark ? '☀️' : '🌙';
+
+  function applyTheme() {
+    const isDark = document.body.classList.toggle('dark');
+    ico.innerHTML = isDark ? SUN : MOON;
+    btnLabel.textContent = isDark ? 'Light' : 'Dark';
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  }
+
+  flipBtn.onclick = () => {
+    if (page.classList.contains('flip-out') || page.classList.contains('flip-in')) return;
+
+    // Retire the shine sweep after the first click
+    if (!hasClicked) {
+      hasClicked = true;
+      const st = document.createElement('style');
+      st.textContent = '.flip-btn::after{display:none}';
+      document.head.appendChild(st);
+    }
+
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      applyTheme();
+      return;
+    }
+
+    flipBtn.disabled = true;
+    page.classList.add('flip-out');
+
+    setTimeout(() => {
+      applyTheme();
+      page.classList.remove('flip-out');
+      page.classList.add('flip-in');
+      setTimeout(() => {
+        page.classList.remove('flip-in');
+        flipBtn.disabled = false;
+      }, DUR);
+    }, DUR);
   };
 
   // Live GitHub stats
