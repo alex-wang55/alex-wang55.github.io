@@ -105,19 +105,48 @@
 
   .nav-right { display: flex; align-items: center; gap: 1.5rem; }
 
-  .theme-btn {
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--ink);
-    width: 32px; height: 32px;
-    border-radius: 50%;
+  .flip-btn {
+    position: relative;
+    background: var(--ink);
+    color: var(--bg);
+    border: none;
     cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 14px;
-    transition: border-color .2s, transform .2s;
-    padding: 0;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: 7px 16px;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    transition: background .2s, transform .15s, color .2s;
+    overflow: hidden;
+    white-space: nowrap;
   }
-  .theme-btn:hover { border-color: var(--accent); transform: rotate(20deg); }
+  .flip-btn:hover { background: var(--accent); color: #fff; transform: translateY(-1px); }
+  .flip-btn:active { transform: scale(.96); }
+  .flip-btn:disabled { opacity: .6; cursor: default; }
+
+  .flip-btn .ico {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px; height: 14px;
+    transition: transform .35s ease;
+  }
+  .flip-btn .ico svg { width: 14px; height: 14px; display: block; }
+  .flip-btn:hover .ico { transform: rotate(25deg); }
+
+  .flip-btn::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -60%;
+    width: 40%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent);
+    animation: sweep 3.4s ease-in-out infinite;
+  }
+  @keyframes sweep { 0%,70% { left: -60%; } 100% { left: 120%; } }
 
   .reveal {
     opacity: 0;
@@ -497,48 +526,250 @@
   .hero > *:nth-child(3) { animation-delay: 0.25s; }
   .hero > *:nth-child(4) { animation-delay: 0.35s; }
   .hero > *:nth-child(5) { animation-delay: 0.45s; }
+
+  /* ===================== theme swap (no flip) ===================== */
+  #page { position: relative; }
+  body { transition: background-color .3s ease, color .3s ease; }
+
+  /* ===================== nav extras ===================== */
+  .nav-right { gap: 1.1rem; }
+  .nav-links { gap: 1.6rem; }
+  .kbd-chip {
+    display: inline-flex; align-items: center; gap: 3px; background: transparent;
+    border: 1px solid var(--border); border-radius: 8px; padding: 4px 7px; cursor: pointer;
+    transition: border-color .2s;
+  }
+  .kbd-chip:hover { border-color: var(--accent); }
+  kbd {
+    font-family: 'DM Mono', monospace; font-size: 10.5px; background: var(--tag-bg); color: var(--tag-text);
+    border: 1px solid var(--border); border-bottom-width: 2px; padding: 0 5px; border-radius: 4px; line-height: 1.6;
+  }
+  .lang-seg { display: inline-flex; background: var(--tag-bg); border-radius: 100px; padding: 3px; gap: 2px; }
+  .lang-seg button {
+    border: none; background: transparent; color: var(--muted); font-family: 'DM Mono', monospace;
+    font-size: 11px; padding: 4px 10px; border-radius: 100px; cursor: pointer; transition: background .2s, color .2s;
+  }
+  .lang-seg button.on { background: var(--accent); color: #fff; }
+  html:lang(zh) body { font-family: 'DM Sans', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', sans-serif; }
+  @media (max-width: 1000px) { .kbd-chip { display: none; } }
+  @media (max-width: 820px) { .nav-links { display: none; } nav { padding: 0 1.2rem; } }
+
+  /* ===================== hero commit art ===================== */
+  .hero { position: relative; z-index: 1; }
+  .hero-art {
+    position: absolute; left: 0; right: 0; top: 0; height: 100vh; z-index: 0; pointer-events: none;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,.22) 28%, #000 64%), linear-gradient(to bottom, #000 70%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,.22) 28%, #000 64%), linear-gradient(to bottom, #000 70%, transparent 100%);
+    mask-composite: intersect;
+  }
+  .hero-art canvas { display: block; width: 100%; height: 100%; opacity: 0; transition: opacity .8s ease; }
+  .hero-art canvas.on { opacity: 1; }
+  .hero > .art-caption {
+    animation: none; position: absolute; right: 2.5rem; bottom: 1.4rem; font-family: 'DM Mono', monospace;
+    font-size: 11px; color: var(--muted); text-decoration: none; opacity: 0; transition: opacity .6s, color .2s;
+  }
+  .hero > .art-caption.show { opacity: .9; }
+  .hero > .art-caption:hover { color: var(--accent); }
+  @media (max-width: 760px) {
+    .hero-art canvas.on { opacity: .45; }
+    .hero > .art-caption { right: 1.2rem; left: 1.2rem; text-align: right; }
+  }
+
+  /* ===================== languages spoken pills ===================== */
+  .lang-pill { cursor: pointer; font-family: inherit; transition: border-color .2s, color .2s; }
+  .lang-pill:hover { border-color: var(--accent); }
+  .lang-pill.on { border-color: var(--accent); color: var(--accent); }
+  .lp-code { font-family: 'DM Mono', monospace; font-size: 10.5px; color: var(--accent); }
+  .lang-hint { font-size: 12px; color: var(--muted); margin-top: .7rem; }
+
+  /* ===================== git log ===================== */
+  .gitlog {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+    padding: 1.3rem 1.3rem 1rem; font-family: 'DM Mono', monospace; font-size: 12.5px;
+  }
+  .git-head {
+    display: flex; gap: .6rem; align-items: center; flex-wrap: wrap; color: var(--muted); font-size: 11.5px;
+    margin-bottom: .8rem; padding-bottom: .8rem; border-bottom: 1px dashed var(--border);
+  }
+  .git-head .p { color: var(--accent); }
+  .git-hint { margin-left: auto; font-size: 10.5px; }
+  .git-body { position: relative; }
+  .git-svg { position: absolute; left: 0; top: 0; pointer-events: none; overflow: visible; }
+  .grow {
+    display: grid; grid-template-columns: var(--gw) 66px 1fr auto; align-items: start; min-height: 44px;
+    border-radius: 8px; transition: background .2s, opacity .5s, transform .5s;
+  }
+  .grow > * { padding-top: 12px; }
+  .grow.pre { opacity: 0; transform: translateX(-6px); }
+  .grow.clickable { cursor: pointer; }
+  .grow:hover { background: var(--tag-bg); }
+  .grow .h { color: #c29a3a; }
+  .grow .m { font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--ink); display: flex; align-items: center; gap: .45rem; min-width: 0; }
+  .grow .m .txt { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .grow .chev { color: var(--muted); font-size: 10px; transition: transform .25s; flex-shrink: 0; }
+  .grow.open .chev { transform: rotate(180deg); }
+  .grow .d { color: var(--muted); font-size: 11.5px; padding-right: .8rem; white-space: nowrap; }
+  .ref {
+    font-family: 'DM Mono', monospace; font-size: 10.5px; padding: 0 8px; border-radius: 100px;
+    border: 1px solid currentColor; white-space: nowrap; flex-shrink: 0; line-height: 1.7;
+  }
+  .ref.head { background: var(--accent); border-color: var(--accent); color: #fff !important; }
+  .grow .detail {
+    grid-column: 3 / 5; padding-top: 0; font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--muted);
+    max-height: 0; overflow: hidden; transition: max-height .3s ease, padding .3s ease;
+  }
+  .grow.open .detail { max-height: 90px; padding: 2px .8rem 10px 0; }
+  .gdot { transition: transform .35s cubic-bezier(.2,.9,.3,1.4); transform-box: fill-box; transform-origin: center; }
+  .gpulse { animation: gp 1.8s ease-out infinite; transform-box: fill-box; transform-origin: center; }
+  @keyframes gp { 0% { transform: scale(1); opacity: .7; } 100% { transform: scale(2.6); opacity: 0; } }
+  @media (max-width: 700px) {
+    .gitlog { padding: 1rem .6rem; }
+    .grow { grid-template-columns: var(--gw) 1fr; }
+    .grow .h { display: none; }
+    .grow .d { grid-column: 2; padding-top: 2px; padding-bottom: 8px; font-size: 10.5px; }
+    .grow .detail { grid-column: 2; }
+    .grow .m { display: block; }
+    .grow .m .ref { display: inline-block; margin: 0 4px 4px 0; }
+    .grow .m .txt { white-space: normal; display: inline; }
+    .grow .m .chev { display: inline; margin-left: 4px; }
+  }
+
+  /* ===================== project cards ===================== */
+  .project-card.live { border-color: var(--accent); position: relative; overflow: hidden; }
+  .card-bar { position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent), #34d399); }
+  .badge-progress {
+    display: inline-block; background: var(--accent-light); color: var(--accent); font-family: 'DM Mono', monospace;
+    font-size: 10px; padding: 2px 8px; border-radius: 4px; letter-spacing: .04em; margin-bottom: .5rem;
+  }
+  .repo-link {
+    display: inline-flex; align-items: center; gap: 5px; font-family: 'DM Mono', monospace; font-size: 11px;
+    color: var(--accent); text-decoration: none; border: 1px solid var(--accent); padding: 4px 12px;
+    border-radius: 100px; margin-top: .9rem; transition: background .2s;
+  }
+  .repo-link:hover { background: var(--accent-light); }
+  @media (min-width: 640px) { .projects-grid .featured { grid-column: span 2; } }
+  .feat-grid { display: grid; gap: 1.4rem; }
+  @media (min-width: 900px) { .feat-grid { grid-template-columns: 1.1fr 1fr; align-items: start; } }
+
+  /* ===================== ming demo ===================== */
+  .ming-demo { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.1rem; }
+  .md-top { display: flex; justify-content: space-between; align-items: baseline; gap: .6rem; flex-wrap: wrap; }
+  .md-label { font-family: 'DM Mono', monospace; font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
+  .md-hint { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); }
+  .md-chips { display: flex; gap: 6px; flex-wrap: wrap; margin: .6rem 0 .9rem; }
+  .md-chip {
+    border: 1px solid var(--border); background: var(--surface); color: var(--ink); padding: 3px 11px;
+    border-radius: 100px; cursor: pointer; font-size: 13px; transition: all .2s;
+    font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
+  }
+  .md-chip:hover { border-color: var(--accent); }
+  .md-chip.on { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .md-main { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+  .md-hanzi { display: flex; gap: .2rem; flex-wrap: wrap; }
+  .md-syl { display: flex; flex-direction: column; align-items: center; cursor: pointer; padding: 2px 4px; border-radius: 8px; transition: background .2s; }
+  .md-syl:hover { background: var(--tag-bg); }
+  .md-syl .py { font-family: 'DM Mono', monospace; font-size: 12.5px; font-weight: 500; }
+  .md-syl .ch { font-size: 2.1rem; line-height: 1.15; font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', sans-serif; }
+  .md-speak {
+    width: 46px; height: 46px; flex-shrink: 0; border-radius: 50%; border: none; background: var(--accent); color: #fff;
+    cursor: pointer; display: flex; align-items: center; justify-content: center; transition: transform .15s;
+  }
+  .md-speak:hover { transform: scale(1.06); }
+  .md-speak.talking { animation: ringPulse 1s ease-out infinite; }
+  @keyframes ringPulse { 0% { box-shadow: 0 0 0 0 rgba(29,158,117,.5); } 100% { box-shadow: 0 0 0 14px rgba(29,158,117,0); } }
+  .md-speak svg { width: 20px; height: 20px; }
+  .md-meaning { color: var(--muted); font-size: 13.5px; margin-top: .35rem; }
+  .md-note { margin-top: .6rem; font-size: 12px; color: var(--ink); background: var(--accent-light); border-left: 2px solid var(--accent); padding: .45rem .7rem; border-radius: 0 6px 6px 0; }
+  .md-note:empty { display: none; }
+  .md-legend { display: flex; gap: .7rem; flex-wrap: wrap; margin-top: .8rem; font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); }
+  .md-legend span { display: inline-flex; align-items: center; gap: 4px; }
+  .md-legend i { width: 7px; height: 7px; border-radius: 50%; display: inline-block; }
+  .md-voice { font-family: 'DM Mono', monospace; font-size: 10.5px; color: var(--muted); margin-top: .4rem; min-height: 14px; }
+
+  /* ===================== command palette ===================== */
+  .pal-bg {
+    position: fixed; inset: 0; background: rgba(10,10,9,.38); backdrop-filter: blur(3px); z-index: 500;
+    display: none; align-items: flex-start; justify-content: center; padding-top: 14vh;
+  }
+  .pal-bg.open { display: flex; animation: palFade .15s ease; }
+  @keyframes palFade { from { opacity: 0; } to { opacity: 1; } }
+  .pal {
+    width: min(560px, 92vw); background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.25); overflow: hidden; animation: palPop .18s cubic-bezier(.2,.9,.3,1.2);
+  }
+  @keyframes palPop { from { transform: translateY(-8px) scale(.98); opacity: 0; } to { transform: none; opacity: 1; } }
+  .pal input {
+    width: 100%; border: none; border-bottom: 1px solid var(--border); background: transparent; color: var(--ink);
+    padding: 1rem 1.2rem; font-size: 15px; font-family: inherit; outline: none;
+  }
+  .pal ul { list-style: none; max-height: 340px; overflow: auto; padding: .4rem; }
+  .pal li { display: flex; justify-content: space-between; align-items: center; padding: .6rem .8rem; border-radius: 8px; cursor: pointer; font-size: 14px; }
+  .pal li .grp { font-family: 'DM Mono', monospace; font-size: 10.5px; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
+  .pal li.sel { background: var(--accent-light); }
+  .pal li.sel .lbl { color: var(--accent); }
+  .pal .empty { padding: 1.2rem; color: var(--muted); font-size: 13px; text-align: center; }
+  .pal .foot { display: flex; gap: 1rem; padding: .55rem 1rem; border-top: 1px solid var(--border); font-size: 11px; color: var(--muted); }
+  .toast {
+    position: fixed; left: 50%; bottom: 28px; transform: translate(-50%, 20px); background: var(--ink); color: var(--bg);
+    padding: .6rem 1.1rem; border-radius: 100px; font-size: 13px; opacity: 0; transition: all .25s; z-index: 600; pointer-events: none;
+  }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
+  .footer .pal-hint { margin-top: .5rem; font-size: 11px; }
+
 </style>
 </head>
 <body>
 
 <div id="progress"></div>
 
+<div id="page">
+
+<div class="hero-art" id="heroArt" aria-hidden="true"><canvas id="artCanvas"></canvas></div>
+
 <nav>
   <a href="#top" class="nav-logo">AW</a>
   <div class="nav-right">
     <ul class="nav-links">
-      <li><a href="#skills" class="nav-a">Skills</a></li>
-      <li><a href="#experience" class="nav-a">Experience</a></li>
-      <li><a href="#projects" class="nav-a">Projects</a></li>
-      <li><a href="#education" class="nav-a">Education</a></li>
-      <li><a href="#contact" class="nav-a">Contact</a></li>
+      <li><a href="#skills" class="nav-a" data-i18n="nav.skills">Skills</a></li>
+      <li><a href="#experience" class="nav-a" data-i18n="nav.experience">Experience</a></li>
+      <li><a href="#projects" class="nav-a" data-i18n="nav.projects">Projects</a></li>
+      <li><a href="#contact" class="nav-a" data-i18n="nav.contact">Contact</a></li>
     </ul>
-    <button class="theme-btn" id="themeBtn" title="Toggle dark mode" aria-label="Toggle dark mode">🌙</button>
+    <button class="kbd-chip" id="palChip" data-i18n-title="pal.title" title="Command palette"><kbd class="modk">Ctrl</kbd><kbd>K</kbd></button>
+    <div class="lang-seg" id="langSeg" role="group" aria-label="Language">
+      <button data-l="en" class="on">EN</button><button data-l="fr">FR</button><button data-l="zh">中</button>
+    </div>
+    <button class="flip-btn" id="flipBtn" data-i18n-title="theme.title" title="Toggle dark mode" aria-label="Toggle dark mode">
+      <span class="ico" id="ico"></span>
+      <span id="btnLabel">Click me</span>
+    </button>
   </div>
 </nav>
 
 <div class="hero" id="top">
-  <p class="hero-eyebrow">CS Student &amp; Software Developer</p>
+  <p class="hero-eyebrow" data-i18n="hero.eyebrow">CS Student &amp; Software Developer</p>
   <h1 class="hero-name">Alex<br/><em>Wang</em></h1>
-  <p class="hero-sub">SWE &amp; Tools Developer at Ciena · CS student at McGill University · Building software at the intersection of AI and systems.</p>
+  <p class="hero-sub" data-i18n="hero.sub">SWE &amp; Tools Developer at Ciena · CS student at McGill University · Building software at the intersection of AI and systems.</p>
   <div class="hero-ctas">
-    <a href="#projects" class="btn-primary">View Projects ↓</a>
-    <a href="mailto:awang.ottawa@gmail.com" class="btn-outline">Get in touch →</a>
+    <a href="#projects" class="btn-primary" data-i18n="hero.cta1">View Projects ↓</a>
+    <a href="mailto:awang.ottawa@gmail.com" class="btn-outline" data-i18n="hero.cta2">Get in touch →</a>
   </div>
   <div class="contact-strip">
     <a href="mailto:awang.ottawa@gmail.com" class="contact-item">awang.ottawa@gmail.com</a>
     <span class="dot"></span>
     <a href="https://github.com/alex-wang55" target="_blank" class="contact-item">github / alex-wang55</a>
     <span class="dot"></span>
-    <span class="contact-item">Ottawa · Montreal</span>
+    <span class="contact-item" data-i18n="hero.cities">Ottawa · Montreal</span>
   </div>
+  <a class="art-caption" id="artCaption" href="https://github.com/alex-wang55" target="_blank" rel="noopener"></a>
 </div>
 
 <section id="skills" class="reveal">
-  <p class="section-label">Skills</p>
+  <p class="section-label" data-i18n="skills.label">Skills</p>
   <div class="skills-grid">
     <div class="skill-group">
-      <h4>Languages</h4>
+      <h4 data-i18n="skills.langs">Languages</h4>
       <div class="tags">
         <span class="tag tag-accent">Python</span>
         <span class="tag tag-accent">C / C++</span>
@@ -548,7 +779,7 @@
       </div>
     </div>
     <div class="skill-group">
-      <h4>Tools & Platforms</h4>
+      <h4 data-i18n="skills.tools">Tools &amp; Platforms</h4>
       <div class="tags">
         <span class="tag">Git / GitHub</span>
         <span class="tag">Linux</span>
@@ -561,7 +792,7 @@
       </div>
     </div>
     <div class="skill-group">
-      <h4>AI & APIs</h4>
+      <h4 data-i18n="skills.ai">AI &amp; APIs</h4>
       <div class="tags">
         <span class="tag tag-accent">Gemini API</span>
         <span class="tag tag-accent">ElevenLabs API</span>
@@ -570,109 +801,75 @@
       </div>
     </div>
     <div class="skill-group">
-      <h4>Languages spoken</h4>
+      <h4 data-i18n="skills.spoken">Languages spoken</h4>
       <div class="lang-row">
-        <span class="lang-pill"><span class="lang-flag">🇨🇦</span> English</span>
-        <span class="lang-pill"><span class="lang-flag">🇫🇷</span> French</span>
-        <span class="lang-pill"><span class="lang-flag">🇨🇳</span> Mandarin</span>
+        <button class="lang-pill" data-setlang="en"><span class="lp-code">EN</span><span data-i18n="lang.en">English</span></button>
+        <button class="lang-pill" data-setlang="fr"><span class="lp-code">FR</span><span data-i18n="lang.fr">French</span></button>
+        <button class="lang-pill" data-setlang="zh"><span class="lp-code">中</span><span data-i18n="lang.zh">Mandarin</span></button>
       </div>
+      <p class="lang-hint" data-i18n="skills.spokenHint">Tap one to switch the whole site.</p>
     </div>
   </div>
 </section>
 
 <section id="experience" class="reveal">
-  <p class="section-label">Experience</p>
-  <div class="exp-list">
-
-    <div class="exp-item">
-      <div class="exp-meta">
-        <div class="exp-date" style="color: var(--accent); font-weight: 500;">May – Dec 2026</div>
-        <div class="exp-company">Ciena</div>
-        <div class="exp-date" style="margin-top:2px">Ottawa, ON</div>
-        <div style="margin-top: 6px; display: inline-block; background: var(--accent-light); color: var(--accent); font-family: 'DM Mono', monospace; font-size: 10px; padding: 2px 8px; border-radius: 4px; letter-spacing: 0.04em;">Current</div>
-      </div>
-      <div>
-        <h3 class="exp-role">SWE &amp; Tools Developer</h3>
-        <p style="font-size: 13px; color: var(--muted); margin-bottom: 0.6rem; font-style: italic;">4-month summer co-op, extended part-time through December 2026</p>
-        <ul class="exp-bullets">
-          <li>Software engineering and internal tools development</li>
-        </ul>
-      </div>
+  <p class="section-label" data-i18n="exp.label">Experience &amp; education</p>
+  <div class="gitlog">
+    <div class="git-head">
+      <span class="p">alex@portfolio</span><span>~ $ git log --graph --all</span>
+      <span class="git-hint" data-i18n="git.hint">tap a commit with ▾ for details</span>
     </div>
-
-    <div class="exp-item">
-      <div class="exp-meta">
-        <div class="exp-date">May – Aug 2025</div>
-        <div class="exp-company">Ciena</div>
-        <div class="exp-date" style="margin-top:2px">Ottawa, ON</div>
-      </div>
-      <div>
-        <h3 class="exp-role">Software Developer Intern</h3>
-        <ul class="exp-bullets">
-          <li>Developed AI memory leak detection and analysis agent in C</li>
-          <li>Implemented system logging facility Sherlog in C/C++ and Python</li>
-          <li>Built unit tests to verify code quality and design using CMocka</li>
-          <li>Maintained and integrated software repository in Git and BitBucket</li>
-          <li>Delivered demos and tutorials on AI memory agent</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="exp-item">
-      <div class="exp-meta">
-        <div class="exp-date">July 2022</div>
-        <div class="exp-company">Coder Sports Academy</div>
-        <div class="exp-date" style="margin-top:2px">Ottawa, ON</div>
-      </div>
-      <div>
-        <h3 class="exp-role">Co-op Student</h3>
-        <ul class="exp-bullets">
-          <li>Assisted in teaching coding fundamentals to students in Python</li>
-          <li>Supported development of coding exercises and learning materials</li>
-        </ul>
-      </div>
-    </div>
-
+    <div class="git-body" id="gitBody"><svg class="git-svg" id="gitSvg"></svg></div>
   </div>
 </section>
 
 <section id="projects" class="reveal">
-  <p class="section-label">Projects &amp; Hackathons</p>
+  <p class="section-label" data-i18n="proj.label">Projects &amp; Hackathons</p>
   <div class="projects-grid">
 
-    <div class="project-card" style="border-color: var(--accent); position: relative; overflow: hidden;">
-      <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent), #34d399);"></div>
-      <div class="project-top">
-        <div class="project-name">Ming 明</div>
-        <span class="project-date">Jun 2026 – Present</span>
+    <div class="project-card live featured">
+      <div class="card-bar"></div>
+      <div class="feat-grid">
+        <div>
+          <div class="project-top">
+            <div class="project-name">Ming 明</div>
+            <span class="project-date" data-date="2026-06" data-present="1">Jun 2026 – Present</span>
+          </div>
+          <span class="badge-progress" data-i18n="proj.progress">In Progress</span>
+          <p class="project-desc" data-i18n="proj.ming">AI-powered Mandarin coaching app. Learns your goals, builds a personalised curriculum, and teaches through real conversations with persona-based AI coaches. Features spaced repetition word tracking and voice I/O.</p>
+          <div class="tags">
+            <span class="tag tag-accent">Next.js</span>
+            <span class="tag tag-accent">Claude API</span>
+            <span class="tag">Google Cloud TTS</span>
+            <span class="tag">Whisper</span>
+            <span class="tag">Supabase</span>
+            <span class="tag">Vercel</span>
+          </div>
+          <a class="repo-link" href="https://github.com/alex-wang55/ming" target="_blank" rel="noopener">↗ github.com/alex-wang55/ming</a>
+          <div class="gh-stats" data-repo="ming"></div>
+        </div>
+        <div class="ming-demo" id="mingDemo">
+          <div class="md-top"><span class="md-label" data-i18n="demo.try">Try it</span><span class="md-hint" data-i18n="demo.hint">tap a phrase or a character</span></div>
+          <div class="md-chips" id="mdChips"></div>
+          <div class="md-main">
+            <div class="md-hanzi" id="mdHanzi"></div>
+            <button class="md-speak" id="mdSpeak" aria-label="Play pronunciation">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+            </button>
+          </div>
+          <div class="md-meaning" id="mdMeaning"></div>
+          <div class="md-note" id="mdNote"></div>
+          <div class="md-legend" id="mdLegend"></div>
+          <div class="md-voice" id="mdVoice"></div>
+        </div>
       </div>
-      <div style="margin-bottom: 0.5rem;">
-        <span style="background: var(--accent-light); color: var(--accent); font-family: 'DM Mono', monospace; font-size: 10px; padding: 2px 8px; border-radius: 4px; letter-spacing: 0.04em;">In Progress</span>
-      </div>
-      <p class="project-desc">AI-powered Mandarin coaching app. Learns your goals, builds a personalised curriculum, and teaches through real conversations with persona-based AI coaches. Features spaced repetition word tracking and voice I/O.</p>
-      <div class="tags" style="margin-bottom: 0.9rem;">
-        <span class="tag tag-accent">Next.js</span>
-        <span class="tag tag-accent">Claude API</span>
-        <span class="tag">Google Cloud TTS</span>
-        <span class="tag">Whisper</span>
-        <span class="tag">Supabase</span>
-        <span class="tag">Vercel</span>
-      </div>
-      <a href="https://github.com/alex-wang55/ming" target="_blank" style="display: inline-flex; align-items: center; gap: 5px; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent); text-decoration: none; border: 1px solid var(--accent); padding: 4px 12px; border-radius: 100px; transition: background 0.2s;" onmouseover="this.style.background='var(--accent-light)'" onmouseout="this.style.background='transparent'">
-        ↗ github.com/alex-wang55/ming
-      </a>
-      <div class="gh-stats" data-repo="ming"></div>
     </div>
 
-    <div class="project-card" style="border-color: var(--accent); position: relative; overflow: hidden;">
-      <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent), #34d399);"></div>
-      <div class="project-top">
-        <div class="project-name">TFSA Investment Teacher</div>
-      </div>
-      <div style="margin-bottom: 0.5rem;">
-        <span style="background: var(--accent-light); color: var(--accent); font-family: 'DM Mono', monospace; font-size: 10px; padding: 2px 8px; border-radius: 4px; letter-spacing: 0.04em;">In Progress</span>
-      </div>
-      <p class="project-desc">Educational stock screener and TFSA planner. A deterministic (no LLM) scoring model rates TSX and US stocks on trend, value, quality, and income relative to a user's risk profile, and explains its reasoning in plain English. Handles TFSA-specific logic like contribution room tracking and core/satellite allocation heuristics across five pages: Dashboard, Stock Detail, TFSA Planner, Risk Profile, and Watchlist.</p>
+    <div class="project-card live">
+      <div class="card-bar"></div>
+      <div class="project-top"><div class="project-name">TFSA Investment Teacher</div></div>
+      <span class="badge-progress" data-i18n="proj.progress">In Progress</span>
+      <p class="project-desc" data-i18n="proj.tfsa">Educational stock screener and TFSA planner. A deterministic (no LLM) scoring model rates TSX and US stocks on trend, value, quality, and income relative to a user's risk profile, and explains its reasoning in plain English. Handles TFSA-specific logic like contribution room tracking and core/satellite allocation heuristics across five pages: Dashboard, Stock Detail, TFSA Planner, Risk Profile, and Watchlist.</p>
       <div class="tags">
         <span class="tag">Python</span>
         <span class="tag">FastAPI</span>
@@ -682,39 +879,31 @@
         <span class="tag">TypeScript</span>
         <span class="tag">Tailwind CSS</span>
       </div>
-      <a href="https://github.com/alex-wang55/tfsa-advisor" target="_blank" style="display: inline-flex; align-items: center; gap: 5px; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent); text-decoration: none; border: 1px solid var(--accent); padding: 4px 12px; border-radius: 100px; margin-top: 0.9rem; transition: background 0.2s;" onmouseover="this.style.background='var(--accent-light)'" onmouseout="this.style.background='transparent'">
-        ↗ github.com/alex-wang55/tfsa-advisor
-      </a>
+      <a class="repo-link" href="https://github.com/alex-wang55/tfsa-advisor" target="_blank" rel="noopener">↗ github.com/alex-wang55/tfsa-advisor</a>
       <div class="gh-stats" data-repo="tfsa-advisor"></div>
     </div>
 
-    <div class="project-card" style="border-color: var(--accent); position: relative; overflow: hidden;">
-      <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent), #34d399);"></div>
-      <div class="project-top">
-        <div class="project-name">ADK Research Crew</div>
-      </div>
-      <div style="margin-bottom: 0.5rem;">
-        <span style="background: var(--accent-light); color: var(--accent); font-family: 'DM Mono', monospace; font-size: 10px; padding: 2px 8px; border-radius: 4px; letter-spacing: 0.04em;">In Progress</span>
-      </div>
-      <p class="project-desc">Multi-agent AI pipeline built with Google's Agent Development Kit. A three-agent sequential pipeline — researcher, summarizer, and critic — passes findings through session state to produce a polished final report. Built to explore multi-agent orchestration patterns including sequential, parallel, and loop workflows.</p>
+    <div class="project-card live">
+      <div class="card-bar"></div>
+      <div class="project-top"><div class="project-name">ADK Research Crew</div></div>
+      <span class="badge-progress" data-i18n="proj.progress">In Progress</span>
+      <p class="project-desc" data-i18n="proj.adk">Multi-agent AI pipeline built with Google's Agent Development Kit. Three agents (researcher, summarizer, and critic) run in sequence, passing findings through session state to produce a polished final report. Built to explore multi-agent orchestration patterns including sequential, parallel, and loop workflows.</p>
       <div class="tags">
         <span class="tag tag-accent">Google ADK</span>
         <span class="tag tag-accent">Gemini API</span>
         <span class="tag">Python</span>
         <span class="tag">Google Search Grounding</span>
       </div>
-      <a href="https://github.com/alex-wang55/google-adk" target="_blank" style="display: inline-flex; align-items: center; gap: 5px; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent); text-decoration: none; border: 1px solid var(--accent); padding: 4px 12px; border-radius: 100px; margin-top: 0.9rem; transition: background 0.2s;" onmouseover="this.style.background='var(--accent-light)'" onmouseout="this.style.background='transparent'">
-        ↗ github.com/alex-wang55/google-adk
-      </a>
+      <a class="repo-link" href="https://github.com/alex-wang55/google-adk" target="_blank" rel="noopener">↗ github.com/alex-wang55/google-adk</a>
       <div class="gh-stats" data-repo="google-adk"></div>
     </div>
 
     <div class="project-card">
       <div class="project-top">
         <div class="project-name">McHacks 13</div>
-        <span class="project-date">Jan 2026</span>
+        <span class="project-date" data-date="2026-01">Jan 2026</span>
       </div>
-      <p class="project-desc">AI-powered mock interview tool. Analyzes your resume, generates contextual interview questions, and uses text-to-speech for a realistic experience.</p>
+      <p class="project-desc" data-i18n="proj.mchacks">AI-powered mock interview tool. Analyzes your resume, generates contextual interview questions, and uses text-to-speech for a realistic experience.</p>
       <div class="tags">
         <span class="tag">Python</span>
         <span class="tag">Flask</span>
@@ -726,9 +915,9 @@
     <div class="project-card">
       <div class="project-top">
         <div class="project-name">Blog Generator</div>
-        <span class="project-date">Dec 2025</span>
+        <span class="project-date" data-date="2025-12">Dec 2025</span>
       </div>
-      <p class="project-desc">CLI tool that leverages the OpenAI API to generate full blog posts from any user-supplied prompt, built entirely in Python.</p>
+      <p class="project-desc" data-i18n="proj.blog">CLI tool that leverages the OpenAI API to generate full blog posts from any user-supplied prompt, built entirely in Python.</p>
       <div class="tags">
         <span class="tag">Python</span>
         <span class="tag tag-accent">OpenAI</span>
@@ -739,9 +928,9 @@
     <div class="project-card">
       <div class="project-top">
         <div class="project-name">CodeJam 15</div>
-        <span class="project-date">Nov 2025</span>
+        <span class="project-date" data-date="2025-11">Nov 2025</span>
       </div>
-      <p class="project-desc">Minigame GUI with a persistent leaderboard system. Leveraged OOP design patterns and File I/O to track and display high scores across sessions.</p>
+      <p class="project-desc" data-i18n="proj.codejam">Minigame GUI with a persistent leaderboard system. Leveraged OOP design patterns and File I/O to track and display high scores across sessions.</p>
       <div class="tags">
         <span class="tag">Java</span>
         <span class="tag">OOP / OOD</span>
@@ -752,34 +941,9 @@
   </div>
 </section>
 
-<section id="education" class="reveal">
-  <p class="section-label">Education</p>
-  <div class="edu-cards">
-
-    <div class="edu-card">
-      <div>
-        <div class="edu-school">McGill University</div>
-        <div class="edu-degree">BSc Computer Science — Montreal, QC</div>
-        <div class="edu-note">Data Structures, Algorithms, Software Systems, Linear Algebra, Discrete Mathematics</div>
-      </div>
-      <div class="edu-date">Aug 2024 – Present</div>
-    </div>
-
-    <div class="edu-card">
-      <div>
-        <div class="edu-school">West Carleton Secondary School</div>
-        <div class="edu-degree">High School Diploma with Distinction — Ottawa, ON</div>
-        <div class="edu-note">OCDSB Silver Medal Award · Distinction in Advanced Functions</div>
-      </div>
-      <div class="edu-date">Sep 2020 – Jun 2024</div>
-    </div>
-
-  </div>
-</section>
-
 <section id="contact" class="reveal" style="padding-bottom: 2rem;">
-  <p class="section-label">Contact</p>
-  <p style="font-size: 1.5rem; font-family: 'DM Serif Display', serif; max-width: 480px; line-height: 1.4; margin-bottom: 2rem;">Have a project or opportunity? I'd love to hear from you.</p>
+  <p class="section-label" data-i18n="contact.label">Contact</p>
+  <p style="font-size: 1.5rem; font-family: 'DM Serif Display', serif; max-width: 480px; line-height: 1.4; margin-bottom: 2rem;" data-i18n="contact.heading">Have a project or opportunity? I'd love to hear from you.</p>
   <div style="display:flex; gap: 1rem; flex-wrap: wrap;">
     <a href="mailto:awang.ottawa@gmail.com" class="btn-primary">awang.ottawa@gmail.com →</a>
     <a href="tel:+13435738677" class="btn-outline">+1 (343) 573-8677</a>
@@ -787,78 +951,649 @@
 </section>
 
 <div class="footer">
-  <p>© 2026 Alex Wang · Ottawa, ON · Built with care</p>
+  <p data-i18n="footer.copy">© 2026 Alex Wang · Ottawa, ON · Built with care</p>
+  <p class="pal-hint"><span data-i18n="footer.hint1">Press</span> <kbd class="modk">Ctrl</kbd> <kbd>K</kbd> <span data-i18n="footer.hint2">to jump anywhere</span></p>
 </div>
 
+</div><!-- /#page -->
+
+<div class="pal-bg" id="palBg">
+  <div class="pal" role="dialog" aria-modal="true" data-i18n-title="pal.title">
+    <input id="palIn" autocomplete="off" data-i18n-ph="pal.placeholder" placeholder="Type a command or search..."/>
+    <ul id="palList"></ul>
+    <div class="foot">
+      <span><kbd>↑</kbd> <kbd>↓</kbd> <span data-i18n="pal.move">move</span></span>
+      <span><kbd>↵</kbd> <span data-i18n="pal.run">run</span></span>
+      <span><kbd>esc</kbd> <span data-i18n="pal.close">close</span></span>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
 <script>
-  // Scroll progress bar
-  const progressBar = document.getElementById('progress');
+(function () {
+  'use strict';
+  const $ = s => document.querySelector(s);
+  const $$ = s => Array.from(document.querySelectorAll(s));
+  const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const store = {
+    get: k => { try { return localStorage.getItem(k); } catch (e) { return null; } },
+    set: (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} }
+  };
+  const IS_MAC = /Mac|iPhone|iPad/.test(navigator.platform);
+  $$('.modk').forEach(k => { k.textContent = IS_MAC ? '⌘' : 'Ctrl'; });
+
+  /* =====================================================================
+     1. Translations
+     ===================================================================== */
+  const NB = '\u00a0';
+  const I18N = {
+    en: {
+      'nav.skills': 'Skills', 'nav.experience': 'Experience', 'nav.projects': 'Projects', 'nav.contact': 'Contact',
+      'theme.click': 'Click me', 'theme.dark': 'Dark', 'theme.light': 'Light', 'theme.title': 'Toggle dark mode',
+      'hero.eyebrow': 'CS Student & Software Developer',
+      'hero.sub': 'SWE & Tools Developer at Ciena · CS student at McGill University · Building software at the intersection of AI and systems.',
+      'hero.cta1': 'View Projects ↓', 'hero.cta2': 'Get in touch →', 'hero.cities': 'Ottawa · Montreal',
+      'art.caption': 'Background grown from {n} of my GitHub commits ↗',
+      'skills.label': 'Skills', 'skills.langs': 'Languages', 'skills.tools': 'Tools & Platforms', 'skills.ai': 'AI & APIs',
+      'skills.spoken': 'Languages spoken', 'skills.spokenHint': 'Tap one to switch the whole site.',
+      'lang.en': 'English', 'lang.fr': 'French', 'lang.zh': 'Mandarin',
+      'exp.label': 'Experience & education', 'git.hint': 'tap a commit with ▾ for details',
+      'proj.label': 'Projects & Hackathons', 'proj.progress': 'In Progress', 'proj.present': 'Present',
+      'proj.ming': 'AI-powered Mandarin coaching app. Learns your goals, builds a personalised curriculum, and teaches through real conversations with persona-based AI coaches. Features spaced repetition word tracking and voice I/O.',
+      'proj.tfsa': "Educational stock screener and TFSA planner. A deterministic (no LLM) scoring model rates TSX and US stocks on trend, value, quality, and income relative to a user's risk profile, and explains its reasoning in plain English. Handles TFSA-specific logic like contribution room tracking and core/satellite allocation heuristics across five pages: Dashboard, Stock Detail, TFSA Planner, Risk Profile, and Watchlist.",
+      'proj.adk': "Multi-agent AI pipeline built with Google's Agent Development Kit. Three agents (researcher, summarizer, and critic) run in sequence, passing findings through session state to produce a polished final report. Built to explore multi-agent orchestration patterns including sequential, parallel, and loop workflows.",
+      'proj.mchacks': 'AI-powered mock interview tool. Analyzes your resume, generates contextual interview questions, and uses text-to-speech for a realistic experience.',
+      'proj.blog': 'CLI tool that leverages the OpenAI API to generate full blog posts from any user-supplied prompt, built entirely in Python.',
+      'proj.codejam': 'Minigame GUI with a persistent leaderboard system. Leveraged OOP design patterns and File I/O to track and display high scores across sessions.',
+      'demo.try': 'Try it', 'demo.hint': 'tap a phrase or a character', 'demo.noVoice': 'No Mandarin voice on this device',
+      'tone.1': '1st · flat', 'tone.2': '2nd · rising', 'tone.3': '3rd · dip', 'tone.4': '4th · falling', 'tone.5': 'neutral',
+      'contact.label': 'Contact', 'contact.heading': "Have a project or opportunity? I'd love to hear from you.",
+      'footer.copy': '© 2026 Alex Wang · Ottawa, ON · Built with care', 'footer.hint1': 'Press', 'footer.hint2': 'to jump anywhere',
+      'gh.pushed': 'pushed {when}',
+      'pal.title': 'Command palette', 'pal.placeholder': 'Type a command or search...',
+      'pal.move': 'move', 'pal.run': 'run', 'pal.close': 'close', 'pal.empty': 'No matches',
+      'pal.g.jump': 'Jump', 'pal.g.action': 'Action', 'pal.g.lang': 'Language', 'pal.g.link': 'Link',
+      'pal.copyEmail': 'Copy email address', 'pal.copied': 'Copied {email}', 'pal.toggleTheme': 'Toggle dark mode',
+      'pal.github': 'Open GitHub profile', 'pal.ming': 'Open Ming repo', 'pal.tfsa': 'Open TFSA repo', 'pal.adk': 'Open ADK repo',
+      'toast.dark': 'Dark mode on', 'toast.light': 'Light mode on',
+      'season.summer': 'Summer {y}', 'season.fall': 'Fall {y}'
+    },
+    fr: {
+      'nav.skills': 'Compétences', 'nav.experience': 'Expérience', 'nav.projects': 'Projets', 'nav.contact': 'Contact',
+      'theme.click': 'Cliquez-moi', 'theme.dark': 'Sombre', 'theme.light': 'Clair', 'theme.title': 'Basculer le mode sombre',
+      'hero.eyebrow': 'Étudiant en informatique et développeur logiciel',
+      'hero.sub': 'Développeur logiciel et d’outils chez Ciena · Étudiant en informatique à l’Université McGill · Je conçois des logiciels à la croisée de l’IA et des systèmes.',
+      'hero.cta1': 'Voir les projets ↓', 'hero.cta2': 'Me contacter →', 'hero.cities': 'Ottawa · Montréal',
+      'art.caption': 'Arrière-plan créé à partir de ' + '{n}' + ' de mes commits GitHub ↗',
+      'skills.label': 'Compétences', 'skills.langs': 'Langages', 'skills.tools': 'Outils et plateformes', 'skills.ai': 'IA et API',
+      'skills.spoken': 'Langues parlées', 'skills.spokenHint': 'Cliquez sur une langue pour changer tout le site.',
+      'lang.en': 'Anglais', 'lang.fr': 'Français', 'lang.zh': 'Mandarin',
+      'exp.label': 'Expérience et formation', 'git.hint': 'touchez un commit marqué ▾ pour les détails',
+      'proj.label': 'Projets et hackathons', 'proj.progress': 'En cours', 'proj.present': 'aujourd’hui',
+      'proj.ming': 'Application de coaching en mandarin propulsée par l’IA. Elle apprend vos objectifs, crée un programme personnalisé et enseigne par de vraies conversations avec des coachs IA à personas. Suivi du vocabulaire par répétition espacée et interaction vocale.',
+      'proj.tfsa': 'Outil éducatif de filtrage d’actions et de planification CELI. Un modèle de notation déterministe (sans LLM) évalue les actions de la TSX et des États-Unis selon la tendance, la valeur, la qualité et le revenu, en fonction du profil de risque de l’utilisateur, et explique son raisonnement en langage clair. Gère la logique propre au CELI, comme le suivi des droits de cotisation et la répartition cœur-satellite, sur cinq pages' + NB + ': tableau de bord, fiche d’action, planificateur CELI, profil de risque et liste de suivi.',
+      'proj.adk': 'Pipeline d’IA multi-agents conçu avec l’Agent Development Kit de Google. Trois agents (chercheur, synthétiseur et critique) s’exécutent en séquence et se transmettent leurs résultats par l’état de session pour produire un rapport final soigné. Réalisé pour explorer les modèles d’orchestration multi-agents' + NB + ': flux séquentiels, parallèles et en boucle.',
+      'proj.mchacks': 'Outil de simulation d’entrevue propulsé par l’IA. Analyse votre CV, génère des questions d’entrevue adaptées et utilise la synthèse vocale pour une expérience réaliste.',
+      'proj.blog': 'Outil en ligne de commande qui utilise l’API d’OpenAI pour générer des articles de blogue complets à partir de n’importe quelle consigne, entièrement en Python.',
+      'proj.codejam': 'Mini-jeu avec interface graphique et classement persistant. Conçu avec des patrons de conception orientés objet et des entrées-sorties de fichiers pour conserver les meilleurs scores d’une session à l’autre.',
+      'demo.try': 'Essayez', 'demo.hint': 'touchez une expression ou un caractère', 'demo.noVoice': 'Aucune voix mandarin sur cet appareil',
+      'tone.1': '1er · plat', 'tone.2': '2e · montant', 'tone.3': '3e · creux', 'tone.4': '4e · descendant', 'tone.5': 'neutre',
+      'contact.label': 'Contact', 'contact.heading': 'Un projet ou une occasion à me proposer' + NB + '? J’aimerais beaucoup en discuter.',
+      'footer.copy': '© 2026 Alex Wang · Ottawa (Ontario) · Conçu avec soin', 'footer.hint1': 'Appuyez sur', 'footer.hint2': 'pour naviguer',
+      'gh.pushed': 'mis à jour {when}',
+      'pal.title': 'Palette de commandes', 'pal.placeholder': 'Tapez une commande ou cherchez...',
+      'pal.move': 'naviguer', 'pal.run': 'exécuter', 'pal.close': 'fermer', 'pal.empty': 'Aucun résultat',
+      'pal.g.jump': 'Aller', 'pal.g.action': 'Action', 'pal.g.lang': 'Langue', 'pal.g.link': 'Lien',
+      'pal.copyEmail': 'Copier l’adresse courriel', 'pal.copied': '{email} copié', 'pal.toggleTheme': 'Basculer le mode sombre',
+      'pal.github': 'Ouvrir le profil GitHub', 'pal.ming': 'Ouvrir le dépôt Ming', 'pal.tfsa': 'Ouvrir le dépôt TFSA', 'pal.adk': 'Ouvrir le dépôt ADK',
+      'toast.dark': 'Mode sombre activé', 'toast.light': 'Mode clair activé',
+      'season.summer': 'Été {y}', 'season.fall': 'Automne {y}'
+    },
+    zh: {
+      'nav.skills': '技能', 'nav.experience': '经历', 'nav.projects': '项目', 'nav.contact': '联系',
+      'theme.click': '点我', 'theme.dark': '深色', 'theme.light': '浅色', 'theme.title': '切换深色模式',
+      'hero.eyebrow': '计算机科学学生 · 软件开发者',
+      'hero.sub': 'Ciena 软件与工具开发工程师 · 麦吉尔大学计算机科学专业学生 · 专注于人工智能与系统交叉领域的软件开发。',
+      'hero.cta1': '查看项目 ↓', 'hero.cta2': '联系我 →', 'hero.cities': '渥太华 · 蒙特利尔',
+      'art.caption': '背景由我在 GitHub 上的 {n} 次提交生成 ↗',
+      'skills.label': '技能', 'skills.langs': '编程语言', 'skills.tools': '工具与平台', 'skills.ai': '人工智能与 API',
+      'skills.spoken': '语言能力', 'skills.spokenHint': '点击任一语言即可切换整个网站。',
+      'lang.en': '英语', 'lang.fr': '法语', 'lang.zh': '普通话',
+      'exp.label': '经历与教育', 'git.hint': '点击带 ▾ 的提交查看详情',
+      'proj.label': '项目与黑客松', 'proj.progress': '进行中', 'proj.present': '至今',
+      'proj.ming': 'AI 驱动的普通话教练应用。了解你的学习目标，生成个性化课程，并通过与基于角色的 AI 教练进行真实对话来教学。支持间隔重复词汇追踪与语音输入输出。',
+      'proj.tfsa': '教育型选股与 TFSA（免税储蓄账户）规划工具。确定性评分模型（不使用大语言模型）根据用户的风险偏好，从趋势、估值、质量和收益四个维度为多伦多证券交易所及美股打分，并用通俗语言解释推理过程。支持 TFSA 特有逻辑，如供款额度追踪和核心-卫星配置策略，共五个页面：仪表盘、个股详情、TFSA 规划、风险画像和自选股。',
+      'proj.adk': '基于 Google Agent Development Kit 构建的多智能体 AI 流水线。研究员、摘要员和评审员三个智能体依次运行，通过会话状态传递结果，最终生成一份完善的报告。旨在探索多智能体编排模式，包括顺序、并行和循环工作流。',
+      'proj.mchacks': 'AI 模拟面试工具。分析你的简历，生成贴合情境的面试问题，并通过语音合成营造真实的面试体验。',
+      'proj.blog': '命令行工具，调用 OpenAI API，根据任意提示生成完整的博客文章，完全使用 Python 编写。',
+      'proj.codejam': '带图形界面的小游戏，配有持久化排行榜。运用面向对象设计模式和文件读写，跨会话记录并展示最高分。',
+      'demo.try': '试一试', 'demo.hint': '点击短语或单个汉字', 'demo.noVoice': '此设备未安装普通话语音',
+      'tone.1': '一声 · 平', 'tone.2': '二声 · 升', 'tone.3': '三声 · 降升', 'tone.4': '四声 · 降', 'tone.5': '轻声',
+      'contact.label': '联系', 'contact.heading': '有项目或机会？欢迎与我联系。',
+      'footer.copy': '© 2026 Alex Wang · 加拿大渥太华 · 用心打造', 'footer.hint1': '按', 'footer.hint2': '快速跳转',
+      'gh.pushed': '更新于{when}',
+      'pal.title': '命令面板', 'pal.placeholder': '输入命令或搜索…',
+      'pal.move': '移动', 'pal.run': '执行', 'pal.close': '关闭', 'pal.empty': '无匹配结果',
+      'pal.g.jump': '跳转', 'pal.g.action': '操作', 'pal.g.lang': '语言', 'pal.g.link': '链接',
+      'pal.copyEmail': '复制邮箱地址', 'pal.copied': '已复制 {email}', 'pal.toggleTheme': '切换深色模式',
+      'pal.github': '打开 GitHub 主页', 'pal.ming': '打开 Ming 仓库', 'pal.tfsa': '打开 TFSA 仓库', 'pal.adk': '打开 ADK 仓库',
+      'toast.dark': '已开启深色模式', 'toast.light': '已开启浅色模式',
+      'season.summer': '{y} 年夏', 'season.fall': '{y} 年秋'
+    }
+  };
+  const LOCALES = { en: 'en-CA', fr: 'fr-CA', zh: 'zh-CN' };
+  let LANG = 'en';
+  const langHooks = [];
+  const onLang = fn => langHooks.push(fn);
+  function t(key, vars) {
+    let s = (I18N[LANG] && I18N[LANG][key]) || I18N.en[key] || key;
+    if (vars) for (const k in vars) s = s.split('{' + k + '}').join(vars[k]);
+    return s;
+  }
+  const pick = obj => (obj && (obj[LANG] || obj.en)) || '';
+  function fmtDate(d) {
+    if (!d) return '';
+    if (d.season) return t('season.' + d.season, { y: d.y });
+    if (!d.m) return String(d.y);
+    return new Intl.DateTimeFormat(LOCALES[LANG], { year: 'numeric', month: 'short' }).format(new Date(d.y, d.m - 1, 15));
+  }
+  function setLang(l, save) {
+    LANG = I18N[l] ? l : 'en';
+    document.documentElement.lang = LOCALES[LANG];
+    $$('[data-i18n]').forEach(el => { el.textContent = t(el.dataset.i18n); });
+    $$('[data-i18n-title]').forEach(el => { const v = t(el.dataset.i18nTitle); el.title = v; el.setAttribute('aria-label', v); });
+    $$('[data-i18n-ph]').forEach(el => { el.placeholder = t(el.dataset.i18nPh); });
+    $$('[data-date]').forEach(el => {
+      const [y, m] = el.dataset.date.split('-').map(Number);
+      el.textContent = fmtDate({ y, m }) + (el.dataset.present ? ' – ' + t('proj.present') : '');
+    });
+    $$('#langSeg button').forEach(b => b.classList.toggle('on', b.dataset.l === LANG));
+    $$('.lang-pill').forEach(b => b.classList.toggle('on', b.dataset.setlang === LANG));
+    if (save) store.set('lang', LANG);
+    langHooks.forEach(fn => fn());
+  }
+  $$('#langSeg button').forEach(b => b.addEventListener('click', () => setLang(b.dataset.l, true)));
+  $$('.lang-pill').forEach(b => b.addEventListener('click', () => setLang(b.dataset.setlang, true)));
+
+  /* =====================================================================
+     2. Scroll progress, section fade-in, active nav
+     ===================================================================== */
+  const progressBar = $('#progress');
   addEventListener('scroll', () => {
     const h = document.documentElement;
-    const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
-    progressBar.style.width = pct + '%';
+    progressBar.style.width = (h.scrollTop / Math.max(1, h.scrollHeight - h.clientHeight)) * 100 + '%';
   }, { passive: true });
 
-  // Fade in sections on scroll
-  const revealObs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+  const revealObs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.12 });
+  $$('.reveal').forEach(el => revealObs.observe(el));
 
-  // Highlight the nav link for the section in view
-  const navObs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        document.querySelectorAll('.nav-a').forEach(a => a.classList.remove('active'));
-        const link = document.querySelector('.nav-a[href="#' + e.target.id + '"]');
-        if (link) link.classList.add('active');
-      }
-    });
-  }, { threshold: 0.3 });
-  ['skills','experience','projects','education','contact'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) navObs.observe(el);
-  });
+  const navObs = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    $$('.nav-a').forEach(a => a.classList.remove('active'));
+    const link = $('.nav-a[href="#' + e.target.id + '"]');
+    if (link) link.classList.add('active');
+  }), { threshold: 0.3 });
+  ['skills', 'experience', 'projects', 'contact'].forEach(id => { const el = document.getElementById(id); if (el) navObs.observe(el); });
 
-  // Dark mode toggle (remembers your choice)
-  const themeBtn = document.getElementById('themeBtn');
-  if (localStorage.getItem('theme') === 'dark') {
-    document.body.classList.add('dark');
-    themeBtn.textContent = '☀️';
+  /* =====================================================================
+     3. Theme toggle (same button look, instant switch)
+     ===================================================================== */
+  const flipBtn = $('#flipBtn'), ico = $('#ico'), btnLabel = $('#btnLabel');
+  const MOON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+  const SUN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>';
+  const themeHooks = [];
+  let hasClicked = !!store.get('theme');
+  if (store.get('theme') === 'dark') document.body.classList.add('dark');
+  function retireSweep() {
+    if ($('#sweepOff')) return;
+    const st = document.createElement('style'); st.id = 'sweepOff'; st.textContent = '.flip-btn::after{display:none}';
+    document.head.appendChild(st);
   }
-  themeBtn.onclick = () => {
-    document.body.classList.toggle('dark');
-    const isDark = document.body.classList.contains('dark');
-    themeBtn.textContent = isDark ? '☀️' : '🌙';
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
-  };
-
-  // Live GitHub stats
-  function timeAgo(dateStr) {
-    const days = Math.floor((Date.now() - new Date(dateStr)) / 86400000);
-    if (days === 0) return 'today';
-    if (days === 1) return 'yesterday';
-    if (days < 30) return days + ' days ago';
-    if (days < 365) return Math.floor(days / 30) + ' months ago';
-    return Math.floor(days / 365) + ' years ago';
+  if (hasClicked) retireSweep();
+  function renderThemeBtn() {
+    const dark = document.body.classList.contains('dark');
+    ico.innerHTML = dark ? SUN : MOON;
+    btnLabel.textContent = hasClicked ? t(dark ? 'theme.light' : 'theme.dark') : t('theme.click');
   }
+  function toggleTheme() {
+    hasClicked = true; retireSweep();
+    const dark = document.body.classList.toggle('dark');
+    store.set('theme', dark ? 'dark' : 'light');
+    renderThemeBtn();
+    themeHooks.forEach(fn => fn());
+    return dark;
+  }
+  flipBtn.addEventListener('click', toggleTheme);
+  onLang(renderThemeBtn);
 
-  document.querySelectorAll('.gh-stats').forEach(async box => {
-    const repo = box.dataset.repo;
+  /* =====================================================================
+     4. GitHub data: one fetch, cached 6 hours, shared by stats + art
+     ===================================================================== */
+  const GH_USER = 'alex-wang55', GH_KEY = 'aw-gh-v1', GH_TTL = 6 * 3600 * 1000;
+  let GH = null;
+  function readGH(allowStale) {
     try {
-      const res = await fetch('https://api.github.com/repos/alex-wang55/' + repo);
-      if (!res.ok) return;
-      const d = await res.json();
-      const parts = [];
-      if (d.language) parts.push('<span class="gh-stat"><span class="gh-dot"></span>' + d.language + '</span>');
-      parts.push('<span class="gh-stat">★ ' + d.stargazers_count + '</span>');
-      if (d.pushed_at) parts.push('<span class="gh-stat">⟳ pushed ' + timeAgo(d.pushed_at) + '</span>');
-      box.innerHTML = parts.join('');
-    } catch (err) {
-      // stay silent, the card just shows without stats
+      const c = JSON.parse(store.get(GH_KEY));
+      if (c && c.meta && (allowStale || Date.now() - c.t < GH_TTL)) return c;
+    } catch (e) {}
+    return null;
+  }
+  async function ghJSON(url) { const r = await fetch(url); if (!r.ok) throw new Error(r.status); return r.json(); }
+  async function loadGitHub() {
+    const fresh = readGH(false);
+    if (fresh) return fresh;
+    try {
+      const repos = (await ghJSON('https://api.github.com/users/' + GH_USER + '/repos?per_page=100&sort=pushed')).filter(r => !r.fork);
+      const meta = {};
+      repos.forEach(r => { meta[r.name] = { language: r.language, stars: r.stargazers_count, pushed: r.pushed_at }; });
+      const commits = [];
+      await Promise.all(repos.slice(0, 8).map(async r => {
+        try {
+          const list = await ghJSON('https://api.github.com/repos/' + GH_USER + '/' + r.name + '/commits?per_page=100');
+          if (Array.isArray(list) && list.length) commits.push({ name: r.name, dates: list.map(c => Date.parse(c.commit.author.date)) });
+        } catch (e) { /* empty repos return 409 */ }
+      }));
+      commits.sort((a, b) => b.dates.length - a.dates.length);
+      const data = { t: Date.now(), meta, commits };
+      store.set(GH_KEY, JSON.stringify(data));
+      return data;
+    } catch (e) {
+      return readGH(true);   // rate limited or offline: fall back to an old cache if there is one
     }
-  });
-</script>
+  }
+  function relTime(iso) {
+    const days = Math.floor((Date.now() - Date.parse(iso)) / 864e5);
+    const rtf = new Intl.RelativeTimeFormat(LOCALES[LANG], { numeric: 'auto' });
+    if (days < 30) return rtf.format(-days, 'day');
+    if (days < 365) return rtf.format(-Math.floor(days / 30), 'month');
+    return rtf.format(-Math.floor(days / 365), 'year');
+  }
+  function renderStats() {
+    if (!GH) return;
+    $$('.gh-stats').forEach(box => {
+      const m = GH.meta[box.dataset.repo];
+      if (!m) return;
+      const parts = [];
+      if (m.language) parts.push('<span class="gh-stat"><span class="gh-dot"></span>' + m.language + '</span>');
+      parts.push('<span class="gh-stat">★ ' + m.stars + '</span>');
+      if (m.pushed) parts.push('<span class="gh-stat">⟳ ' + t('gh.pushed', { when: relTime(m.pushed) }) + '</span>');
+      box.innerHTML = parts.join('');
+    });
+  }
+  onLang(renderStats);
 
+  /* =====================================================================
+     5. Commit art behind the hero
+     ===================================================================== */
+  const heroArt = $('#heroArt'), hero = $('#top'), canvas = $('#artCanvas'), actx = canvas.getContext('2d'), caption = $('#artCaption');
+  const EXTRA = ['#d9583b', '#7c5cd6', '#2b9bb0', '#c2477a', '#8a6d3b'];
+  let artRAF = 0, artDrawn = false, ART = null;
+  function sampleCommits() {
+    const r = mulberry(42), now = Date.now(), day = 864e5;
+    const mk = (name, n, fromDays, toDays) => ({ name, dates: Array.from({ length: n }, () => now - (fromDays - r() * (fromDays - toDays)) * day) });
+    return [mk('ming', 140, 120, 1), mk('tfsa-advisor', 62, 100, 6), mk('google-adk', 34, 80, 12),
+      mk('mchacks13', 48, 255, 252), mk('alex-wang55.github.io', 26, 250, 1), mk('codejam15', 30, 320, 317), mk('blog-generator', 16, 300, 285)];
+  }
+  function mulberry(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; let x = Math.imul(a ^ a >>> 15, 1 | a); x = x + Math.imul(x ^ x >>> 7, 61 | x) ^ x; return ((x ^ x >>> 14) >>> 0) / 4294967296; }; }
+  function fieldAngle(x, y, s) {
+    return (Math.sin(x * 0.009 + s) + Math.sin(y * 0.013 + x * 0.004 - s * 0.7) + Math.cos(y * 0.007 - x * 0.003 + s * 1.9)) * 1.1 * Math.PI;
+  }
+  function sizeArt() {
+    heroArt.style.height = (hero.offsetTop + hero.offsetHeight) + 'px';
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = Math.round(canvas.clientWidth * dpr); canvas.height = Math.round(canvas.clientHeight * dpr);
+    actx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  function drawArt(animate) {
+    cancelAnimationFrame(artRAF);
+    const data = ART && ART.data;
+    if (!data || !data.length) return;
+    sizeArt();
+    const W = canvas.clientWidth, H = canvas.clientHeight;
+    actx.clearRect(0, 0, W, H);
+    const css = getComputedStyle(document.body), dark = document.body.classList.contains('dark');
+    const named = { 'ming': css.getPropertyValue('--accent').trim(), 'tfsa-advisor': '#3b7bd9', 'google-adk': '#d9a13b', 'alex-wang55.github.io': css.getPropertyValue('--ink').trim() };
+    let extra = 0;
+    const colors = data.map(r => named[r.name] || EXTRA[extra++ % EXTRA.length]);
+    const all = data.flatMap(r => r.dates), t0 = Math.min(...all), t1 = Math.max(...all);
+    const per = Math.max(1, Math.min(5, Math.ceil(1100 / all.length)));
+    const rnd = mulberry(7), walkers = [];
+    data.forEach((r, ri) => {
+      const band = (ri + 0.5) / data.length;
+      r.dates.forEach(ts => {
+        const u = (ts - t0) / Math.max(1, t1 - t0);
+        for (let k = 0; k < per; k++) walkers.push({
+          x: W * 0.06 + u * W * 0.9 + (rnd() - 0.5) * 90, y: H * (0.1 + band * 0.8) + (rnd() - 0.5) * 80,
+          col: colors[ri], life: 60 + rnd() * 110, w: 0.5 + rnd() * 1.4, delay: u * 80 + rnd() * 30, s: ri * 1.3
+        });
+      });
+    });
+    const alpha = dark ? 0.06 : 0.09;
+    function stepWalker(w, n) {
+      actx.strokeStyle = w.col; actx.lineWidth = w.w;
+      actx.beginPath(); actx.moveTo(w.x, w.y);
+      for (let k = 0; k < n && w.life > 0; k++) {
+        const a = fieldAngle(w.x, w.y, w.s);
+        const nx = w.x + Math.cos(a) * 1.3, ny = w.y + Math.sin(a) * 1.3;
+        if (nx < 2 || nx > W - 2 || ny < 2 || ny > H - 2) { w.life = 0; break; }
+        actx.lineTo(nx, ny); w.x = nx; w.y = ny; w.life--;
+      }
+      actx.stroke();
+    }
+    actx.globalCompositeOperation = dark ? 'lighter' : 'multiply';
+    actx.globalAlpha = alpha;
+    canvas.classList.add('on');
+    if (ART.real) { caption.textContent = t('art.caption', { n: all.length }); caption.classList.add('show'); }
+    else caption.classList.remove('show');
+    artDrawn = true;
+    if (!animate) { walkers.forEach(w => stepWalker(w, 400)); return; }
+    let frame = 0;
+    (function f() {
+      frame++;
+      actx.globalCompositeOperation = dark ? 'lighter' : 'multiply'; actx.globalAlpha = alpha;
+      let alive = 0;
+      for (const w of walkers) {
+        if (w.life <= 0) continue;
+        alive++;
+        if (frame >= w.delay) stepWalker(w, 3);
+      }
+      if (alive) artRAF = requestAnimationFrame(f);
+    })();
+  }
+  themeHooks.push(() => { if (artDrawn) drawArt(false); });
+  onLang(() => { if (artDrawn && ART && ART.real) caption.textContent = t('art.caption', { n: ART.data.flatMap(r => r.dates).length }); });
+
+  /* =====================================================================
+     6. Git log: experience + education as a commit graph
+     ===================================================================== */
+  const LANES = ['var(--ink)', '#d9583b', '#7c5cd6', 'var(--accent)', '#3b7bd9', '#d9a13b'];
+  const COMMITS = [
+    { lane: 3, date: { y: 2026, m: 6 }, refs: ['HEAD', 'feature/ming'], open: true,
+      msg: { en: 'Persona-based AI coaches with spaced repetition', fr: 'Coachs IA à personas et répétition espacée', zh: '基于角色的 AI 教练与间隔重复' },
+      detail: { en: 'Ming 明 · AI Mandarin coach. Next.js, Claude API, Google Cloud TTS, Whisper, Supabase.', fr: 'Ming 明 · coach de mandarin propulsé par l’IA. Next.js, Claude API, Google Cloud TTS, Whisper, Supabase.', zh: 'Ming 明 · AI 普通话教练。Next.js、Claude API、Google Cloud TTS、Whisper、Supabase。' } },
+    { lane: 5, date: { y: 2026 }, refs: ['feature/adk-research-crew'], open: true,
+      msg: { en: 'Researcher, summarizer and critic agent pipeline', fr: 'Pipeline d’agents' + NB + ': chercheur, synthétiseur et critique', zh: '研究员、摘要员与评审员三智能体流水线' },
+      detail: { en: 'Google ADK and Gemini, with search grounding and retry logic for rate limits.', fr: 'Google ADK et Gemini, avec ancrage par recherche et relances en cas de limite de débit.', zh: '基于 Google ADK 与 Gemini，结合搜索溯源，并针对限流加入重试机制。' } },
+    { lane: 4, date: { y: 2026 }, refs: ['feature/tfsa-advisor'], open: true,
+      msg: { en: 'Deterministic stock scoring with plain-English reasons', fr: 'Notation déterministe des actions, expliquée en langage clair', zh: '确定性股票评分，并用通俗语言解释原因' },
+      detail: { en: 'FastAPI, SQLAlchemy, yfinance, React 19, TypeScript. Tracks TFSA contribution room.', fr: 'FastAPI, SQLAlchemy, yfinance, React 19, TypeScript. Suit les droits de cotisation au CELI.', zh: 'FastAPI、SQLAlchemy、yfinance、React 19、TypeScript。追踪 TFSA 供款额度。' } },
+    { lane: 1, date: { season: 'fall', y: 2026 }, refs: ['work/ciena'], open: true,
+      msg: { en: 'Extend co-op part-time through December 2026', fr: 'Prolongation à temps partiel jusqu’en décembre 2026', zh: '实习延长为兼职，至 2026 年 12 月' } },
+    { lane: 1, date: { y: 2026, m: 5 },
+      msg: { en: 'Join Ciena as SWE & Tools Developer', fr: 'Arrivée chez Ciena comme développeur logiciel et d’outils', zh: '加入 Ciena，担任软件与工具开发工程师' },
+      detail: { en: '4-month summer co-op in Ottawa, focused on software engineering and internal tools.', fr: 'Stage coop d’été de 4 mois à Ottawa, axé sur le génie logiciel et les outils internes.', zh: '在渥太华为期 4 个月的暑期实习，专注软件工程与内部工具开发。' } },
+    { lane: 0, date: { y: 2026, m: 1 }, merge: true,
+      msg: { en: 'Merge projects: McHacks13 AI mock interviewer', fr: 'Fusion de projets' + NB + ': simulateur d’entrevue IA McHacks13', zh: '合并项目：McHacks13 AI 模拟面试' },
+      detail: { en: 'Built at McGill’s hackathon: Gemini writes and analyzes answers, ElevenLabs speaks the questions, Flask ties it together.', fr: 'Réalisé au hackathon de McGill' + NB + ': Gemini génère et analyse les réponses, ElevenLabs lit les questions, Flask relie le tout.', zh: '在麦吉尔黑客松完成：Gemini 生成并分析回答，ElevenLabs 朗读问题，Flask 负责前后端衔接。' } },
+    { lane: 2, date: { y: 2025, m: 12 },
+      msg: { en: 'Blog generator with OpenAI and Python', fr: 'Générateur de blogue avec OpenAI et Python', zh: '基于 OpenAI 与 Python 的博客生成器' } },
+    { lane: 2, date: { y: 2025, m: 11 },
+      msg: { en: 'CodeJam15 minigame with a persistent leaderboard', fr: 'Mini-jeu CodeJam15 avec classement persistant', zh: 'CodeJam15 小游戏，含持久化排行榜' } },
+    { lane: 0, date: { y: 2025, m: 8 }, merge: true,
+      msg: { en: 'Merge work/ciena-intern', fr: 'Fusion de work/ciena-intern', zh: '合并 work/ciena-intern' } },
+    { lane: 1, date: { season: 'summer', y: 2025 },
+      msg: { en: 'Deliver demos and tutorials on the AI memory agent', fr: 'Démos et tutoriels sur l’agent mémoire IA', zh: '为 AI 内存代理进行演示与教程讲解' } },
+    { lane: 1, date: { season: 'summer', y: 2025 },
+      msg: { en: 'Unit tests in C with CMocka, repo upkeep in Git and BitBucket', fr: 'Tests unitaires en C avec CMocka, maintenance du dépôt Git et BitBucket', zh: '用 CMocka 编写 C 单元测试，维护 Git 与 BitBucket 代码库' } },
+    { lane: 1, date: { season: 'summer', y: 2025 },
+      msg: { en: 'Ship Sherlog logging facility in C/C++ and Python', fr: 'Livraison de Sherlog, système de journalisation en C/C++ et Python', zh: '交付 Sherlog 日志系统（C/C++ 与 Python）' } },
+    { lane: 1, date: { y: 2025, m: 5 },
+      msg: { en: 'Build AI memory leak detection agent in C', fr: 'Agent IA de détection de fuites de mémoire en C', zh: '用 C 构建 AI 内存泄漏检测与分析代理' },
+      detail: { en: 'Software Developer Intern at Ciena, Ottawa.', fr: 'Stagiaire en développement logiciel chez Ciena, Ottawa.', zh: 'Ciena 软件开发实习生，渥太华。' } },
+    { lane: 0, date: { y: 2024, m: 8 }, refs: ['mcgill'],
+      msg: { en: 'Start BSc Computer Science at McGill', fr: 'Début du baccalauréat en informatique à McGill', zh: '开始在麦吉尔大学攻读计算机科学学士' },
+      detail: { en: 'Relevant coursework: Data Structures and Algorithms, Software Systems, Linear Algebra, Calculus, Discrete Mathematics.', fr: 'Cours pertinents' + NB + ': structures de données et algorithmes, systèmes logiciels, algèbre linéaire, calcul, mathématiques discrètes.', zh: '相关课程：数据结构与算法、软件系统、线性代数、微积分、离散数学。' } },
+    { lane: 0, date: { y: 2024, m: 6 }, refs: ['v1.0'],
+      msg: { en: 'Graduate with distinction, OCDSB Silver Medal', fr: 'Diplôme avec distinction, médaille d’argent de l’OCDSB', zh: '以优异成绩毕业，获 OCDSB 银质奖章' },
+      detail: { en: 'West Carleton Secondary School. Also earned distinction in Advanced Functions.', fr: 'École secondaire West Carleton. Distinction également en fonctions avancées.', zh: 'West Carleton 中学。高等函数课程亦获优异成绩。' } },
+    { lane: 0, date: { y: 2022, m: 7 }, merge: true,
+      msg: { en: 'Merge work/coder-sports', fr: 'Fusion de work/coder-sports', zh: '合并 work/coder-sports' } },
+    { lane: 1, date: { y: 2022, m: 7 },
+      msg: { en: 'Teach Python fundamentals at Coder Sports Academy', fr: 'Enseignement des bases de Python à Coder Sports Academy', zh: '在 Coder Sports Academy 教授 Python 基础' },
+      detail: { en: 'Co-op student. Also helped build coding exercises and learning materials.', fr: 'Stagiaire coop. A aussi contribué à créer des exercices et du matériel pédagogique.', zh: '合作教育实习生，并协助编写编程练习与教学材料。' } },
+    { lane: 0, date: { y: 2020, m: 9 },
+      msg: { en: 'Initial commit: West Carleton Secondary', fr: 'Commit initial' + NB + ': école secondaire West Carleton', zh: '初始提交：West Carleton 中学' },
+      detail: { en: 'Computer science courses focused on Python, C, Java and HTML.', fr: 'Cours d’informatique axés sur Python, C, Java et HTML.', zh: '计算机课程，重点学习 Python、C、Java 与 HTML。' } }
+  ];
+  const EDGES = [
+    [0, 5, 'fork'], [1, 5, 'fork'], [2, 5, 'fork'], [3, 4, 'line'], [4, 5, 'fork'],
+    [5, 8, 'line'], [5, 6, 'merge'], [6, 7, 'line'], [7, 8, 'fork'],
+    [8, 13, 'line'], [8, 9, 'merge'], [9, 10, 'line'], [10, 11, 'line'], [11, 12, 'line'], [12, 13, 'fork'],
+    [13, 14, 'line'], [14, 15, 'line'], [15, 17, 'line'], [15, 16, 'merge'], [16, 17, 'fork']
+  ];
+  const gitBody = $('#gitBody'), gitSvg = $('#gitSvg'), SVGNS = 'http://www.w3.org/2000/svg';
+  const hash = s => { let h = 2166136261; for (const ch of s) h = Math.imul(h ^ ch.charCodeAt(0), 16777619); return (h >>> 0).toString(16).padStart(8, '0').slice(0, 7); };
+  let LW = 22, GX = 16, gitRows = [], gitPaths = [], gitDots = [], gitPlayed = false;
+  const lx = l => GX + l * LW;
+  function svgEl(tag, attrs, style) {
+    const e = document.createElementNS(SVGNS, tag);
+    for (const k in attrs) e.setAttribute(k, attrs[k]);
+    if (style) for (const k in style) e.style[k] = style[k];
+    gitSvg.appendChild(e); return e;
+  }
+  function buildGitRows() {
+    const openSet = new Set(gitRows.map((r, i) => r.classList.contains('open') ? i : -1));
+    gitRows.forEach(r => r.remove());
+    LW = innerWidth < 700 ? 15 : 22; GX = innerWidth < 700 ? 10 : 16;
+    gitBody.style.setProperty('--gw', (GX * 2 + LW * 5 + 6) + 'px');
+    gitRows = COMMITS.map((c, i) => {
+      const r = document.createElement('div');
+      r.className = 'grow' + (c.detail ? ' clickable' : '') + (openSet.has(i) ? ' open' : '') + (gitPlayed || REDUCED ? '' : ' pre');
+      const refs = (c.refs || []).map(n => '<span class="ref' + (n === 'HEAD' ? ' head' : '') + '" style="color:' + LANES[c.lane] + '">' + n + '</span>').join('');
+      const msg = pick(c.msg);
+      r.innerHTML = '<span></span><span class="h">' + hash(c.msg.en) + '</span>' +
+        '<span class="m">' + refs + '<span class="txt" title="' + msg.replace(/"/g, '&quot;') + '">' + msg + '</span>' + (c.detail ? '<span class="chev">▾</span>' : '') + '</span>' +
+        '<span class="d">' + fmtDate(c.date) + '</span>' +
+        (c.detail ? '<span class="detail">' + pick(c.detail) + '</span>' : '');
+      if (c.detail) r.addEventListener('click', () => { r.classList.toggle('open'); relayoutFor(420); });
+      gitBody.appendChild(r);
+      return r;
+    });
+  }
+  const rowY = i => gitRows[i].offsetTop + 22;
+  function layoutGit() {
+    gitSvg.innerHTML = ''; gitPaths = []; gitDots = [];
+    gitSvg.setAttribute('width', GX * 2 + LW * 5 + 6); gitSvg.setAttribute('height', gitBody.scrollHeight);
+    EDGES.forEach(([a, b, kind]) => {
+      const A = COMMITS[a], B = COMMITS[b], x1 = lx(A.lane), y1 = rowY(a), x2 = lx(B.lane), y2 = rowY(b), R = 37;
+      let d, col;
+      if (kind === 'line') { d = 'M' + x1 + ' ' + y1 + ' L' + x2 + ' ' + y2; col = LANES[A.lane]; }
+      else if (kind === 'fork') { d = 'M' + x1 + ' ' + y1 + ' L' + x1 + ' ' + (y2 - R) + ' C' + x1 + ' ' + (y2 - R / 2) + ' ' + x2 + ' ' + (y2 - R / 2) + ' ' + x2 + ' ' + y2; col = LANES[A.lane]; }
+      else { d = 'M' + x1 + ' ' + y1 + ' C' + x1 + ' ' + (y1 + R / 2) + ' ' + x2 + ' ' + (y1 + R / 2) + ' ' + x2 + ' ' + (y1 + R) + ' L' + x2 + ' ' + y2; col = LANES[B.lane]; }
+      const p = svgEl('path', { d, fill: 'none', 'stroke-width': 2.4, 'stroke-linecap': 'round' }, { stroke: col });
+      gitPaths.push({ p, order: Math.max(a, b) });
+    });
+    COMMITS.forEach((c, i) => {
+      const x = lx(c.lane), y = rowY(i), col = LANES[c.lane];
+      if (c.open) {
+        svgEl('path', { d: 'M' + x + ' ' + y + ' L' + x + ' ' + (y - 18), fill: 'none', 'stroke-width': 2.4, 'stroke-dasharray': '3 4' }, { stroke: col });
+        svgEl('circle', { cx: x, cy: y, r: 6, fill: 'none', 'stroke-width': 2, class: 'gpulse' }, { stroke: col });
+      }
+      const dot = svgEl('circle', { cx: x, cy: y, r: c.merge ? 5 : 6, 'stroke-width': c.merge ? 2.4 : 0, class: 'gdot' },
+        { fill: c.merge ? 'var(--surface)' : col, stroke: col });
+      gitDots.push(dot);
+    });
+    if (!gitPlayed && !REDUCED) {
+      gitPaths.forEach(({ p }) => { const L = p.getTotalLength(); p.style.strokeDasharray = L; p.style.strokeDashoffset = -L; });
+      gitDots.forEach(d => { d.style.transform = 'scale(0)'; });
+    }
+  }
+  let relayoutUntil = 0;
+  function relayoutFor(ms) {
+    const first = !relayoutUntil || performance.now() > relayoutUntil;
+    relayoutUntil = performance.now() + ms;
+    if (!first) return;
+    (function f() { layoutGit(); if (performance.now() < relayoutUntil) requestAnimationFrame(f); else relayoutUntil = 0; })();
+  }
+  function playGit() {
+    if (gitPlayed) return;
+    const n = COMMITS.length, STEP = 95;
+    gitPaths.forEach(({ p, order }) => {
+      p.style.transition = 'stroke-dashoffset .45s ease ' + ((n - 1 - order) * STEP) + 'ms';
+      requestAnimationFrame(() => { p.style.strokeDashoffset = 0; });
+    });
+    gitDots.forEach((d, i) => setTimeout(() => { d.style.transform = 'scale(1)'; }, (n - 1 - i) * STEP + 220));
+    gitRows.forEach((r, i) => setTimeout(() => r.classList.remove('pre'), (n - 1 - i) * STEP + 180));
+    setTimeout(() => {
+      gitPlayed = true;
+      gitPaths.forEach(({ p }) => { p.style.transition = ''; p.style.strokeDasharray = ''; p.style.strokeDashoffset = ''; });
+    }, n * STEP + 700);
+  }
+  onLang(() => { buildGitRows(); layoutGit(); });
+  let rzGit;
+  addEventListener('resize', () => {
+    clearTimeout(rzGit);
+    rzGit = setTimeout(() => { buildGitRows(); layoutGit(); if (artDrawn) drawArt(false); }, 180);
+  });
+
+  /* =====================================================================
+     7. Ming demo
+     ===================================================================== */
+  const TONE = { 1: '#d9483b', 2: '#2f9e44', 3: '#3b6fd9', 4: '#8b46c9', 5: '#8a8a82' };
+  const PHRASES = [
+    { zh: '你好', py: [['nǐ', 3], ['hǎo', 3]],
+      mean: { en: 'Hello', fr: 'Bonjour', zh: '问好' },
+      note: { en: 'Two third tones in a row: the first one shifts up to a rising tone, so it’s actually said ní hǎo.', fr: 'Deux troisièmes tons de suite' + NB + ': le premier devient montant, on dit donc en fait ní hǎo.', zh: '两个三声连读时，第一个变为二声，实际读作 ní hǎo。' } },
+    { zh: '谢谢', py: [['xiè', 4], ['xie', 5]],
+      mean: { en: 'Thank you', fr: 'Merci', zh: '表示感谢' },
+      note: { en: 'The second 谢 is unstressed and drops to the neutral tone.', fr: 'Le second 谢 est atone et prend le ton neutre.', zh: '第二个“谢”读轻声。' } },
+    { zh: '我在学中文', py: [['wǒ', 3], ['zài', 4], ['xué', 2], ['zhōng', 1], ['wén', 2]],
+      mean: { en: 'I’m learning Chinese', fr: 'J’apprends le chinois', zh: '我正在学习中文' } },
+    { zh: '加油', py: [['jiā', 1], ['yóu', 2]],
+      mean: { en: 'Keep going, you’ve got this', fr: 'Allez, tu peux le faire', zh: '鼓劲、打气' },
+      note: { en: 'Literally “add oil.” What you’d yell at a teammate on match point.', fr: 'Littéralement «' + NB + 'ajouter de l’huile' + NB + '». Ce qu’on crie à un coéquipier sur une balle de match.', zh: '比赛关键时刻给队友打气的常用语。' } }
+  ];
+  let cur = 0, zhVoice = null;
+  const mdChips = $('#mdChips');
+  PHRASES.forEach((p, i) => {
+    const c = document.createElement('button'); c.className = 'md-chip'; c.textContent = p.zh;
+    c.addEventListener('click', () => { showPhrase(i); speak(p.zh); });
+    mdChips.appendChild(c);
+  });
+  function showPhrase(i) {
+    cur = i; const p = PHRASES[i];
+    $$('.md-chip').forEach((c, j) => c.classList.toggle('on', j === i));
+    const h = $('#mdHanzi'); h.innerHTML = '';
+    [...p.zh].forEach((ch, j) => {
+      const [py, tone] = p.py[j];
+      const s = document.createElement('div'); s.className = 'md-syl';
+      s.innerHTML = '<span class="py" style="color:' + TONE[tone] + '">' + py + '</span><span class="ch" style="color:' + TONE[tone] + '">' + ch + '</span>';
+      s.addEventListener('click', () => speak(ch));
+      h.appendChild(s);
+    });
+    $('#mdMeaning').textContent = pick(p.mean);
+    $('#mdNote').textContent = p.note ? pick(p.note) : '';
+  }
+  function renderLegend() {
+    $('#mdLegend').innerHTML = [1, 2, 3, 4, 5].map(n => '<span><i style="background:' + TONE[n] + '"></i>' + t('tone.' + n) + '</span>').join('');
+  }
+  function pickVoice() {
+    const v = speechSynthesis.getVoices();
+    zhVoice = v.find(x => /zh[-_]CN/i.test(x.lang)) || v.find(x => /^zh/i.test(x.lang)) || null;
+  }
+  if ('speechSynthesis' in window) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+  function speak(text) {
+    const btn = $('#mdSpeak'), msg = $('#mdVoice');
+    if (!('speechSynthesis' in window)) { msg.textContent = t('demo.noVoice'); return; }
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'zh-CN'; u.rate = 0.78; if (zhVoice) u.voice = zhVoice;
+    u.onstart = () => btn.classList.add('talking');
+    u.onend = u.onerror = () => btn.classList.remove('talking');
+    speechSynthesis.speak(u);
+    msg.textContent = zhVoice ? '' : t('demo.noVoice');
+  }
+  $('#mdSpeak').addEventListener('click', () => speak(PHRASES[cur].zh));
+  onLang(() => { showPhrase(cur); renderLegend(); if ($('#mdVoice').textContent) $('#mdVoice').textContent = t('demo.noVoice'); });
+
+  /* =====================================================================
+     8. Command palette
+     ===================================================================== */
+  const toastEl = $('#toast');
+  function toast(msg) { toastEl.textContent = msg; toastEl.classList.add('show'); clearTimeout(toastEl._h); toastEl._h = setTimeout(() => toastEl.classList.remove('show'), 1800); }
+  const go = id => document.getElementById(id).scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth' });
+  const openUrl = u => window.open(u, '_blank', 'noopener');
+  function commands() {
+    return [
+      { g: 'jump', l: t('nav.skills'), k: 'skills competences 技能', run: () => go('skills') },
+      { g: 'jump', l: t('exp.label'), k: 'experience education work git 经历', run: () => go('experience') },
+      { g: 'jump', l: t('nav.projects'), k: 'projects projets 项目 ming tfsa adk', run: () => go('projects') },
+      { g: 'jump', l: t('nav.contact'), k: 'contact email 联系', run: () => go('contact') },
+      { g: 'action', l: t('pal.copyEmail'), k: 'email mail courriel 邮箱 copy', run: () => { if (navigator.clipboard) navigator.clipboard.writeText('awang.ottawa@gmail.com').catch(() => {}); toast(t('pal.copied', { email: 'awang.ottawa@gmail.com' })); } },
+      { g: 'action', l: t('pal.toggleTheme'), k: 'dark light theme sombre 深色 mode', run: () => toast(t(toggleTheme() ? 'toast.dark' : 'toast.light')) },
+      { g: 'lang', l: 'English', k: 'english anglais 英语 language', run: () => setLang('en', true) },
+      { g: 'lang', l: 'Français', k: 'french francais 法语 language langue', run: () => setLang('fr', true) },
+      { g: 'lang', l: '中文', k: 'chinese mandarin chinois 中文 普通话 language', run: () => setLang('zh', true) },
+      { g: 'link', l: t('pal.github'), k: 'github code repos', run: () => openUrl('https://github.com/' + GH_USER) },
+      { g: 'link', l: t('pal.ming'), k: 'ming github repo 明', run: () => openUrl('https://github.com/' + GH_USER + '/ming') },
+      { g: 'link', l: t('pal.tfsa'), k: 'tfsa advisor celi github repo', run: () => openUrl('https://github.com/' + GH_USER + '/tfsa-advisor') },
+      { g: 'link', l: t('pal.adk'), k: 'adk agents gemini github repo', run: () => openUrl('https://github.com/' + GH_USER + '/google-adk') }
+    ];
+  }
+  const palBg = $('#palBg'), palIn = $('#palIn'), palList = $('#palList');
+  let sel = 0, shown = [];
+  function renderPal() {
+    const q = palIn.value.trim().toLowerCase();
+    shown = commands().filter(c => !q || (c.l + ' ' + c.k + ' ' + t('pal.g.' + c.g)).toLowerCase().includes(q));
+    sel = Math.min(sel, Math.max(0, shown.length - 1));
+    palList.innerHTML = shown.length
+      ? shown.map((c, i) => '<li class="' + (i === sel ? 'sel' : '') + '" data-i="' + i + '"><span class="lbl">' + c.l + '</span><span class="grp">' + t('pal.g.' + c.g) + '</span></li>').join('')
+      : '<div class="empty">' + t('pal.empty') + '</div>';
+    palList.querySelectorAll('li').forEach(li => {
+      li.addEventListener('mousemove', () => { if (sel !== +li.dataset.i) { sel = +li.dataset.i; renderPal(); } });
+      li.addEventListener('click', () => runSel(+li.dataset.i));
+    });
+    const s = palList.querySelector('.sel'); if (s) s.scrollIntoView({ block: 'nearest' });
+  }
+  function openPal() { palBg.classList.add('open'); palIn.value = ''; sel = 0; renderPal(); setTimeout(() => palIn.focus(), 10); }
+  function closePal() { palBg.classList.remove('open'); }
+  function runSel(i) { const c = shown[i]; if (!c) return; closePal(); setTimeout(c.run, 60); }
+  palIn.addEventListener('input', () => { sel = 0; renderPal(); });
+  palIn.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown') { e.preventDefault(); sel = Math.min(sel + 1, shown.length - 1); renderPal(); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); sel = Math.max(sel - 1, 0); renderPal(); }
+    else if (e.key === 'Enter') { e.preventDefault(); runSel(sel); }
+    else if (e.key === 'Escape') closePal();
+  });
+  palBg.addEventListener('click', e => { if (e.target === palBg) closePal(); });
+  document.addEventListener('keydown', e => {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); palBg.classList.contains('open') ? closePal() : openPal(); }
+    else if (e.key === 'Escape' && palBg.classList.contains('open')) closePal();
+  });
+  $('#palChip').addEventListener('click', openPal);
+
+  /* =====================================================================
+     9. Boot
+     ===================================================================== */
+  const saved = store.get('lang');
+  const browser = (navigator.languages && navigator.languages[0]) || navigator.language || 'en';
+  const initial = saved || (/^fr/i.test(browser) ? 'fr' : /^zh/i.test(browser) ? 'zh' : 'en');
+  buildGitRows();
+  setLang(initial, false);   // renders theme button, git rows, demo, legend
+  showPhrase(0);
+  requestAnimationFrame(() => {
+    layoutGit();
+    new IntersectionObserver((es, io) => es.forEach(e => { if (e.isIntersecting) { playGit(); io.disconnect(); } }), { threshold: 0.15 })
+      .observe($('#experience'));
+    if (REDUCED) gitPlayed = true;
+  });
+  // Paint with real commits if GitHub answers quickly; otherwise paint the built-in pattern
+  // and quietly swap in the real one if it arrives later.
+  let painted = false;
+  const paint = animate => { painted = true; setTimeout(() => drawArt(animate && !REDUCED), 500); };
+  const fallback = setTimeout(() => { if (!ART) { ART = { data: sampleCommits(), real: false }; paint(true); } }, 2500);
+  loadGitHub().then(d => {
+    if (d) { GH = d; renderStats(); }
+    if (d && d.commits && d.commits.length) {
+      const wasFallback = !!ART;
+      ART = { data: d.commits, real: true };
+      clearTimeout(fallback);
+      if (wasFallback) drawArt(false); else paint(true);
+    } else if (!ART) { clearTimeout(fallback); ART = { data: sampleCommits(), real: false }; paint(true); }
+  });
+})();
+
+</script>
 </body>
 </html>
