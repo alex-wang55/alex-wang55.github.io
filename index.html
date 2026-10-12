@@ -890,27 +890,13 @@
       </div>
     </div>
 
-    <div class="project-card live">
-      <div class="card-bar"></div>
-      <div class="project-top"><div class="project-name">ADK Research Crew</div></div>
-      <span class="badge-progress" data-i18n="proj.progress">In Progress</span>
-      <p class="project-desc" data-i18n="proj.adk">Multi-agent AI pipeline built with Google's Agent Development Kit. Three agents (researcher, summarizer, and critic) run in sequence, passing findings through session state to produce a polished final report. Built to explore multi-agent orchestration patterns including sequential, parallel, and loop workflows.</p>
-      <div class="tags">
-        <span class="tag tag-accent">Google ADK</span>
-        <span class="tag tag-accent">Gemini API</span>
-        <span class="tag">Python</span>
-        <span class="tag">Google Search Grounding</span>
-      </div>
-      <div class="card-links"><a class="repo-link" href="https://github.com/alex-wang55/google-adk" target="_blank" rel="noopener">↗ github.com/alex-wang55/google-adk</a></div>
-      <div class="gh-stats" data-repo="google-adk"></div>
-    </div>
 
     <div class="project-card">
       <div class="project-top">
         <div class="project-name">Stash</div>
         <span class="project-date" data-date="2026-10">Oct 2026</span>
       </div>
-      <p class="project-desc" data-i18n="proj.stash"></p>
+      <p class="project-desc" data-i18n="proj.stash">Personal link and note saver that runs on a single Lambda function and one DynamoDB table, built to stay inside the AWS free tier. Deployed with SAM behind a Lambda Function URL, with SSRF-safe link previews, CloudWatch alarms, a zero-spend budget alert, and an optional Google ADK agent.</p>
       <div class="tags">
         <span class="tag tag-accent">AWS Lambda</span>
         <span class="tag tag-accent">DynamoDB</span>
@@ -928,7 +914,7 @@
         <div class="project-name">Pinky</div>
         <span class="project-date" data-date="2026-10">Oct 2026</span>
       </div>
-      <p class="project-desc" data-i18n="proj.pinky"></p>
+      <p class="project-desc" data-i18n="proj.pinky">Accountability app for friend groups. Members make a pact, check in daily, and pay into a shared pot when they miss, with escalating stakes, streak-saving off-days, and photo-proof challenges. The rules are enforced in Postgres functions with row-level security, with daily web push reminders.</p>
       <div class="tags">
         <span class="tag tag-accent">Next.js</span>
         <span class="tag tag-accent">Supabase</span>
@@ -1066,7 +1052,6 @@
       'proj.label': 'Projects & Hackathons', 'proj.progress': 'In Progress', 'proj.present': 'Present',
       'proj.ming': 'AI-powered Mandarin coaching app. Learns your goals, builds a personalised curriculum, and teaches through real conversations with persona-based AI coaches. Features spaced repetition word tracking and voice I/O.',
       'proj.tfsa': "Educational stock screener and TFSA planner. A deterministic (no LLM) scoring model rates TSX and US stocks on trend, value, quality, and income relative to a user's risk profile, and explains its reasoning in plain English. Handles TFSA-specific logic like contribution room tracking and core/satellite allocation heuristics across five pages: Dashboard, Stock Detail, TFSA Planner, Risk Profile, and Watchlist.",
-      'proj.adk': "Multi-agent AI pipeline built with Google's Agent Development Kit. Three agents (researcher, summarizer, and critic) run in sequence, passing findings through session state to produce a polished final report. Built to explore multi-agent orchestration patterns including sequential, parallel, and loop workflows.",
       'proj.mchacks': 'AI-powered mock interview tool. Analyzes your resume, generates contextual interview questions, and uses text-to-speech for a realistic experience.',
       'proj.blog': 'CLI tool that leverages the OpenAI API to generate full blog posts from any user-supplied prompt, built entirely in Python.',
       'proj.live': 'Live demo ↗',
@@ -1082,7 +1067,7 @@
       'pal.move': 'move', 'pal.run': 'run', 'pal.close': 'close', 'pal.empty': 'No matches',
       'pal.g.jump': 'Jump', 'pal.g.action': 'Action', 'pal.g.lang': 'Language', 'pal.g.link': 'Link',
       'pal.copyEmail': 'Copy email address', 'pal.copied': 'Copied {email}', 'pal.toggleTheme': 'Toggle dark mode',
-      'pal.resume': 'Open resume (PDF)', 'pal.linkedin': 'Open LinkedIn profile', 'pal.github': 'Open GitHub profile', 'pal.ming': 'Open Ming repo', 'pal.tfsa': 'Open TFSA repo', 'pal.adk': 'Open ADK repo', 'pal.stash': 'Open Stash repo', 'pal.pinky': 'Open Pinky (live)',
+      'pal.resume': 'Open resume (PDF)', 'pal.linkedin': 'Open LinkedIn profile', 'pal.github': 'Open GitHub profile', 'pal.ming': 'Open Ming repo', 'pal.tfsa': 'Open TFSA repo', 'pal.stash': 'Open Stash repo', 'pal.pinky': 'Open Pinky (live)',
       'toast.dark': 'Dark mode on', 'toast.light': 'Light mode on',
       'season.summer': 'Summer {y}', 'season.fall': 'Fall {y}'
     },
@@ -1100,7 +1085,6 @@
       'proj.label': 'Projets et hackathons', 'proj.progress': 'En cours', 'proj.present': 'aujourd’hui',
       'proj.ming': 'Application de coaching en mandarin propulsée par l’IA. Elle apprend vos objectifs, crée un programme personnalisé et enseigne par de vraies conversations avec des coachs IA à personas. Suivi du vocabulaire par répétition espacée et interaction vocale.',
       'proj.tfsa': 'Outil éducatif de filtrage d’actions et de planification CELI. Un modèle de notation déterministe (sans LLM) évalue les actions de la TSX et des États-Unis selon la tendance, la valeur, la qualité et le revenu, en fonction du profil de risque de l’utilisateur, et explique son raisonnement en langage clair. Gère la logique propre au CELI, comme le suivi des droits de cotisation et la répartition cœur-satellite, sur cinq pages' + NB + ': tableau de bord, fiche d’action, planificateur CELI, profil de risque et liste de suivi.',
-      'proj.adk': 'Pipeline d’IA multi-agents conçu avec l’Agent Development Kit de Google. Trois agents (chercheur, synthétiseur et critique) s’exécutent en séquence et se transmettent leurs résultats par l’état de session pour produire un rapport final soigné. Réalisé pour explorer les modèles d’orchestration multi-agents' + NB + ': flux séquentiels, parallèles et en boucle.',
       'proj.mchacks': 'Outil de simulation d’entrevue propulsé par l’IA. Analyse votre CV, génère des questions d’entrevue adaptées et utilise la synthèse vocale pour une expérience réaliste.',
       'proj.blog': 'Outil en ligne de commande qui utilise l’API d’OpenAI pour générer des articles de blogue complets à partir de n’importe quelle consigne, entièrement en Python.',
       'proj.live': 'Démo en ligne ↗',
@@ -1116,7 +1100,7 @@
       'pal.move': 'naviguer', 'pal.run': 'exécuter', 'pal.close': 'fermer', 'pal.empty': 'Aucun résultat',
       'pal.g.jump': 'Aller', 'pal.g.action': 'Action', 'pal.g.lang': 'Langue', 'pal.g.link': 'Lien',
       'pal.copyEmail': 'Copier l’adresse courriel', 'pal.copied': '{email} copié', 'pal.toggleTheme': 'Basculer le mode sombre',
-      'pal.resume': 'Ouvrir le CV (PDF)', 'pal.linkedin': 'Ouvrir le profil LinkedIn', 'pal.github': 'Ouvrir le profil GitHub', 'pal.ming': 'Ouvrir le dépôt Ming', 'pal.tfsa': 'Ouvrir le dépôt TFSA', 'pal.adk': 'Ouvrir le dépôt ADK', 'pal.stash': 'Ouvrir le dépôt Stash', 'pal.pinky': 'Ouvrir Pinky (en ligne)',
+      'pal.resume': 'Ouvrir le CV (PDF)', 'pal.linkedin': 'Ouvrir le profil LinkedIn', 'pal.github': 'Ouvrir le profil GitHub', 'pal.ming': 'Ouvrir le dépôt Ming', 'pal.tfsa': 'Ouvrir le dépôt TFSA', 'pal.stash': 'Ouvrir le dépôt Stash', 'pal.pinky': 'Ouvrir Pinky (en ligne)',
       'toast.dark': 'Mode sombre activé', 'toast.light': 'Mode clair activé',
       'season.summer': 'Été {y}', 'season.fall': 'Automne {y}'
     },
@@ -1134,7 +1118,6 @@
       'proj.label': '项目与黑客松', 'proj.progress': '进行中', 'proj.present': '至今',
       'proj.ming': 'AI 驱动的普通话教练应用。了解你的学习目标，生成个性化课程，并通过与基于角色的 AI 教练进行真实对话来教学。支持间隔重复词汇追踪与语音输入输出。',
       'proj.tfsa': '教育型选股与 TFSA（免税储蓄账户）规划工具。确定性评分模型（不使用大语言模型）根据用户的风险偏好，从趋势、估值、质量和收益四个维度为多伦多证券交易所及美股打分，并用通俗语言解释推理过程。支持 TFSA 特有逻辑，如供款额度追踪和核心-卫星配置策略，共五个页面：仪表盘、个股详情、TFSA 规划、风险画像和自选股。',
-      'proj.adk': '基于 Google Agent Development Kit 构建的多智能体 AI 流水线。研究员、摘要员和评审员三个智能体依次运行，通过会话状态传递结果，最终生成一份完善的报告。旨在探索多智能体编排模式，包括顺序、并行和循环工作流。',
       'proj.mchacks': 'AI 模拟面试工具。分析你的简历，生成贴合情境的面试问题，并通过语音合成营造真实的面试体验。',
       'proj.blog': '命令行工具，调用 OpenAI API，根据任意提示生成完整的博客文章，完全使用 Python 编写。',
       'proj.live': '在线演示 ↗',
@@ -1150,7 +1133,7 @@
       'pal.move': '移动', 'pal.run': '执行', 'pal.close': '关闭', 'pal.empty': '无匹配结果',
       'pal.g.jump': '跳转', 'pal.g.action': '操作', 'pal.g.lang': '语言', 'pal.g.link': '链接',
       'pal.copyEmail': '复制邮箱地址', 'pal.copied': '已复制 {email}', 'pal.toggleTheme': '切换深色模式',
-      'pal.resume': '打开简历（PDF）', 'pal.linkedin': '打开 LinkedIn 主页', 'pal.github': '打开 GitHub 主页', 'pal.ming': '打开 Ming 仓库', 'pal.tfsa': '打开 TFSA 仓库', 'pal.adk': '打开 ADK 仓库', 'pal.stash': '打开 Stash 仓库', 'pal.pinky': '打开 Pinky（在线）',
+      'pal.resume': '打开简历（PDF）', 'pal.linkedin': '打开 LinkedIn 主页', 'pal.github': '打开 GitHub 主页', 'pal.ming': '打开 Ming 仓库', 'pal.tfsa': '打开 TFSA 仓库', 'pal.stash': '打开 Stash 仓库', 'pal.pinky': '打开 Pinky（在线）',
       'toast.dark': '已开启深色模式', 'toast.light': '已开启浅色模式',
       'season.summer': '{y} 年夏', 'season.fall': '{y} 年秋'
     }
@@ -1392,7 +1375,7 @@
   /* =====================================================================
      6. Git log: experience + education as a commit graph
      ===================================================================== */
-  const LANES = ['var(--ink)', '#d9583b', '#7c5cd6', 'var(--accent)', '#d9a13b', '#c2477a'];
+  const LANES = ['var(--ink)', '#d9583b', '#7c5cd6', 'var(--accent)', '#c2477a'];
   const COMMITS = [
     { lane: 0, date: { y: 2026, m: 10 }, refs: ['HEAD', 'main'], merge: true,
       msg: { en: 'Merge projects: TFSA Investment Teacher, Stash, Pinky', fr: 'Fusion de projets' + NB + ': TFSA Investment Teacher, Stash, Pinky', zh: '合并项目：TFSA Investment Teacher、Stash、Pinky' } },
@@ -1405,17 +1388,20 @@
     { lane: 2, date: { y: 2026, m: 9 },
       msg: { en: 'TFSA Investment Teacher: stock scoring with plain-English reasons', fr: 'TFSA Investment Teacher' + NB + ': notation d’actions expliquée en langage clair', zh: 'TFSA Investment Teacher：用通俗语言解释的股票评分' },
       detail: { en: 'FastAPI, SQLAlchemy, yfinance, React 19, TypeScript. Tracks TFSA contribution room.', fr: 'FastAPI, SQLAlchemy, yfinance, React 19, TypeScript. Suit les droits de cotisation au CELI.', zh: 'FastAPI、SQLAlchemy、yfinance、React 19、TypeScript。追踪 TFSA 供款额度。' } },
-    { lane: 5, date: { y: 2026 }, refs: ['community/mchacks'], open: true,
+    { lane: 4, date: { y: 2026 }, refs: ['community/mchacks'], open: true,
       msg: { en: 'Join McHacks 14 organizing team as Experience Coordinator', fr: 'Arrivée dans l’équipe organisatrice de McHacks 14 comme coordonnateur de l’expérience', zh: '加入 McHacks 14 组织团队，担任体验协调员' },
       detail: { en: 'Helping run McHacks 14, McGill’s student-run hackathon, after competing at McHacks13.', fr: 'J’aide à organiser McHacks 14, le hackathon étudiant de McGill, après avoir participé à McHacks13.', zh: '参加过 McHacks13 后，加入团队协助举办麦吉尔大学学生主办的黑客松 McHacks 14。' } },
     { lane: 3, date: { y: 2026, m: 6 }, refs: ['feature/ming'], open: true,
       msg: { en: 'Persona-based AI coaches with spaced repetition', fr: 'Coachs IA à personas et répétition espacée', zh: '基于角色的 AI 教练与间隔重复' },
       detail: { en: 'Ming 明 · AI Mandarin coach. Next.js, Claude API, Google Cloud TTS, Whisper, Supabase.', fr: 'Ming 明 · coach de mandarin propulsé par l’IA. Next.js, Claude API, Google Cloud TTS, Whisper, Supabase.', zh: 'Ming 明 · AI 普通话教练。Next.js、Claude API、Google Cloud TTS、Whisper、Supabase。' } },
-    { lane: 4, date: { y: 2026 }, refs: ['feature/adk-research-crew'], open: true,
-      msg: { en: 'Researcher, summarizer and critic agent pipeline', fr: 'Pipeline d’agents' + NB + ': chercheur, synthétiseur et critique', zh: '研究员、摘要员与评审员三智能体流水线' },
-      detail: { en: 'Google ADK and Gemini, with search grounding and retry logic for rate limits.', fr: 'Google ADK et Gemini, avec ancrage par recherche et relances en cas de limite de débit.', zh: '基于 Google ADK 与 Gemini，结合搜索溯源，并针对限流加入重试机制。' } },
     { lane: 1, date: { season: 'fall', y: 2026 }, refs: ['work/ciena'], open: true,
       msg: { en: 'Extend co-op part-time through December 2026', fr: 'Prolongation à temps partiel jusqu’en décembre 2026', zh: '实习延长为兼职，至 2026 年 12 月' } },
+    { lane: 1, date: { season: 'summer', y: 2026 },
+      msg: { en: 'Build AI merge conflict resolver agent', fr: 'Agent IA de résolution de conflits de fusion', zh: '构建 AI 合并冲突解决代理' },
+      detail: { en: 'Analyzes conflicting branches and proposes resolutions.', fr: 'Analyse les branches en conflit et propose des résolutions.', zh: '分析存在冲突的分支并给出解决方案。' } },
+    { lane: 1, date: { season: 'summer', y: 2026 },
+      msg: { en: 'Build AI PR reviewer agent on Bitbucket webhooks', fr: 'Agent IA de revue de PR déclenché par des webhooks Bitbucket', zh: '构建由 Bitbucket webhook 触发的 AI PR 审查代理' },
+      detail: { en: 'Reviews pull requests automatically and either approves them or leaves suggestions.', fr: 'Examine automatiquement les pull requests, puis les approuve ou laisse des suggestions.', zh: '自动审查拉取请求，直接批准或给出修改建议。' } },
     { lane: 1, date: { y: 2026, m: 5 },
       msg: { en: 'Join Ciena as SWE & Tools Developer', fr: 'Arrivée chez Ciena comme développeur logiciel et d’outils', zh: '加入 Ciena，担任软件与工具开发工程师' },
       detail: { en: '4-month summer co-op in Ottawa, focused on software engineering and internal tools.', fr: 'Stage coop d’été de 4 mois à Ottawa, axé sur le génie logiciel et les outils internes.', zh: '在渥太华为期 4 个月的暑期实习，专注软件工程与内部工具开发。' } },
@@ -1455,11 +1441,11 @@
       detail: { en: 'Computer science courses focused on Python, C, Java and HTML.', fr: 'Cours d’informatique axés sur Python, C, Java et HTML.', zh: '计算机课程，重点学习 Python、C、Java 与 HTML。' } }
   ];
   const EDGES = [
-    [0, 9, 'line'], [0, 1, 'merge'], [1, 2, 'line'], [2, 3, 'line'], [3, 9, 'fork'],
-    [4, 9, 'fork'], [5, 9, 'fork'], [6, 9, 'fork'], [7, 8, 'line'], [8, 9, 'fork'],
-    [9, 12, 'line'], [9, 10, 'merge'], [10, 11, 'line'], [11, 12, 'fork'],
-    [12, 18, 'line'], [12, 13, 'merge'], [13, 14, 'line'], [14, 15, 'line'], [15, 16, 'line'], [16, 17, 'line'], [17, 18, 'fork'],
-    [18, 19, 'line'], [19, 20, 'line'], [20, 22, 'line'], [20, 21, 'merge'], [21, 22, 'fork']
+    [0, 10, 'line'], [0, 1, 'merge'], [1, 2, 'line'], [2, 3, 'line'], [3, 10, 'fork'],
+    [4, 10, 'fork'], [5, 10, 'fork'], [6, 7, 'line'], [7, 8, 'line'], [8, 9, 'line'], [9, 10, 'fork'],
+    [10, 13, 'line'], [10, 11, 'merge'], [11, 12, 'line'], [12, 13, 'fork'],
+    [13, 19, 'line'], [13, 14, 'merge'], [14, 15, 'line'], [15, 16, 'line'], [16, 17, 'line'], [17, 18, 'line'], [18, 19, 'fork'],
+    [19, 20, 'line'], [20, 21, 'line'], [21, 23, 'line'], [21, 22, 'merge'], [22, 23, 'fork']
   ];
   const gitBody = $('#gitBody'), gitSvg = $('#gitSvg'), SVGNS = 'http://www.w3.org/2000/svg';
   const hash = s => { let h = 2166136261; for (const ch of s) h = Math.imul(h ^ ch.charCodeAt(0), 16777619); return (h >>> 0).toString(16).padStart(8, '0').slice(0, 7); };
@@ -1617,7 +1603,7 @@
     return [
       { g: 'jump', l: t('nav.skills'), k: 'skills competences 技能', run: () => go('skills') },
       { g: 'jump', l: t('exp.label'), k: 'experience education work git 经历', run: () => go('experience') },
-      { g: 'jump', l: t('nav.projects'), k: 'projects projets 项目 ming tfsa adk', run: () => go('projects') },
+      { g: 'jump', l: t('nav.projects'), k: 'projects projets 项目 ming tfsa stash pinky', run: () => go('projects') },
       { g: 'jump', l: t('nav.contact'), k: 'contact email 联系', run: () => go('contact') },
       { g: 'action', l: t('pal.copyEmail'), k: 'email mail courriel 邮箱 copy', run: () => { if (navigator.clipboard) navigator.clipboard.writeText('awang.ottawa@gmail.com').catch(() => {}); toast(t('pal.copied', { email: 'awang.ottawa@gmail.com' })); } },
       { g: 'action', l: t('pal.toggleTheme'), k: 'dark light theme sombre 深色 mode', run: () => toast(t(toggleTheme() ? 'toast.dark' : 'toast.light')) },
@@ -1629,7 +1615,6 @@
       { g: 'link', l: t('pal.github'), k: 'github code repos', run: () => openUrl('https://github.com/' + GH_USER) },
       { g: 'link', l: t('pal.ming'), k: 'ming github repo 明', run: () => openUrl('https://github.com/' + GH_USER + '/ming') },
       { g: 'link', l: t('pal.tfsa'), k: 'tfsa advisor celi github repo', run: () => openUrl('https://github.com/' + GH_USER + '/tfsa-advisor') },
-      { g: 'link', l: t('pal.adk'), k: 'adk agents gemini github repo', run: () => openUrl('https://github.com/' + GH_USER + '/google-adk') },
       { g: 'link', l: t('pal.stash'), k: 'stash aws lambda dynamodb serverless github repo', run: () => openUrl('https://github.com/' + GH_USER + '/stash') },
       { g: 'link', l: t('pal.pinky'), k: 'pinky live demo accountability supabase', run: () => openUrl('https://pinky-lemon.vercel.app') }
     ];
