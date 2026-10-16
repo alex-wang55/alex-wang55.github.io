@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Alex Wang · Software Developer</title>
-<meta name="description" content="Alex Wang is a SWE &amp; Tools Developer at Ciena and a Computer Science student at McGill University, building software at the intersection of AI and systems."/>
+<meta name="description" content="Alex Wang is a SWE &amp; Tools Developer at Ciena and a Computer Science student at McGill University (graduating May 2028), open to Summer 2027 SWE internships."/>
 <link rel="canonical" href="https://alex-wang55.github.io/"/>
 <meta name="theme-color" content="#f9f7f2"/>
 <meta property="og:type" content="website"/>
@@ -38,6 +38,12 @@
     --border: rgba(0,0,0,0.1);
     --tag-bg: #f0ede6;
     --tag-text: #4a4a42;
+    --accent-ink: #147a5a;   /* accent for small text and filled buttons, AA contrast */
+    --on-accent: #fff;
+    --hash: #8a6a1f;
+    --lane-1: #b8472c;
+    --lane-2: #7c5cd6;
+    --lane-4: #c2477a;
   }
 
   body.dark {
@@ -50,6 +56,12 @@
     --border: rgba(255,255,255,0.12);
     --tag-bg: #2a2a27;
     --tag-text: #b5b5ad;
+    --accent-ink: #34d399;
+    --on-accent: #0b2a1f;
+    --hash: #c29a3a;
+    --lane-1: #e0694c;
+    --lane-2: #9d85e6;
+    --lane-4: #df6f9f;
   }
 
   html { scroll-behavior: smooth; }
@@ -109,9 +121,9 @@
     transition: width .1s linear;
   }
 
-  .nav-links a:hover { color: var(--accent); }
+  .nav-links a:hover { color: var(--accent-ink); }
 
-  .nav-links a.active { color: var(--accent); }
+  .nav-links a.active { color: var(--accent-ink); }
   .nav-links a.active::after {
     content: '';
     position: absolute;
@@ -143,7 +155,7 @@
     overflow: hidden;
     white-space: nowrap;
   }
-  .flip-btn:hover { background: var(--accent); color: #fff; transform: translateY(-1px); }
+  .flip-btn:hover { background: var(--accent-ink); color: var(--on-accent); transform: translateY(-1px); }
   .flip-btn:active { transform: scale(.96); }
   .flip-btn:disabled { opacity: .6; cursor: default; }
 
@@ -202,7 +214,7 @@
   .hero-eyebrow {
     font-family: 'DM Mono', monospace;
     font-size: 12px;
-    color: var(--accent);
+    color: var(--accent-ink);
     letter-spacing: 0.12em;
     text-transform: uppercase;
     margin-bottom: 1.2rem;
@@ -226,9 +238,38 @@
     font-size: 1.2rem;
     color: var(--muted);
     font-weight: 300;
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.4rem;
     max-width: 560px;
     line-height: 1.5;
+  }
+
+  .hero-status {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 2.2rem;
+  }
+
+  .status-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 4px 13px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .status-chip.open { color: var(--ink); border-color: var(--accent); }
+
+  .status-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-light);
+    flex-shrink: 0;
   }
 
   .hero-ctas {
@@ -253,7 +294,7 @@
     border: none;
   }
 
-  .btn-primary:hover { background: var(--accent); color: #fff; transform: translateY(-1px); }
+  .btn-primary:hover { background: var(--accent-ink); color: var(--on-accent); transform: translateY(-1px); }
 
   .btn-outline {
     display: inline-flex;
@@ -271,7 +312,7 @@
     cursor: pointer;
   }
 
-  .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent-ink); transform: translateY(-1px); }
 
   .contact-strip {
     display: flex;
@@ -291,7 +332,7 @@
     transition: color 0.2s;
   }
 
-  .contact-item:hover { color: var(--accent); }
+  .contact-item:hover { color: var(--accent-ink); }
 
   .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--border); }
 
@@ -305,6 +346,7 @@
   .section-label {
     font-family: 'DM Mono', monospace;
     font-size: 11px;
+    font-weight: 400;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--muted);
@@ -328,7 +370,7 @@
     gap: 1.5rem;
   }
 
-  .skill-group h4 {
+  .skill-group h3 {
     font-family: 'DM Serif Display', serif;
     font-size: 1rem;
     margin-bottom: 0.75rem;
@@ -352,7 +394,7 @@
 
   .tag-accent {
     background: var(--accent-light);
-    color: var(--accent);
+    color: var(--accent-ink);
   }
 
   .exp-list { display: flex; flex-direction: column; gap: 2.5rem; }
@@ -441,6 +483,7 @@
   .project-name {
     font-family: 'DM Serif Display', serif;
     font-size: 1.05rem;
+    font-weight: 400;
     color: var(--ink);
   }
 
@@ -486,7 +529,7 @@
 
   .edu-note {
     font-size: 12px;
-    color: var(--accent);
+    color: var(--accent-ink);
     margin-top: 6px;
     font-style: italic;
   }
@@ -545,6 +588,7 @@
   .hero > *:nth-child(3) { animation-delay: 0.25s; }
   .hero > *:nth-child(4) { animation-delay: 0.35s; }
   .hero > *:nth-child(5) { animation-delay: 0.45s; }
+  .hero > *:nth-child(6) { animation-delay: 0.55s; }
 
   /* ===================== theme swap (no flip) ===================== */
   #page { position: relative; }
@@ -568,10 +612,24 @@
     border: none; background: transparent; color: var(--muted); font-family: 'DM Mono', monospace;
     font-size: 11px; padding: 4px 10px; border-radius: 100px; cursor: pointer; transition: background .2s, color .2s;
   }
-  .lang-seg button.on { background: var(--accent); color: #fff; }
+  .lang-seg button.on { background: var(--accent-ink); color: var(--on-accent); }
   html:lang(zh) body { font-family: 'DM Sans', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', sans-serif; }
   @media (max-width: 1000px) { .kbd-chip { display: none; } }
-  @media (max-width: 820px) { .nav-links { display: none; } nav { padding: 0 1.2rem; } }
+  /* phones and small tablets: section links drop to a second, swipeable row */
+  @media (max-width: 820px) {
+    nav { flex-wrap: wrap; height: auto; padding: 10px 1.2rem 0; }
+    .nav-right { display: contents; }
+    .lang-seg { margin-left: auto; margin-right: .6rem; }
+    .nav-links {
+      order: 1; flex-basis: 100%; gap: 1.1rem; justify-content: space-between; margin-top: 10px; padding: 9px 0 11px;
+      border-top: 1px solid var(--border); overflow-x: auto; scrollbar-width: none;
+    }
+    .nav-links::-webkit-scrollbar { display: none; }
+    .nav-links a { font-size: 12px; white-space: nowrap; }
+    .nav-links a.active::after { bottom: -4px; }
+    html { scroll-padding-top: 40px; }
+  }
+  @media (hover: none) { .footer .pal-hint { display: none; } }
 
   /* ===================== hero commit art ===================== */
   .hero { position: relative; z-index: 1; }
@@ -589,7 +647,7 @@
     font-size: 11px; color: var(--muted); text-decoration: none; opacity: 0; transition: opacity .6s, color .2s;
   }
   .hero > .art-caption.show { opacity: .9; }
-  .hero > .art-caption:hover { color: var(--accent); }
+  .hero > .art-caption:hover { color: var(--accent-ink); }
   @media (max-width: 760px) {
     .hero-art canvas.on { opacity: .45; }
     .hero > .art-caption { right: 1.2rem; left: 1.2rem; text-align: right; }
@@ -598,8 +656,8 @@
   /* ===================== languages spoken pills ===================== */
   .lang-pill { cursor: pointer; font-family: inherit; transition: border-color .2s, color .2s; }
   .lang-pill:hover { border-color: var(--accent); }
-  .lang-pill.on { border-color: var(--accent); color: var(--accent); }
-  .lp-code { font-family: 'DM Mono', monospace; font-size: 10.5px; color: var(--accent); }
+  .lang-pill.on { border-color: var(--accent); color: var(--accent-ink); }
+  .lp-code { font-family: 'DM Mono', monospace; font-size: 10.5px; color: var(--accent-ink); }
   .lang-hint { font-size: 12px; color: var(--muted); margin-top: .7rem; }
 
   /* ===================== git log ===================== */
@@ -611,7 +669,7 @@
     display: flex; gap: .6rem; align-items: center; flex-wrap: wrap; color: var(--muted); font-size: 11.5px;
     margin-bottom: .8rem; padding-bottom: .8rem; border-bottom: 1px dashed var(--border);
   }
-  .git-head .p { color: var(--accent); }
+  .git-head .p { color: var(--accent-ink); }
   .git-hint { margin-left: auto; font-size: 10.5px; }
   .git-body { position: relative; }
   .git-svg { position: absolute; left: 0; top: 0; pointer-events: none; overflow: visible; }
@@ -623,7 +681,8 @@
   .grow.pre { opacity: 0; transform: translateX(-6px); }
   .grow.clickable { cursor: pointer; }
   .grow:hover { background: var(--tag-bg); }
-  .grow .h { color: #c29a3a; }
+  .grow:focus-visible { outline: 2px solid var(--accent-ink); outline-offset: 2px; background: var(--tag-bg); }
+  .grow .h { color: var(--hash); }
   .grow .m { font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--ink); display: flex; align-items: center; gap: .45rem; min-width: 0; }
   .grow .m .txt { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .grow .chev { color: var(--muted); font-size: 10px; transition: transform .25s; flex-shrink: 0; }
@@ -633,12 +692,12 @@
     font-family: 'DM Mono', monospace; font-size: 10.5px; padding: 0 8px; border-radius: 100px;
     border: 1px solid currentColor; white-space: nowrap; flex-shrink: 0; line-height: 1.7;
   }
-  .ref.head { background: var(--accent); border-color: var(--accent); color: #fff !important; }
+  .ref.head { background: var(--accent-ink); border-color: var(--accent-ink); color: var(--on-accent) !important; }
   .grow .detail {
     grid-column: 3 / 5; padding-top: 0; font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--muted);
     max-height: 0; overflow: hidden; transition: max-height .3s ease, padding .3s ease;
   }
-  .grow.open .detail { max-height: 90px; padding: 2px .8rem 10px 0; }
+  .grow.open .detail { max-height: 220px; padding: 2px .8rem 10px 0; }
   .gdot { transition: transform .35s cubic-bezier(.2,.9,.3,1.4); transform-box: fill-box; transform-origin: center; }
   .gpulse { animation: gp 1.8s ease-out infinite; transform-box: fill-box; transform-origin: center; }
   @keyframes gp { 0% { transform: scale(1); opacity: .7; } 100% { transform: scale(2.6); opacity: 0; } }
@@ -658,19 +717,19 @@
   .project-card.live { border-color: var(--accent); position: relative; overflow: hidden; }
   .card-bar { position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent), #34d399); }
   .badge-progress {
-    display: inline-block; background: var(--accent-light); color: var(--accent); font-family: 'DM Mono', monospace;
+    display: inline-block; background: var(--accent-light); color: var(--accent-ink); font-family: 'DM Mono', monospace;
     font-size: 10px; padding: 2px 8px; border-radius: 4px; letter-spacing: .04em; margin-bottom: .5rem;
   }
   .repo-link {
     display: inline-flex; align-items: center; gap: 5px; font-family: 'DM Mono', monospace; font-size: 11px;
-    color: var(--accent); text-decoration: none; border: 1px solid var(--accent); padding: 4px 12px;
+    color: var(--accent-ink); text-decoration: none; border: 1px solid var(--accent); padding: 4px 12px;
     border-radius: 100px; margin-top: .9rem; transition: background .2s;
   }
   .repo-link:hover { background: var(--accent-light); }
   .card-links { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .9rem; }
   .card-links .repo-link { margin-top: 0; }
-  .repo-link.live-link { background: var(--accent); color: #fff; }
-  .repo-link.live-link:hover { background: var(--accent); filter: brightness(1.08); }
+  .repo-link.live-link { background: var(--accent-ink); border-color: var(--accent-ink); color: var(--on-accent); }
+  .repo-link.live-link:hover { background: var(--accent-ink); filter: brightness(1.08); }
   @media (min-width: 640px) { .projects-grid .featured { grid-column: span 2; } }
   .feat-grid { display: grid; gap: 1.4rem; }
   @media (min-width: 900px) { .feat-grid { grid-template-columns: 1.1fr 1fr; align-items: start; } }
@@ -678,7 +737,7 @@
   /* ===================== ming demo ===================== */
   .ming-demo { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.1rem; }
   .md-top { display: flex; justify-content: space-between; align-items: baseline; gap: .6rem; flex-wrap: wrap; }
-  .md-label { font-family: 'DM Mono', monospace; font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
+  .md-label { font-family: 'DM Mono', monospace; font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent-ink); }
   .md-hint { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); }
   .md-chips { display: flex; gap: 6px; flex-wrap: wrap; margin: .6rem 0 .9rem; }
   .md-chip {
@@ -695,7 +754,7 @@
   .md-syl .py { font-family: 'DM Mono', monospace; font-size: 12.5px; font-weight: 500; }
   .md-syl .ch { font-size: 2.1rem; line-height: 1.15; font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', sans-serif; }
   .md-speak {
-    width: 46px; height: 46px; flex-shrink: 0; border-radius: 50%; border: none; background: var(--accent); color: #fff;
+    width: 46px; height: 46px; flex-shrink: 0; border-radius: 50%; border: none; background: var(--accent-ink); color: var(--on-accent);
     cursor: pointer; display: flex; align-items: center; justify-content: center; transition: transform .15s;
   }
   .md-speak:hover { transform: scale(1.06); }
@@ -730,7 +789,7 @@
   .pal li { display: flex; justify-content: space-between; align-items: center; padding: .6rem .8rem; border-radius: 8px; cursor: pointer; font-size: 14px; }
   .pal li .grp { font-family: 'DM Mono', monospace; font-size: 10.5px; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
   .pal li.sel { background: var(--accent-light); }
-  .pal li.sel .lbl { color: var(--accent); }
+  .pal li.sel .lbl { color: var(--accent-ink); }
   .pal .empty { padding: 1.2rem; color: var(--muted); font-size: 13px; text-align: center; }
   .pal .foot { display: flex; gap: 1rem; padding: .55rem 1rem; border-top: 1px solid var(--border); font-size: 11px; color: var(--muted); }
   .toast {
@@ -774,6 +833,10 @@
   <p class="hero-eyebrow" data-i18n="hero.eyebrow">CS Student &amp; Software Developer</p>
   <h1 class="hero-name">Alex<br/><em>Wang</em></h1>
   <p class="hero-sub" data-i18n="hero.sub">SWE &amp; Tools Developer at Ciena · CS student at McGill University · Building software at the intersection of AI and systems.</p>
+  <div class="hero-status">
+    <span class="status-chip open"><span class="status-dot"></span><span data-i18n="hero.open">Open to Summer 2027 SWE internships</span></span>
+    <span class="status-chip" data-i18n="hero.grad">Graduating May 2028</span>
+  </div>
   <div class="hero-ctas">
     <a href="#projects" class="btn-primary" data-i18n="hero.cta1">View Projects ↓</a>
     <a href="mailto:awang.ottawa@gmail.com" class="btn-outline" data-i18n="hero.cta2">Get in touch →</a>
@@ -792,42 +855,64 @@
 </div>
 
 <section id="skills" class="reveal">
-  <p class="section-label" data-i18n="skills.label">Skills</p>
+  <h2 class="section-label" data-i18n="skills.label">Skills</h2>
   <div class="skills-grid">
     <div class="skill-group">
-      <h4 data-i18n="skills.langs">Languages</h4>
+      <h3 data-i18n="skills.langs">Languages</h3>
       <div class="tags">
         <span class="tag tag-accent">Python</span>
+        <span class="tag tag-accent">TypeScript</span>
         <span class="tag tag-accent">C / C++</span>
-        <span class="tag tag-accent">Java</span>
-        <span class="tag">HTML</span>
+        <span class="tag">Java</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">SQL</span>
         <span class="tag">Bash</span>
+        <span class="tag">HTML / CSS</span>
       </div>
     </div>
     <div class="skill-group">
-      <h4 data-i18n="skills.tools">Tools &amp; Platforms</h4>
+      <h3 data-i18n="skills.frameworks">Frameworks &amp; Cloud</h3>
+      <div class="tags">
+        <span class="tag tag-accent">React</span>
+        <span class="tag tag-accent">Next.js</span>
+        <span class="tag tag-accent">AWS Lambda</span>
+        <span class="tag">DynamoDB</span>
+        <span class="tag">AWS SAM</span>
+        <span class="tag">FastAPI</span>
+        <span class="tag">Flask</span>
+        <span class="tag">Express</span>
+        <span class="tag">Supabase</span>
+        <span class="tag">Vercel</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3 data-i18n="skills.tools">Tools</h3>
       <div class="tags">
         <span class="tag">Git / GitHub</span>
-        <span class="tag">Linux</span>
-        <span class="tag">Jira</span>
         <span class="tag">BitBucket</span>
+        <span class="tag">Docker</span>
+        <span class="tag">Linux</span>
+        <span class="tag">pytest</span>
         <span class="tag">CMocka</span>
-        <span class="tag">VSCode</span>
+        <span class="tag">Playwright</span>
         <span class="tag">MongoDB</span>
-        <span class="tag">Flask</span>
+        <span class="tag">Jira</span>
+        <span class="tag">Confluence</span>
       </div>
     </div>
     <div class="skill-group">
-      <h4 data-i18n="skills.ai">AI &amp; APIs</h4>
+      <h3 data-i18n="skills.ai">AI &amp; APIs</h3>
       <div class="tags">
+        <span class="tag tag-accent">Claude API</span>
         <span class="tag tag-accent">Gemini API</span>
-        <span class="tag tag-accent">ElevenLabs API</span>
-        <span class="tag tag-accent">OpenAI</span>
         <span class="tag tag-accent">Google ADK</span>
+        <span class="tag">OpenAI</span>
+        <span class="tag">Whisper</span>
+        <span class="tag">ElevenLabs</span>
       </div>
     </div>
     <div class="skill-group">
-      <h4 data-i18n="skills.spoken">Languages spoken</h4>
+      <h3 data-i18n="skills.spoken">Languages spoken</h3>
       <div class="lang-row">
         <button class="lang-pill" data-setlang="en"><span class="lp-code">EN</span><span data-i18n="lang.en">English</span></button>
         <button class="lang-pill" data-setlang="fr"><span class="lp-code">FR</span><span data-i18n="lang.fr">French</span></button>
@@ -839,7 +924,7 @@
 </section>
 
 <section id="experience" class="reveal">
-  <p class="section-label" data-i18n="exp.label">Experience &amp; education</p>
+  <h2 class="section-label" data-i18n="exp.label">Experience &amp; education</h2>
   <div class="gitlog">
     <div class="git-head">
       <span class="p">alex@portfolio</span><span>~ $ git log --graph --all</span>
@@ -850,24 +935,25 @@
 </section>
 
 <section id="projects" class="reveal">
-  <p class="section-label" data-i18n="proj.label">Projects &amp; Hackathons</p>
+  <h2 class="section-label" data-i18n="proj.label">Projects &amp; Hackathons</h2>
   <div class="projects-grid">
     <div class="project-card live featured">
       <div class="card-bar"></div>
       <div class="feat-grid">
         <div>
           <div class="project-top">
-            <div class="project-name">Ming 明</div>
+            <h3 class="project-name">Ming 明</h3>
             <span class="project-date" data-date="2026-06" data-present="1">Jun 2026 – Present</span>
           </div>
           <span class="badge-progress" data-i18n="proj.progress">In Progress</span>
-          <p class="project-desc" data-i18n="proj.ming">AI-powered Mandarin coaching app. Learns your goals, builds a personalised curriculum, and teaches through real conversations with persona-based AI coaches. Features spaced repetition word tracking and voice I/O.</p>
+          <p class="project-desc" data-i18n="proj.ming">AI Mandarin coach that learns your goal, builds a personalised plan, and teaches through real conversations. 18 scenario lessons, spaced-repetition flashcards for every new word, tap-to-hear pronunciation and speak-back with Whisper. Installs as a PWA, with an Expo iOS app on the same backend. Per-user daily caps, trimmed context and capped replies keep the LLM cost per message flat.</p>
           <div class="tags">
             <span class="tag tag-accent">Next.js</span>
             <span class="tag tag-accent">Claude API</span>
-            <span class="tag">Google Cloud TTS</span>
-            <span class="tag">Whisper</span>
             <span class="tag">Supabase</span>
+            <span class="tag">Whisper</span>
+            <span class="tag">Google Cloud TTS</span>
+            <span class="tag">Expo</span>
             <span class="tag">Vercel</span>
           </div>
           <div class="card-links"><a class="repo-link live-link" href="https://ming-wine.vercel.app" target="_blank" rel="noopener" data-i18n="proj.live">Live demo ↗</a><a class="repo-link" href="https://github.com/alex-wang55/ming" target="_blank" rel="noopener">↗ github.com/alex-wang55/ming</a></div>
@@ -893,7 +979,7 @@
 
     <div class="project-card">
       <div class="project-top">
-        <div class="project-name">Stash</div>
+        <h3 class="project-name">Stash</h3>
         <span class="project-date" data-date="2026-10">Oct 2026</span>
       </div>
       <p class="project-desc" data-i18n="proj.stash">Personal link and note saver that runs on a single Lambda function and one DynamoDB table, built to stay inside the AWS free tier. Deployed with SAM behind a Lambda Function URL, with SSRF-safe link previews, CloudWatch alarms, a zero-spend budget alert, and an optional Google ADK agent.</p>
@@ -911,7 +997,7 @@
 
     <div class="project-card">
       <div class="project-top">
-        <div class="project-name">Pinky</div>
+        <h3 class="project-name">Pinky</h3>
         <span class="project-date" data-date="2026-10">Oct 2026</span>
       </div>
       <p class="project-desc" data-i18n="proj.pinky">Accountability app for friend groups. Members make a pact, check in daily, and pay into a shared pot when they miss, with escalating stakes, streak-saving off-days, and photo-proof challenges. The rules are enforced in Postgres functions with row-level security, with daily web push reminders.</p>
@@ -929,10 +1015,10 @@
 
     <div class="project-card">
       <div class="project-top">
-        <div class="project-name">TFSA Investment Teacher</div>
+        <h3 class="project-name">TFSA Investment Teacher</h3>
         <span class="project-date" data-date="2026-10">Oct 2026</span>
       </div>
-      <p class="project-desc" data-i18n="proj.tfsa">Educational stock screener and TFSA planner. A deterministic (no LLM) scoring model rates TSX and US stocks on trend, value, quality, and income relative to a user's risk profile, and explains its reasoning in plain English. Handles TFSA-specific logic like contribution room tracking and core/satellite allocation heuristics across five pages: Dashboard, Stock Detail, TFSA Planner, Risk Profile, and Watchlist.</p>
+      <p class="project-desc" data-i18n="proj.tfsa">Educational stock screener and TFSA planner. A deterministic scoring model (no LLM) rates TSX and US stocks on trend, value, quality and income against your risk profile, and explains every score in plain English. A practice portfolio lets you trade real tickers with fake money at live prices, converting USD at the live USD/CAD rate.</p>
       <div class="tags">
         <span class="tag">Python</span>
         <span class="tag">FastAPI</span>
@@ -948,7 +1034,39 @@
 
     <div class="project-card">
       <div class="project-top">
-        <div class="project-name">McHacks 13</div>
+        <h3 class="project-name">Depth</h3>
+        <span class="project-date" data-date="2026-09">Sep 2026</span>
+      </div>
+      <p class="project-desc" data-i18n="proj.depth">Squat game that runs entirely in the browser. MediaPipe tracks your body through the webcam and every rep is scored by depth, using 3D knee angles, a per-player calibration, a One Euro filter against jitter, and a debounced rep state machine. Four game modes, a demo player for anyone without a camera, and no video ever leaves the device.</p>
+      <div class="tags">
+        <span class="tag tag-accent">MediaPipe</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">Computer vision</span>
+        <span class="tag">node:test</span>
+      </div>
+      <div class="card-links"><a class="repo-link live-link" href="https://alex-wang55.github.io/squat-counter/" target="_blank" rel="noopener" data-i18n="proj.live">Live demo ↗</a><a class="repo-link" href="https://github.com/alex-wang55/squat-counter" target="_blank" rel="noopener">↗ github.com/alex-wang55/squat-counter</a></div>
+      <div class="gh-stats" data-repo="squat-counter"></div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top">
+        <h3 class="project-name">Dishly</h3>
+        <span class="project-date" data-date="2026-07">Jul 2026</span>
+      </div>
+      <p class="project-desc" data-i18n="proj.dishly">Built at cuHacking 7. Describe a meal goal and swipe through recipes that match it, with nutrition and dietary filters. An Express backend uses Gemini to interpret the goal and Spoonacular to find recipes. Covered by Playwright browser-to-backend tests, with the API documented in OpenAPI.</p>
+      <div class="tags">
+        <span class="tag">React</span>
+        <span class="tag">Vite</span>
+        <span class="tag">Express</span>
+        <span class="tag tag-accent">Gemini API</span>
+        <span class="tag">Spoonacular API</span>
+        <span class="tag">Playwright</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top">
+        <h3 class="project-name">McHacks 13</h3>
         <span class="project-date" data-date="2026-01">Jan 2026</span>
       </div>
       <p class="project-desc" data-i18n="proj.mchacks">AI-powered mock interview tool. Analyzes your resume, generates contextual interview questions, and uses text-to-speech for a realistic experience.</p>
@@ -962,20 +1080,7 @@
 
     <div class="project-card">
       <div class="project-top">
-        <div class="project-name">Blog Generator</div>
-        <span class="project-date" data-date="2025-12">Dec 2025</span>
-      </div>
-      <p class="project-desc" data-i18n="proj.blog">CLI tool that leverages the OpenAI API to generate full blog posts from any user-supplied prompt, built entirely in Python.</p>
-      <div class="tags">
-        <span class="tag">Python</span>
-        <span class="tag tag-accent">OpenAI</span>
-        <span class="tag">Git</span>
-      </div>
-    </div>
-
-    <div class="project-card">
-      <div class="project-top">
-        <div class="project-name">CodeJam 15</div>
+        <h3 class="project-name">CodeJam 15</h3>
         <span class="project-date" data-date="2025-11">Nov 2025</span>
       </div>
       <p class="project-desc" data-i18n="proj.codejam">Minigame GUI with a persistent leaderboard system. Leveraged OOP design patterns and File I/O to track and display high scores across sessions.</p>
@@ -990,7 +1095,7 @@
 </section>
 
 <section id="contact" class="reveal" style="padding-bottom: 2rem;">
-  <p class="section-label" data-i18n="contact.label">Contact</p>
+  <h2 class="section-label" data-i18n="contact.label">Contact</h2>
   <p style="font-size: 1.5rem; font-family: 'DM Serif Display', serif; max-width: 480px; line-height: 1.4; margin-bottom: 2rem;" data-i18n="contact.heading">Have a project or opportunity? I'd love to hear from you.</p>
   <div style="display:flex; gap: 1rem; flex-wrap: wrap;">
     <a href="mailto:awang.ottawa@gmail.com" class="btn-primary">awang.ottawa@gmail.com →</a>
@@ -1043,17 +1148,19 @@
       'theme.click': 'Click me', 'theme.dark': 'Dark', 'theme.light': 'Light', 'theme.title': 'Toggle dark mode',
       'hero.eyebrow': 'CS Student & Software Developer',
       'hero.sub': 'SWE & Tools Developer at Ciena · CS student at McGill University · Building software at the intersection of AI and systems.',
+      'hero.open': 'Open to Summer 2027 SWE internships', 'hero.grad': 'Graduating May 2028',
       'hero.cta1': 'View Projects ↓', 'hero.cta2': 'Get in touch →', 'hero.resume': 'Resume ↗', 'hero.cities': 'Ottawa · Montreal',
       'art.caption': 'Background grown from {n} of my GitHub commits ↗',
-      'skills.label': 'Skills', 'skills.langs': 'Languages', 'skills.tools': 'Tools & Platforms', 'skills.ai': 'AI & APIs',
+      'skills.label': 'Skills', 'skills.langs': 'Languages', 'skills.frameworks': 'Frameworks & Cloud', 'skills.tools': 'Tools', 'skills.ai': 'AI & APIs',
       'skills.spoken': 'Languages spoken', 'skills.spokenHint': 'Tap one to switch the whole site.',
       'lang.en': 'English', 'lang.fr': 'French', 'lang.zh': 'Mandarin',
       'exp.label': 'Experience & education', 'git.hint': 'tap a commit with ▾ for details',
       'proj.label': 'Projects & Hackathons', 'proj.progress': 'In Progress', 'proj.present': 'Present',
-      'proj.ming': 'AI-powered Mandarin coaching app. Learns your goals, builds a personalised curriculum, and teaches through real conversations with persona-based AI coaches. Features spaced repetition word tracking and voice I/O.',
-      'proj.tfsa': "Educational stock screener and TFSA planner. A deterministic (no LLM) scoring model rates TSX and US stocks on trend, value, quality, and income relative to a user's risk profile, and explains its reasoning in plain English. Handles TFSA-specific logic like contribution room tracking and core/satellite allocation heuristics across five pages: Dashboard, Stock Detail, TFSA Planner, Risk Profile, and Watchlist.",
+      'proj.ming': 'AI Mandarin coach that learns your goal, builds a personalised plan, and teaches through real conversations. 18 scenario lessons, spaced-repetition flashcards for every new word, tap-to-hear pronunciation and speak-back with Whisper. Installs as a PWA, with an Expo iOS app on the same backend. Per-user daily caps, trimmed context and capped replies keep the LLM cost per message flat.',
+      'proj.tfsa': 'Educational stock screener and TFSA planner. A deterministic scoring model (no LLM) rates TSX and US stocks on trend, value, quality and income against your risk profile, and explains every score in plain English. A practice portfolio lets you trade real tickers with fake money at live prices, converting USD at the live USD/CAD rate.',
+      'proj.depth': 'Squat game that runs entirely in the browser. MediaPipe tracks your body through the webcam and every rep is scored by depth, using 3D knee angles, a per-player calibration, a One Euro filter against jitter, and a debounced rep state machine. Four game modes, a demo player for anyone without a camera, and no video ever leaves the device.',
+      'proj.dishly': 'Built at cuHacking 7. Describe a meal goal and swipe through recipes that match it, with nutrition and dietary filters. An Express backend uses Gemini to interpret the goal and Spoonacular to find recipes. Covered by Playwright browser-to-backend tests, with the API documented in OpenAPI.',
       'proj.mchacks': 'AI-powered mock interview tool. Analyzes your resume, generates contextual interview questions, and uses text-to-speech for a realistic experience.',
-      'proj.blog': 'CLI tool that leverages the OpenAI API to generate full blog posts from any user-supplied prompt, built entirely in Python.',
       'proj.live': 'Live demo ↗',
       'proj.stash': 'Personal link and note saver that runs on a single Lambda function and one DynamoDB table, built to stay inside the AWS free tier. Deployed with SAM behind a Lambda Function URL, with SSRF-safe link previews, CloudWatch alarms, a zero-spend budget alert, and an optional Google ADK agent.',
       'proj.pinky': 'Accountability app for friend groups. Members make a pact, check in daily, and pay into a shared pot when they miss, with escalating stakes, streak-saving off-days, and photo-proof challenges. The rules are enforced in Postgres functions with row-level security, with daily web push reminders.',
@@ -1067,7 +1174,7 @@
       'pal.move': 'move', 'pal.run': 'run', 'pal.close': 'close', 'pal.empty': 'No matches',
       'pal.g.jump': 'Jump', 'pal.g.action': 'Action', 'pal.g.lang': 'Language', 'pal.g.link': 'Link',
       'pal.copyEmail': 'Copy email address', 'pal.copied': 'Copied {email}', 'pal.toggleTheme': 'Toggle dark mode',
-      'pal.resume': 'Open resume (PDF)', 'pal.linkedin': 'Open LinkedIn profile', 'pal.github': 'Open GitHub profile', 'pal.ming': 'Open Ming repo', 'pal.tfsa': 'Open TFSA repo', 'pal.stash': 'Open Stash repo', 'pal.pinky': 'Open Pinky (live)',
+      'pal.resume': 'Open resume (PDF)', 'pal.linkedin': 'Open LinkedIn profile', 'pal.github': 'Open GitHub profile', 'pal.ming': 'Open Ming repo', 'pal.tfsa': 'Open TFSA repo', 'pal.stash': 'Open Stash repo', 'pal.pinky': 'Open Pinky (live)', 'pal.depth': 'Open Depth (live)',
       'toast.dark': 'Dark mode on', 'toast.light': 'Light mode on',
       'season.summer': 'Summer {y}', 'season.fall': 'Fall {y}'
     },
@@ -1076,17 +1183,19 @@
       'theme.click': 'Cliquez-moi', 'theme.dark': 'Sombre', 'theme.light': 'Clair', 'theme.title': 'Basculer le mode sombre',
       'hero.eyebrow': 'Étudiant en informatique et développeur logiciel',
       'hero.sub': 'Développeur logiciel et d’outils chez Ciena · Étudiant en informatique à l’Université McGill · Je conçois des logiciels à la croisée de l’IA et des systèmes.',
+      'hero.open': 'En recherche de stage · été 2027', 'hero.grad': 'Diplôme prévu en mai 2028',
       'hero.cta1': 'Voir les projets ↓', 'hero.cta2': 'Me contacter →', 'hero.resume': 'CV ↗', 'hero.cities': 'Ottawa · Montréal',
       'art.caption': 'Arrière-plan créé à partir de ' + '{n}' + ' de mes commits GitHub ↗',
-      'skills.label': 'Compétences', 'skills.langs': 'Langages', 'skills.tools': 'Outils et plateformes', 'skills.ai': 'IA et API',
+      'skills.label': 'Compétences', 'skills.langs': 'Langages', 'skills.frameworks': 'Frameworks et infonuagique', 'skills.tools': 'Outils', 'skills.ai': 'IA et API',
       'skills.spoken': 'Langues parlées', 'skills.spokenHint': 'Cliquez sur une langue pour changer tout le site.',
       'lang.en': 'Anglais', 'lang.fr': 'Français', 'lang.zh': 'Mandarin',
       'exp.label': 'Expérience et formation', 'git.hint': 'touchez un commit marqué ▾ pour les détails',
       'proj.label': 'Projets et hackathons', 'proj.progress': 'En cours', 'proj.present': 'aujourd’hui',
-      'proj.ming': 'Application de coaching en mandarin propulsée par l’IA. Elle apprend vos objectifs, crée un programme personnalisé et enseigne par de vraies conversations avec des coachs IA à personas. Suivi du vocabulaire par répétition espacée et interaction vocale.',
-      'proj.tfsa': 'Outil éducatif de filtrage d’actions et de planification CELI. Un modèle de notation déterministe (sans LLM) évalue les actions de la TSX et des États-Unis selon la tendance, la valeur, la qualité et le revenu, en fonction du profil de risque de l’utilisateur, et explique son raisonnement en langage clair. Gère la logique propre au CELI, comme le suivi des droits de cotisation et la répartition cœur-satellite, sur cinq pages' + NB + ': tableau de bord, fiche d’action, planificateur CELI, profil de risque et liste de suivi.',
+      'proj.ming': 'Coach de mandarin propulsé par l’IA qui apprend votre objectif, crée un plan personnalisé et enseigne par de vraies conversations. 18 leçons en situation, cartes mémoire à répétition espacée pour chaque nouveau mot, prononciation à l’écoute d’un toucher et réponse orale avec Whisper. S’installe comme PWA, avec une application iOS Expo sur le même backend. Des plafonds quotidiens par utilisateur, un contexte réduit et des réponses limitées gardent le coût LLM par message stable.',
+      'proj.tfsa': 'Outil éducatif de filtrage d’actions et de planification CELI. Un modèle de notation déterministe (sans LLM) évalue les actions de la TSX et des États-Unis selon la tendance, la valeur, la qualité et le revenu en fonction de votre profil de risque, et explique chaque note en langage clair. Un portefeuille d’entraînement permet d’acheter de vrais titres avec de l’argent fictif aux prix en direct, avec conversion du dollar américain au taux USD/CAD en direct.',
+      'proj.depth': 'Jeu de squats qui tourne entièrement dans le navigateur. MediaPipe suit votre corps par la webcam et chaque répétition est notée selon sa profondeur, grâce à l’angle du genou en 3D, une calibration par joueur, un filtre One Euro contre les tremblements et une machine à états anti-rebond. Quatre modes de jeu, un joueur de démonstration pour qui n’a pas de caméra, et aucune vidéo ne quitte l’appareil.',
+      'proj.dishly': 'Réalisé à cuHacking 7. Décrivez un objectif de repas et faites défiler les recettes correspondantes, avec des filtres nutritionnels et alimentaires. Un backend Express utilise Gemini pour interpréter l’objectif et Spoonacular pour trouver les recettes. Couvert par des tests Playwright du navigateur au backend, avec une API documentée en OpenAPI.',
       'proj.mchacks': 'Outil de simulation d’entrevue propulsé par l’IA. Analyse votre CV, génère des questions d’entrevue adaptées et utilise la synthèse vocale pour une expérience réaliste.',
-      'proj.blog': 'Outil en ligne de commande qui utilise l’API d’OpenAI pour générer des articles de blogue complets à partir de n’importe quelle consigne, entièrement en Python.',
       'proj.live': 'Démo en ligne ↗',
       'proj.stash': 'Outil personnel pour sauvegarder des liens et des notes, qui tourne sur une seule fonction Lambda et une seule table DynamoDB, conçu pour rester dans l’offre gratuite d’AWS. Déployé avec SAM derrière une URL de fonction Lambda, avec des aperçus de liens protégés contre les SSRF, des alarmes CloudWatch, une alerte budgétaire à zéro dépense et un agent Google ADK optionnel.',
       'proj.pinky': 'Application de responsabilisation pour groupes d’amis. Les membres concluent un pacte, font un pointage chaque jour et versent dans une cagnotte commune quand ils manquent à l’appel, avec des mises croissantes, des jours de congé qui protègent les séries et des contestations avec preuve photo. Les règles sont appliquées par des fonctions Postgres avec sécurité au niveau des lignes, et des rappels quotidiens arrivent par notification push.',
@@ -1100,7 +1209,7 @@
       'pal.move': 'naviguer', 'pal.run': 'exécuter', 'pal.close': 'fermer', 'pal.empty': 'Aucun résultat',
       'pal.g.jump': 'Aller', 'pal.g.action': 'Action', 'pal.g.lang': 'Langue', 'pal.g.link': 'Lien',
       'pal.copyEmail': 'Copier l’adresse courriel', 'pal.copied': '{email} copié', 'pal.toggleTheme': 'Basculer le mode sombre',
-      'pal.resume': 'Ouvrir le CV (PDF)', 'pal.linkedin': 'Ouvrir le profil LinkedIn', 'pal.github': 'Ouvrir le profil GitHub', 'pal.ming': 'Ouvrir le dépôt Ming', 'pal.tfsa': 'Ouvrir le dépôt TFSA', 'pal.stash': 'Ouvrir le dépôt Stash', 'pal.pinky': 'Ouvrir Pinky (en ligne)',
+      'pal.resume': 'Ouvrir le CV (PDF)', 'pal.linkedin': 'Ouvrir le profil LinkedIn', 'pal.github': 'Ouvrir le profil GitHub', 'pal.ming': 'Ouvrir le dépôt Ming', 'pal.tfsa': 'Ouvrir le dépôt TFSA', 'pal.stash': 'Ouvrir le dépôt Stash', 'pal.pinky': 'Ouvrir Pinky (en ligne)', 'pal.depth': 'Ouvrir Depth (en ligne)',
       'toast.dark': 'Mode sombre activé', 'toast.light': 'Mode clair activé',
       'season.summer': 'Été {y}', 'season.fall': 'Automne {y}'
     },
@@ -1109,17 +1218,19 @@
       'theme.click': '点我', 'theme.dark': '深色', 'theme.light': '浅色', 'theme.title': '切换深色模式',
       'hero.eyebrow': '计算机科学学生 · 软件开发者',
       'hero.sub': 'Ciena 软件与工具开发工程师 · 麦吉尔大学计算机科学专业学生 · 专注于人工智能与系统交叉领域的软件开发。',
+      'hero.open': '正在寻找 2027 年夏季软件开发实习', 'hero.grad': '预计 2028 年 5 月毕业',
       'hero.cta1': '查看项目 ↓', 'hero.cta2': '联系我 →', 'hero.resume': '简历 ↗', 'hero.cities': '渥太华 · 蒙特利尔',
       'art.caption': '背景由我在 GitHub 上的 {n} 次提交生成 ↗',
-      'skills.label': '技能', 'skills.langs': '编程语言', 'skills.tools': '工具与平台', 'skills.ai': '人工智能与 API',
+      'skills.label': '技能', 'skills.langs': '编程语言', 'skills.frameworks': '框架与云服务', 'skills.tools': '工具', 'skills.ai': '人工智能与 API',
       'skills.spoken': '语言能力', 'skills.spokenHint': '点击任一语言即可切换整个网站。',
       'lang.en': '英语', 'lang.fr': '法语', 'lang.zh': '普通话',
       'exp.label': '经历与教育', 'git.hint': '点击带 ▾ 的提交查看详情',
       'proj.label': '项目与黑客松', 'proj.progress': '进行中', 'proj.present': '至今',
-      'proj.ming': 'AI 驱动的普通话教练应用。了解你的学习目标，生成个性化课程，并通过与基于角色的 AI 教练进行真实对话来教学。支持间隔重复词汇追踪与语音输入输出。',
-      'proj.tfsa': '教育型选股与 TFSA（免税储蓄账户）规划工具。确定性评分模型（不使用大语言模型）根据用户的风险偏好，从趋势、估值、质量和收益四个维度为多伦多证券交易所及美股打分，并用通俗语言解释推理过程。支持 TFSA 特有逻辑，如供款额度追踪和核心-卫星配置策略，共五个页面：仪表盘、个股详情、TFSA 规划、风险画像和自选股。',
+      'proj.ming': 'AI 普通话教练，了解你的学习目标，生成个性化计划，并通过真实对话来教学。包含 18 节情景课程、为每个新词自动生成的间隔重复闪卡、点击即听的发音，以及基于 Whisper 的跟读。可作为 PWA 安装，另有共用同一后端的 Expo iOS 应用。按用户每日限额、精简上下文并限制回复长度，让每条消息的大模型成本保持稳定。',
+      'proj.tfsa': '教育型选股与 TFSA（免税储蓄账户）规划工具。确定性评分模型（不使用大语言模型）根据你的风险偏好，从趋势、估值、质量和收益四个维度为多伦多证券交易所及美股打分，并用通俗语言解释每一个分数。模拟投资组合让你用虚拟资金按实时价格买卖真实股票，美元按实时美元兑加元汇率换算。',
+      'proj.depth': '完全在浏览器中运行的深蹲游戏。MediaPipe 通过摄像头追踪身体动作，每次深蹲按深度评分，结合 3D 膝关节角度、针对每位玩家的校准、用于消除抖动的 One Euro 滤波器，以及带防抖的动作状态机。共四种游戏模式，没有摄像头也能观看演示玩家，视频从不离开设备。',
+      'proj.dishly': '在 cuHacking 7 黑客松上完成。描述你的饮食目标，然后滑动浏览匹配的食谱，并可按营养和饮食需求筛选。Express 后端用 Gemini 理解目标，再通过 Spoonacular 查找食谱。配有从浏览器到后端的 Playwright 集成测试，API 以 OpenAPI 编写文档。',
       'proj.mchacks': 'AI 模拟面试工具。分析你的简历，生成贴合情境的面试问题，并通过语音合成营造真实的面试体验。',
-      'proj.blog': '命令行工具，调用 OpenAI API，根据任意提示生成完整的博客文章，完全使用 Python 编写。',
       'proj.live': '在线演示 ↗',
       'proj.stash': '个人链接与笔记收藏工具，只用一个 Lambda 函数和一张 DynamoDB 表，设计上保持在 AWS 免费额度内。通过 SAM 部署在 Lambda 函数 URL 之后，具备防 SSRF 的链接预览、CloudWatch 告警、零支出预算提醒，以及可选的 Google ADK 智能体。',
       'proj.pinky': '面向朋友群体的互相监督应用。成员订立约定，每天打卡，未完成就往共同奖池里交钱，并设有逐级加码的惩罚、保护连续记录的休息日，以及需要照片证明的质疑机制。规则由带行级安全策略的 Postgres 函数强制执行，并通过网页推送每日提醒。',
@@ -1133,7 +1244,7 @@
       'pal.move': '移动', 'pal.run': '执行', 'pal.close': '关闭', 'pal.empty': '无匹配结果',
       'pal.g.jump': '跳转', 'pal.g.action': '操作', 'pal.g.lang': '语言', 'pal.g.link': '链接',
       'pal.copyEmail': '复制邮箱地址', 'pal.copied': '已复制 {email}', 'pal.toggleTheme': '切换深色模式',
-      'pal.resume': '打开简历（PDF）', 'pal.linkedin': '打开 LinkedIn 主页', 'pal.github': '打开 GitHub 主页', 'pal.ming': '打开 Ming 仓库', 'pal.tfsa': '打开 TFSA 仓库', 'pal.stash': '打开 Stash 仓库', 'pal.pinky': '打开 Pinky（在线）',
+      'pal.resume': '打开简历（PDF）', 'pal.linkedin': '打开 LinkedIn 主页', 'pal.github': '打开 GitHub 主页', 'pal.ming': '打开 Ming 仓库', 'pal.tfsa': '打开 TFSA 仓库', 'pal.stash': '打开 Stash 仓库', 'pal.pinky': '打开 Pinky（在线）', 'pal.depth': '打开 Depth（在线）',
       'toast.dark': '已开启深色模式', 'toast.light': '已开启浅色模式',
       'season.summer': '{y} 年夏', 'season.fall': '{y} 年秋'
     }
@@ -1189,7 +1300,7 @@
     $$('.nav-a').forEach(a => a.classList.remove('active'));
     const link = $('.nav-a[href="#' + e.target.id + '"]');
     if (link) link.classList.add('active');
-  }), { threshold: 0.3 });
+  }), { rootMargin: '-45% 0px -50% 0px' });   // whichever section crosses the middle of the screen, however tall it is
   ['skills', 'experience', 'projects', 'contact'].forEach(id => { const el = document.getElementById(id); if (el) navObs.observe(el); });
 
   /* =====================================================================
@@ -1289,7 +1400,7 @@
     const r = mulberry(42), now = Date.now(), day = 864e5;
     const mk = (name, n, fromDays, toDays) => ({ name, dates: Array.from({ length: n }, () => now - (fromDays - r() * (fromDays - toDays)) * day) });
     return [mk('ming', 140, 120, 1), mk('tfsa-advisor', 62, 100, 6), mk('google-adk', 34, 80, 12),
-      mk('mchacks13', 48, 255, 252), mk('alex-wang55.github.io', 26, 250, 1), mk('codejam15', 30, 320, 317), mk('blog-generator', 16, 300, 285)];
+      mk('mchacks13', 48, 255, 252), mk('alex-wang55.github.io', 26, 250, 1), mk('codejam15', 30, 320, 317), mk('squat-counter', 40, 30, 12)];
   }
   function mulberry(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; let x = Math.imul(a ^ a >>> 15, 1 | a); x = x + Math.imul(x ^ x >>> 7, 61 | x) ^ x; return ((x ^ x >>> 14) >>> 0) / 4294967296; }; }
   function fieldAngle(x, y, s) {
@@ -1375,10 +1486,10 @@
   /* =====================================================================
      6. Git log: experience + education as a commit graph
      ===================================================================== */
-  const LANES = ['var(--ink)', '#d9583b', '#7c5cd6', 'var(--accent)', '#c2477a'];
+  const LANES = ['var(--ink)', 'var(--lane-1)', 'var(--lane-2)', 'var(--accent-ink)', 'var(--lane-4)'];
   const COMMITS = [
     { lane: 0, date: { y: 2026, m: 10 }, refs: ['HEAD', 'main'], merge: true,
-      msg: { en: 'Merge projects: TFSA Investment Teacher, Stash, Pinky', fr: 'Fusion de projets' + NB + ': TFSA Investment Teacher, Stash, Pinky', zh: '合并项目：TFSA Investment Teacher、Stash、Pinky' } },
+      msg: { en: 'Merge projects: Stash, Pinky, Depth, TFSA Teacher, Dishly', fr: 'Fusion de projets' + NB + ': Stash, Pinky, Depth, TFSA Teacher, Dishly', zh: '合并项目：Stash、Pinky、Depth、TFSA Teacher、Dishly' } },
     { lane: 2, date: { y: 2026, m: 10 },
       msg: { en: 'Stash: serverless link saver on Lambda and DynamoDB', fr: 'Stash' + NB + ': sauvegarde de liens serverless sur Lambda et DynamoDB', zh: 'Stash：基于 Lambda 和 DynamoDB 的无服务器链接收藏工具' },
       detail: { en: 'One Lambda function, one DynamoDB table, deployed with SAM and built to stay inside the AWS free tier. SSRF-safe link previews and an optional Google ADK agent.', fr: 'Une seule fonction Lambda et une seule table DynamoDB, déployées avec SAM et pensées pour rester dans l’offre gratuite d’AWS. Aperçus de liens protégés contre les SSRF et agent Google ADK optionnel.', zh: '一个 Lambda 函数加一张 DynamoDB 表，用 SAM 部署，设计上保持在 AWS 免费额度内。链接预览防 SSRF，并可选配 Google ADK 智能体。' } },
@@ -1386,14 +1497,20 @@
       msg: { en: 'Pinky: friend-group accountability pacts with a shared pot', fr: 'Pinky' + NB + ': pactes de responsabilisation entre amis avec cagnotte commune', zh: 'Pinky：朋友间互相监督的打卡约定与共同奖池' },
       detail: { en: 'Daily check-ins, escalating stakes, streak-saving off-days and photo-proof challenges, enforced in Postgres with row-level security. Live at pinky-lemon.vercel.app.', fr: 'Pointages quotidiens, mises croissantes, jours de congé qui protègent les séries et contestations avec preuve photo, le tout appliqué dans Postgres avec sécurité au niveau des lignes. En ligne sur pinky-lemon.vercel.app.', zh: '每日打卡、逐级加码、保护连续记录的休息日，以及需要照片证明的质疑机制，全部由 Postgres 行级安全策略强制执行。已上线：pinky-lemon.vercel.app。' } },
     { lane: 2, date: { y: 2026, m: 9 },
+      msg: { en: 'Depth: webcam squat game with in-browser pose tracking', fr: 'Depth' + NB + ': jeu de squats par webcam avec suivi de pose dans le navigateur', zh: 'Depth：在浏览器内追踪姿态的摄像头深蹲游戏' },
+      detail: { en: 'MediaPipe, 3D knee angles, a One Euro filter and a rep state machine, unit tested with node:test. Live at alex-wang55.github.io/squat-counter.', fr: 'MediaPipe, angle du genou en 3D, filtre One Euro et machine à états des répétitions, testés avec node:test. En ligne sur alex-wang55.github.io/squat-counter.', zh: 'MediaPipe、3D 膝关节角度、One Euro 滤波器与动作状态机，并用 node:test 做单元测试。已上线：alex-wang55.github.io/squat-counter。' } },
+    { lane: 2, date: { y: 2026, m: 9 },
       msg: { en: 'TFSA Investment Teacher: stock scoring with plain-English reasons', fr: 'TFSA Investment Teacher' + NB + ': notation d’actions expliquée en langage clair', zh: 'TFSA Investment Teacher：用通俗语言解释的股票评分' },
-      detail: { en: 'FastAPI, SQLAlchemy, yfinance, React 19, TypeScript. Tracks TFSA contribution room.', fr: 'FastAPI, SQLAlchemy, yfinance, React 19, TypeScript. Suit les droits de cotisation au CELI.', zh: 'FastAPI、SQLAlchemy、yfinance、React 19、TypeScript。追踪 TFSA 供款额度。' } },
+      detail: { en: 'FastAPI, SQLAlchemy, yfinance, React 19, TypeScript. Tracks TFSA contribution room and runs a practice portfolio at live prices.', fr: 'FastAPI, SQLAlchemy, yfinance, React 19, TypeScript. Suit les droits de cotisation au CELI et gère un portefeuille d’entraînement aux prix en direct.', zh: 'FastAPI、SQLAlchemy、yfinance、React 19、TypeScript。追踪 TFSA 供款额度，并提供按实时价格交易的模拟投资组合。' } },
+    { lane: 2, date: { y: 2026, m: 7 },
+      msg: { en: 'Dishly at cuHacking 7: swipe-to-match recipe finder', fr: 'Dishly à cuHacking 7' + NB + ': recettes à faire défiler selon votre objectif', zh: 'cuHacking 7 项目 Dishly：滑动匹配的食谱发现应用' },
+      detail: { en: 'React and Express, with Gemini reading the meal goal and Spoonacular finding recipes. Playwright integration tests and an OpenAPI spec.', fr: 'React et Express, avec Gemini pour comprendre l’objectif et Spoonacular pour trouver les recettes. Tests d’intégration Playwright et spécification OpenAPI.', zh: 'React 与 Express，由 Gemini 理解饮食目标，Spoonacular 查找食谱。配有 Playwright 集成测试与 OpenAPI 规范。' } },
     { lane: 4, date: { y: 2026 }, refs: ['community/mchacks'], open: true,
       msg: { en: 'Join McHacks 14 organizing team as Experience Coordinator', fr: 'Arrivée dans l’équipe organisatrice de McHacks 14 comme coordonnateur de l’expérience', zh: '加入 McHacks 14 组织团队，担任体验协调员' },
       detail: { en: 'Helping run McHacks 14, McGill’s student-run hackathon, after competing at McHacks13.', fr: 'J’aide à organiser McHacks 14, le hackathon étudiant de McGill, après avoir participé à McHacks13.', zh: '参加过 McHacks13 后，加入团队协助举办麦吉尔大学学生主办的黑客松 McHacks 14。' } },
     { lane: 3, date: { y: 2026, m: 6 }, refs: ['feature/ming'], open: true,
       msg: { en: 'Persona-based AI coaches with spaced repetition', fr: 'Coachs IA à personas et répétition espacée', zh: '基于角色的 AI 教练与间隔重复' },
-      detail: { en: 'Ming 明 · AI Mandarin coach. Next.js, Claude API, Google Cloud TTS, Whisper, Supabase.', fr: 'Ming 明 · coach de mandarin propulsé par l’IA. Next.js, Claude API, Google Cloud TTS, Whisper, Supabase.', zh: 'Ming 明 · AI 普通话教练。Next.js、Claude API、Google Cloud TTS、Whisper、Supabase。' } },
+      detail: { en: 'Ming 明 · AI Mandarin coach, live at ming-wine.vercel.app. Next.js, Claude API, Google Cloud TTS, Whisper, Supabase.', fr: 'Ming 明 · coach de mandarin propulsé par l’IA, en ligne sur ming-wine.vercel.app. Next.js, Claude API, Google Cloud TTS, Whisper, Supabase.', zh: 'Ming 明 · AI 普通话教练，已上线：ming-wine.vercel.app。Next.js、Claude API、Google Cloud TTS、Whisper、Supabase。' } },
     { lane: 1, date: { season: 'fall', y: 2026 }, refs: ['work/ciena'], open: true,
       msg: { en: 'Extend co-op part-time through December 2026', fr: 'Prolongation à temps partiel jusqu’en décembre 2026', zh: '实习延长为兼职，至 2026 年 12 月' } },
     { lane: 1, date: { season: 'summer', y: 2026 },
@@ -1408,8 +1525,6 @@
     { lane: 0, date: { y: 2026, m: 1 }, merge: true,
       msg: { en: 'Merge projects: McHacks13 AI mock interviewer', fr: 'Fusion de projets' + NB + ': simulateur d’entrevue IA McHacks13', zh: '合并项目：McHacks13 AI 模拟面试' },
       detail: { en: 'Built at McGill’s hackathon: Gemini writes and analyzes answers, ElevenLabs speaks the questions, Flask ties it together.', fr: 'Réalisé au hackathon de McGill' + NB + ': Gemini génère et analyse les réponses, ElevenLabs lit les questions, Flask relie le tout.', zh: '在麦吉尔黑客松完成：Gemini 生成并分析回答，ElevenLabs 朗读问题，Flask 负责前后端衔接。' } },
-    { lane: 2, date: { y: 2025, m: 12 },
-      msg: { en: 'Blog generator with OpenAI and Python', fr: 'Générateur de blogue avec OpenAI et Python', zh: '基于 OpenAI 与 Python 的博客生成器' } },
     { lane: 2, date: { y: 2025, m: 11 },
       msg: { en: 'CodeJam15 minigame with a persistent leaderboard', fr: 'Mini-jeu CodeJam15 avec classement persistant', zh: 'CodeJam15 小游戏，含持久化排行榜' } },
     { lane: 0, date: { y: 2025, m: 8 }, merge: true,
@@ -1441,11 +1556,11 @@
       detail: { en: 'Computer science courses focused on Python, C, Java and HTML.', fr: 'Cours d’informatique axés sur Python, C, Java et HTML.', zh: '计算机课程，重点学习 Python、C、Java 与 HTML。' } }
   ];
   const EDGES = [
-    [0, 10, 'line'], [0, 1, 'merge'], [1, 2, 'line'], [2, 3, 'line'], [3, 10, 'fork'],
-    [4, 10, 'fork'], [5, 10, 'fork'], [6, 7, 'line'], [7, 8, 'line'], [8, 9, 'line'], [9, 10, 'fork'],
-    [10, 13, 'line'], [10, 11, 'merge'], [11, 12, 'line'], [12, 13, 'fork'],
-    [13, 19, 'line'], [13, 14, 'merge'], [14, 15, 'line'], [15, 16, 'line'], [16, 17, 'line'], [17, 18, 'line'], [18, 19, 'fork'],
-    [19, 20, 'line'], [20, 21, 'line'], [21, 23, 'line'], [21, 22, 'merge'], [22, 23, 'fork']
+    [0, 12, 'line'], [0, 1, 'merge'], [1, 2, 'line'], [2, 3, 'line'], [3, 4, 'line'], [4, 5, 'line'], [5, 12, 'fork'],
+    [6, 12, 'fork'], [7, 12, 'fork'], [8, 9, 'line'], [9, 10, 'line'], [10, 11, 'line'], [11, 12, 'fork'],
+    [12, 14, 'line'], [12, 13, 'merge'], [13, 14, 'fork'],
+    [14, 20, 'line'], [14, 15, 'merge'], [15, 16, 'line'], [16, 17, 'line'], [17, 18, 'line'], [18, 19, 'line'], [19, 20, 'fork'],
+    [20, 21, 'line'], [21, 22, 'line'], [22, 24, 'line'], [22, 23, 'merge'], [23, 24, 'fork']
   ];
   const gitBody = $('#gitBody'), gitSvg = $('#gitSvg'), SVGNS = 'http://www.w3.org/2000/svg';
   const hash = s => { let h = 2166136261; for (const ch of s) h = Math.imul(h ^ ch.charCodeAt(0), 16777619); return (h >>> 0).toString(16).padStart(8, '0').slice(0, 7); };
@@ -1471,7 +1586,12 @@
         '<span class="m">' + refs + '<span class="txt" title="' + msg.replace(/"/g, '&quot;') + '">' + msg + '</span>' + (c.detail ? '<span class="chev">▾</span>' : '') + '</span>' +
         '<span class="d">' + fmtDate(c.date) + '</span>' +
         (c.detail ? '<span class="detail">' + pick(c.detail) + '</span>' : '');
-      if (c.detail) r.addEventListener('click', () => { r.classList.toggle('open'); relayoutFor(420); });
+      if (c.detail) {
+        r.tabIndex = 0; r.setAttribute('role', 'button'); r.setAttribute('aria-expanded', r.classList.contains('open'));
+        const toggle = () => { r.setAttribute('aria-expanded', r.classList.toggle('open')); relayoutFor(420); };
+        r.addEventListener('click', toggle);
+        r.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
+      }
       gitBody.appendChild(r);
       return r;
     });
@@ -1616,7 +1736,8 @@
       { g: 'link', l: t('pal.ming'), k: 'ming github repo 明', run: () => openUrl('https://github.com/' + GH_USER + '/ming') },
       { g: 'link', l: t('pal.tfsa'), k: 'tfsa advisor celi github repo', run: () => openUrl('https://github.com/' + GH_USER + '/tfsa-advisor') },
       { g: 'link', l: t('pal.stash'), k: 'stash aws lambda dynamodb serverless github repo', run: () => openUrl('https://github.com/' + GH_USER + '/stash') },
-      { g: 'link', l: t('pal.pinky'), k: 'pinky live demo accountability supabase', run: () => openUrl('https://pinky-lemon.vercel.app') }
+      { g: 'link', l: t('pal.pinky'), k: 'pinky live demo accountability supabase', run: () => openUrl('https://pinky-lemon.vercel.app') },
+      { g: 'link', l: t('pal.depth'), k: 'depth squat game mediapipe webcam live demo', run: () => openUrl('https://alex-wang55.github.io/squat-counter/') }
     ];
   }
   const palBg = $('#palBg'), palIn = $('#palIn'), palList = $('#palList');
