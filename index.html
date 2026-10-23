@@ -1580,13 +1580,22 @@
       msg: { en: 'Initial commit: West Carleton Secondary', fr: 'Commit initial' + NB + ': école secondaire West Carleton', zh: '初始提交：West Carleton 中学' },
       detail: { en: 'Computer science courses focused on Python, C, Java and HTML.', fr: 'Cours d’informatique axés sur Python, C, Java et HTML.', zh: '计算机课程，重点学习 Python、C、Java 与 HTML。' } }
   ];
-  const EDGES = [
-    [0, 12, 'line'], [0, 1, 'merge'], [1, 2, 'line'], [2, 3, 'line'], [3, 4, 'line'], [4, 5, 'line'], [5, 12, 'fork'],
-    [6, 12, 'fork'], [7, 12, 'fork'], [8, 9, 'line'], [9, 10, 'line'], [10, 11, 'line'], [11, 12, 'fork'],
-    [12, 14, 'line'], [12, 13, 'merge'], [13, 14, 'fork'],
-    [14, 20, 'line'], [14, 15, 'merge'], [15, 16, 'line'], [16, 17, 'line'], [17, 18, 'line'], [18, 19, 'line'], [19, 20, 'fork'],
-    [20, 21, 'line'], [21, 22, 'line'], [22, 24, 'line'], [22, 23, 'merge'], [23, 24, 'fork']
-  ];
+  // Edges come from the lanes, so adding or removing a commit above needs no index bookkeeping.
+  // Main (lane 0) commits chain together and a merge pulls in the row right below it.
+  // A branch commit links to the next commit in its lane, or forks off the next main commit if that comes first.
+  const EDGES = [];
+  COMMITS.forEach((c, i) => {
+    const after = (pred) => { const j = COMMITS.findIndex((x, k) => k > i && pred(x)); return j < 0 ? Infinity : j; };
+    const nextMain = after(x => x.lane === 0);
+    if (c.lane === 0) {
+      if (nextMain < Infinity) EDGES.push([i, nextMain, 'line']);
+      if (c.merge && COMMITS[i + 1] && COMMITS[i + 1].lane !== 0) EDGES.push([i, i + 1, 'merge']);
+    } else {
+      const nextSame = after(x => x.lane === c.lane);
+      if (nextSame < nextMain) EDGES.push([i, nextSame, 'line']);
+      else if (nextMain < Infinity) EDGES.push([i, nextMain, 'fork']);
+    }
+  });
   const gitBody = $('#gitBody'), gitSvg = $('#gitSvg'), SVGNS = 'http://www.w3.org/2000/svg';
   const hash = s => { let h = 2166136261; for (const ch of s) h = Math.imul(h ^ ch.charCodeAt(0), 16777619); return (h >>> 0).toString(16).padStart(8, '0').slice(0, 7); };
   let LW = 22, GX = 16, gitRows = [], gitPaths = [], gitDots = [], gitPlayed = false;
