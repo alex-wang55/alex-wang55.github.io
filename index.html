@@ -889,12 +889,13 @@
       <h3 data-i18n="skills.tools">Tools</h3>
       <div class="tags">
         <span class="tag">Git / GitHub</span>
-        <span class="tag">BitBucket</span>
+        <span class="tag">Bitbucket</span>
         <span class="tag">Docker</span>
         <span class="tag">Linux</span>
         <span class="tag">pytest</span>
         <span class="tag">CMocka</span>
         <span class="tag">Playwright</span>
+        <span class="tag">PostgreSQL</span>
         <span class="tag">MongoDB</span>
         <span class="tag">Jira</span>
         <span class="tag">Confluence</span>
@@ -906,6 +907,7 @@
         <span class="tag tag-accent">Claude API</span>
         <span class="tag tag-accent">Gemini API</span>
         <span class="tag tag-accent">Google ADK</span>
+        <span class="tag">LiteLLM</span>
         <span class="tag">OpenAI</span>
         <span class="tag">Whisper</span>
         <span class="tag">ElevenLabs</span>
@@ -946,7 +948,7 @@
             <span class="project-date" data-date="2026-06" data-present="1">Jun 2026 – Present</span>
           </div>
           <span class="badge-progress" data-i18n="proj.progress">In Progress</span>
-          <p class="project-desc" data-i18n="proj.ming">AI Mandarin coach that learns your goal, builds a personalised plan, and teaches through real conversations. 18 scenario lessons, spaced-repetition flashcards for every new word, tap-to-hear pronunciation and speak-back with Whisper. Installs as a PWA, with an Expo iOS app on the same backend. Per-user daily caps, trimmed context and capped replies keep the LLM cost per message flat.</p>
+          <p class="project-desc" data-i18n="proj.ming">AI Mandarin coach that learns your goal, builds a personalised plan, and teaches through real conversations. It starts in English and works in more Chinese as you improve, and you can reply in pinyin or by voice, so no Chinese keyboard is needed. 18 scenario lessons, spaced-repetition flashcards for every new word, and tap-to-hear pronunciation with pinyin above each character. Installs as a PWA, with a full Expo iOS app on the same backend. Per-user daily caps, trimmed context and capped replies keep the LLM cost per message flat, and the spaced-repetition scheduler is unit tested in CI.</p>
           <div class="tags">
             <span class="tag tag-accent">Next.js</span>
             <span class="tag tag-accent">Claude API</span>
@@ -982,7 +984,7 @@
         <h3 class="project-name">Shoebox</h3>
         <span class="project-date" data-date="2026-10">Oct 2026</span>
       </div>
-      <p class="project-desc" data-i18n="proj.shoebox">Shared photo boards for friends that install to the home screen. Snap a picture and it lands on the board as a tilted print, captioned in your choice of marker, appears live on everyone's phone, and pings them with a web push. Anyone can doodle on a photo, and a canvas collage maker turns a few into one image to post, drawings included. Photos are shrunk on the device before upload, and row-level security guards both the tables and the photo storage.</p>
+      <p class="project-desc" data-i18n="proj.shoebox">Shared photo boards for friends that install to the home screen. Snap a picture and it gets pinned to a cork board as a tilted print, captioned in your choice of pen, appears live on everyone's phone, and pings them with a web push. Anyone on the board can comment on a photo, doodle on it or stick a note beside it, and a canvas collage maker turns a few into one image to post, drawings included. Photos are shrunk on the device before upload, and row-level security guards both the tables and the photo storage.</p>
       <div class="tags">
         <span class="tag tag-accent">Next.js</span>
         <span class="tag tag-accent">Supabase</span>
@@ -1019,7 +1021,7 @@
         <h3 class="project-name">Pinky</h3>
         <span class="project-date" data-date="2026-10">Oct 2026</span>
       </div>
-      <p class="project-desc" data-i18n="proj.pinky">Accountability app for friend groups. Members make a pact, check in daily, and pay into a shared pot when they miss, with escalating stakes, streak-saving off-days, and photo-proof challenges. The rules are enforced in Postgres functions with row-level security, with daily web push reminders.</p>
+      <p class="project-desc" data-i18n="proj.pinky">Accountability app for friend groups. Members make a pact, check in daily, and pay into a shared pot when they miss, with escalating stakes, streak-saving off-days, and photo-proof challenges. The rules are enforced in Postgres functions with row-level security, and the pact logic is unit tested in CI. Installs as a PWA that works offline, badges its home screen icon, and sends daily push reminders.</p>
       <div class="tags">
         <span class="tag tag-accent">Next.js</span>
         <span class="tag tag-accent">Supabase</span>
@@ -1035,9 +1037,9 @@
     <div class="project-card">
       <div class="project-top">
         <h3 class="project-name">TFSA Investment Teacher</h3>
-        <span class="project-date" data-date="2026-10">Oct 2026</span>
+        <span class="project-date" data-date="2026-09">Sep 2026</span>
       </div>
-      <p class="project-desc" data-i18n="proj.tfsa">Educational stock screener and TFSA planner. A deterministic scoring model (no LLM) rates TSX and US stocks on trend, value, quality and income against your risk profile, and explains every score in plain English. A practice portfolio lets you trade real tickers with fake money at live prices, converting USD at the live USD/CAD rate.</p>
+      <p class="project-desc" data-i18n="proj.tfsa">Educational stock screener and TFSA planner. A deterministic scoring model (no LLM) rates TSX and US stocks on trend, value, quality and income against your risk profile, and explains every score in plain English. A practice portfolio lets you trade real tickers with fake money at live prices, converting USD at the live USD/CAD rate. The FastAPI backend is tested with pytest in CI.</p>
       <div class="tags">
         <span class="tag">Python</span>
         <span class="tag">FastAPI</span>
@@ -1094,19 +1096,6 @@
         <span class="tag">Flask</span>
         <span class="tag tag-accent">Gemini API</span>
         <span class="tag tag-accent">ElevenLabs API</span>
-      </div>
-    </div>
-
-    <div class="project-card">
-      <div class="project-top">
-        <h3 class="project-name">CodeJam 15</h3>
-        <span class="project-date" data-date="2025-11">Nov 2025</span>
-      </div>
-      <p class="project-desc" data-i18n="proj.codejam">Minigame GUI with a persistent leaderboard system. Leveraged OOP design patterns and File I/O to track and display high scores across sessions.</p>
-      <div class="tags">
-        <span class="tag">Java</span>
-        <span class="tag">OOP / OOD</span>
-        <span class="tag">File I/O</span>
       </div>
     </div>
 
@@ -1175,16 +1164,15 @@
       'lang.en': 'English', 'lang.fr': 'French', 'lang.zh': 'Mandarin',
       'exp.label': 'Experience & education', 'git.hint': 'tap a commit with ▾ for details',
       'proj.label': 'Projects & Hackathons', 'proj.progress': 'In Progress', 'proj.present': 'Present',
-      'proj.ming': 'AI Mandarin coach that learns your goal, builds a personalised plan, and teaches through real conversations. 18 scenario lessons, spaced-repetition flashcards for every new word, tap-to-hear pronunciation and speak-back with Whisper. Installs as a PWA, with an Expo iOS app on the same backend. Per-user daily caps, trimmed context and capped replies keep the LLM cost per message flat.',
-      'proj.tfsa': 'Educational stock screener and TFSA planner. A deterministic scoring model (no LLM) rates TSX and US stocks on trend, value, quality and income against your risk profile, and explains every score in plain English. A practice portfolio lets you trade real tickers with fake money at live prices, converting USD at the live USD/CAD rate.',
+      'proj.ming': 'AI Mandarin coach that learns your goal, builds a personalised plan, and teaches through real conversations. It starts in English and works in more Chinese as you improve, and you can reply in pinyin or by voice, so no Chinese keyboard is needed. 18 scenario lessons, spaced-repetition flashcards for every new word, and tap-to-hear pronunciation with pinyin above each character. Installs as a PWA, with a full Expo iOS app on the same backend. Per-user daily caps, trimmed context and capped replies keep the LLM cost per message flat, and the spaced-repetition scheduler is unit tested in CI.',
+      'proj.tfsa': 'Educational stock screener and TFSA planner. A deterministic scoring model (no LLM) rates TSX and US stocks on trend, value, quality and income against your risk profile, and explains every score in plain English. A practice portfolio lets you trade real tickers with fake money at live prices, converting USD at the live USD/CAD rate. The FastAPI backend is tested with pytest in CI.',
       'proj.depth': 'Squat game that runs entirely in the browser. MediaPipe tracks your body through the webcam and every rep is scored by depth, using 3D knee angles, a per-player calibration, a One Euro filter against jitter, and a debounced rep state machine. Four game modes, a demo player for anyone without a camera, and no video ever leaves the device.',
       'proj.dishly': 'Built at cuHacking 7. Describe a meal goal and swipe through recipes that match it, with nutrition and dietary filters. An Express backend uses Gemini to interpret the goal and Spoonacular to find recipes. Covered by Playwright browser-to-backend tests, with the API documented in OpenAPI.',
       'proj.mchacks': 'AI-powered mock interview tool. Analyzes your resume, generates contextual interview questions, and uses text-to-speech for a realistic experience.',
       'proj.live': 'Live demo ↗',
       'proj.stash': 'Personal link and note saver that runs on a single Lambda function and one DynamoDB table, built to stay inside the AWS free tier. Deployed with SAM behind a Lambda Function URL, with SSRF-safe link previews, CloudWatch alarms, a zero-spend budget alert, and an optional Google ADK agent.',
-      'proj.pinky': 'Accountability app for friend groups. Members make a pact, check in daily, and pay into a shared pot when they miss, with escalating stakes, streak-saving off-days, and photo-proof challenges. The rules are enforced in Postgres functions with row-level security, with daily web push reminders.',
-      'proj.shoebox': 'Shared photo boards for friends that install to the home screen. Snap a picture and it lands on the board as a tilted print, captioned in your choice of marker, appears live on everyone\'s phone, and pings them with a web push. Anyone can doodle on a photo, and a canvas collage maker turns a few into one image to post, drawings included. Photos are shrunk on the device before upload, and row-level security guards both the tables and the photo storage.',
-      'proj.codejam': 'Minigame GUI with a persistent leaderboard system. Leveraged OOP design patterns and File I/O to track and display high scores across sessions.',
+      'proj.pinky': 'Accountability app for friend groups. Members make a pact, check in daily, and pay into a shared pot when they miss, with escalating stakes, streak-saving off-days, and photo-proof challenges. The rules are enforced in Postgres functions with row-level security, and the pact logic is unit tested in CI. Installs as a PWA that works offline, badges its home screen icon, and sends daily push reminders.',
+      'proj.shoebox': 'Shared photo boards for friends that install to the home screen. Snap a picture and it gets pinned to a cork board as a tilted print, captioned in your choice of pen, appears live on everyone\'s phone, and pings them with a web push. Anyone on the board can comment on a photo, doodle on it or stick a note beside it, and a canvas collage maker turns a few into one image to post, drawings included. Photos are shrunk on the device before upload, and row-level security guards both the tables and the photo storage.',
       'demo.try': 'Try it', 'demo.hint': 'tap a phrase or a character', 'demo.noVoice': 'No Mandarin voice on this device',
       'tone.1': '1st · flat', 'tone.2': '2nd · rising', 'tone.3': '3rd · dip', 'tone.4': '4th · falling', 'tone.5': 'neutral',
       'contact.label': 'Contact', 'contact.heading': "Have a project or opportunity? I'd love to hear from you.",
@@ -1211,16 +1199,15 @@
       'lang.en': 'Anglais', 'lang.fr': 'Français', 'lang.zh': 'Mandarin',
       'exp.label': 'Expérience et formation', 'git.hint': 'touchez un commit marqué ▾ pour les détails',
       'proj.label': 'Projets et hackathons', 'proj.progress': 'En cours', 'proj.present': 'aujourd’hui',
-      'proj.ming': 'Coach de mandarin propulsé par l’IA qui apprend votre objectif, crée un plan personnalisé et enseigne par de vraies conversations. 18 leçons en situation, cartes mémoire à répétition espacée pour chaque nouveau mot, prononciation à l’écoute d’un toucher et réponse orale avec Whisper. S’installe comme PWA, avec une application iOS Expo sur le même backend. Des plafonds quotidiens par utilisateur, un contexte réduit et des réponses limitées gardent le coût LLM par message stable.',
-      'proj.tfsa': 'Outil éducatif de filtrage d’actions et de planification CELI. Un modèle de notation déterministe (sans LLM) évalue les actions de la TSX et des États-Unis selon la tendance, la valeur, la qualité et le revenu en fonction de votre profil de risque, et explique chaque note en langage clair. Un portefeuille d’entraînement permet d’acheter de vrais titres avec de l’argent fictif aux prix en direct, avec conversion du dollar américain au taux USD/CAD en direct.',
+      'proj.ming': 'Coach de mandarin propulsé par l’IA qui apprend votre objectif, crée un plan personnalisé et enseigne par de vraies conversations. Il commence en anglais et ajoute plus de chinois à mesure que vous progressez, et vous pouvez répondre en pinyin ou à la voix, sans clavier chinois. 18 leçons en situation, cartes mémoire à répétition espacée pour chaque nouveau mot, et prononciation à l’écoute d’un toucher avec le pinyin au-dessus de chaque caractère. S’installe comme PWA, avec une application iOS Expo complète sur le même backend. Des plafonds quotidiens par utilisateur, un contexte réduit et des réponses limitées gardent le coût LLM par message stable, et l’algorithme de répétition espacée est couvert par des tests unitaires en CI.',
+      'proj.tfsa': 'Outil éducatif de filtrage d’actions et de planification CELI. Un modèle de notation déterministe (sans LLM) évalue les actions de la TSX et des États-Unis selon la tendance, la valeur, la qualité et le revenu en fonction de votre profil de risque, et explique chaque note en langage clair. Un portefeuille d’entraînement permet d’acheter de vrais titres avec de l’argent fictif aux prix en direct, avec conversion du dollar américain au taux USD/CAD en direct. Le backend FastAPI est testé avec pytest en CI.',
       'proj.depth': 'Jeu de squats qui tourne entièrement dans le navigateur. MediaPipe suit votre corps par la webcam et chaque répétition est notée selon sa profondeur, grâce à l’angle du genou en 3D, une calibration par joueur, un filtre One Euro contre les tremblements et une machine à états anti-rebond. Quatre modes de jeu, un joueur de démonstration pour qui n’a pas de caméra, et aucune vidéo ne quitte l’appareil.',
       'proj.dishly': 'Réalisé à cuHacking 7. Décrivez un objectif de repas et faites défiler les recettes correspondantes, avec des filtres nutritionnels et alimentaires. Un backend Express utilise Gemini pour interpréter l’objectif et Spoonacular pour trouver les recettes. Couvert par des tests Playwright du navigateur au backend, avec une API documentée en OpenAPI.',
       'proj.mchacks': 'Outil de simulation d’entrevue propulsé par l’IA. Analyse votre CV, génère des questions d’entrevue adaptées et utilise la synthèse vocale pour une expérience réaliste.',
       'proj.live': 'Démo en ligne ↗',
       'proj.stash': 'Outil personnel pour sauvegarder des liens et des notes, qui tourne sur une seule fonction Lambda et une seule table DynamoDB, conçu pour rester dans l’offre gratuite d’AWS. Déployé avec SAM derrière une URL de fonction Lambda, avec des aperçus de liens protégés contre les SSRF, des alarmes CloudWatch, une alerte budgétaire à zéro dépense et un agent Google ADK optionnel.',
-      'proj.pinky': 'Application de responsabilisation pour groupes d’amis. Les membres concluent un pacte, font un pointage chaque jour et versent dans une cagnotte commune quand ils manquent à l’appel, avec des mises croissantes, des jours de congé qui protègent les séries et des contestations avec preuve photo. Les règles sont appliquées par des fonctions Postgres avec sécurité au niveau des lignes, et des rappels quotidiens arrivent par notification push.',
-      'proj.shoebox': 'Tableaux de photos partagés entre amis, installables sur l’écran d’accueil. Une photo prise s’ajoute au tableau comme un tirage incliné, légendé avec le marqueur de son choix, apparaît en direct sur le téléphone de chacun et les avertit par notification push. Chacun peut gribouiller sur une photo, et un créateur de collages sur canvas en assemble quelques-unes en une seule image à publier, dessins compris. Les photos sont réduites sur l’appareil avant l’envoi, et la sécurité au niveau des lignes protège à la fois les tables et le stockage des photos.',
-      'proj.codejam': 'Mini-jeu avec interface graphique et classement persistant. Conçu avec des patrons de conception orientés objet et des entrées-sorties de fichiers pour conserver les meilleurs scores d’une session à l’autre.',
+      'proj.pinky': 'Application de responsabilisation pour groupes d’amis. Les membres concluent un pacte, font un pointage chaque jour et versent dans une cagnotte commune quand ils manquent à l’appel, avec des mises croissantes, des jours de congé qui protègent les séries et des contestations avec preuve photo. Les règles sont appliquées par des fonctions Postgres avec sécurité au niveau des lignes, et la logique des pactes est couverte par des tests unitaires en CI. S’installe comme PWA qui fonctionne hors ligne, affiche une pastille sur son icône d’écran d’accueil et envoie des rappels quotidiens par notification push.',
+      'proj.shoebox': 'Tableaux de photos partagés entre amis, installables sur l’écran d’accueil. Une photo prise est épinglée sur un tableau de liège comme un tirage incliné, légendée avec le stylo de son choix, apparaît en direct sur le téléphone de chacun et les avertit par notification push. Chaque membre du tableau peut commenter une photo, y gribouiller ou coller une note à côté, et un créateur de collages sur canvas en assemble quelques-unes en une seule image à publier, dessins compris. Les photos sont réduites sur l’appareil avant l’envoi, et la sécurité au niveau des lignes protège à la fois les tables et le stockage des photos.',
       'demo.try': 'Essayez', 'demo.hint': 'touchez une expression ou un caractère', 'demo.noVoice': 'Aucune voix mandarin sur cet appareil',
       'tone.1': '1er · plat', 'tone.2': '2e · montant', 'tone.3': '3e · creux', 'tone.4': '4e · descendant', 'tone.5': 'neutre',
       'contact.label': 'Contact', 'contact.heading': 'Un projet ou une occasion à me proposer' + NB + '? J’aimerais beaucoup en discuter.',
@@ -1247,16 +1234,15 @@
       'lang.en': '英语', 'lang.fr': '法语', 'lang.zh': '普通话',
       'exp.label': '经历与教育', 'git.hint': '点击带 ▾ 的提交查看详情',
       'proj.label': '项目与黑客松', 'proj.progress': '进行中', 'proj.present': '至今',
-      'proj.ming': 'AI 普通话教练，了解你的学习目标，生成个性化计划，并通过真实对话来教学。包含 18 节情景课程、为每个新词自动生成的间隔重复闪卡、点击即听的发音，以及基于 Whisper 的跟读。可作为 PWA 安装，另有共用同一后端的 Expo iOS 应用。按用户每日限额、精简上下文并限制回复长度，让每条消息的大模型成本保持稳定。',
-      'proj.tfsa': '教育型选股与 TFSA（免税储蓄账户）规划工具。确定性评分模型（不使用大语言模型）根据你的风险偏好，从趋势、估值、质量和收益四个维度为多伦多证券交易所及美股打分，并用通俗语言解释每一个分数。模拟投资组合让你用虚拟资金按实时价格买卖真实股票，美元按实时美元兑加元汇率换算。',
+      'proj.ming': 'AI 普通话教练，了解你的学习目标，生成个性化计划，并通过真实对话来教学。一开始用英语交流，随着你的进步逐渐加入更多中文；可以用拼音或语音回答，无需中文键盘。包含 18 节情景课程、为每个新词自动生成的间隔重复闪卡，以及点击即听的发音，每个汉字上方显示拼音。可作为 PWA 安装，另有共用同一后端的完整 Expo iOS 应用。按用户每日限额、精简上下文并限制回复长度，让每条消息的大模型成本保持稳定；间隔重复算法有单元测试，并在 CI 中自动运行。',
+      'proj.tfsa': '教育型选股与 TFSA（免税储蓄账户）规划工具。确定性评分模型（不使用大语言模型）根据你的风险偏好，从趋势、估值、质量和收益四个维度为多伦多证券交易所及美股打分，并用通俗语言解释每一个分数。模拟投资组合让你用虚拟资金按实时价格买卖真实股票，美元按实时美元兑加元汇率换算。FastAPI 后端由 pytest 测试，并在 CI 中自动运行。',
       'proj.depth': '完全在浏览器中运行的深蹲游戏。MediaPipe 通过摄像头追踪身体动作，每次深蹲按深度评分，结合 3D 膝关节角度、针对每位玩家的校准、用于消除抖动的 One Euro 滤波器，以及带防抖的动作状态机。共四种游戏模式，没有摄像头也能观看演示玩家，视频从不离开设备。',
       'proj.dishly': '在 cuHacking 7 黑客松上完成。描述你的饮食目标，然后滑动浏览匹配的食谱，并可按营养和饮食需求筛选。Express 后端用 Gemini 理解目标，再通过 Spoonacular 查找食谱。配有从浏览器到后端的 Playwright 集成测试，API 以 OpenAPI 编写文档。',
       'proj.mchacks': 'AI 模拟面试工具。分析你的简历，生成贴合情境的面试问题，并通过语音合成营造真实的面试体验。',
       'proj.live': '在线演示 ↗',
       'proj.stash': '个人链接与笔记收藏工具，只用一个 Lambda 函数和一张 DynamoDB 表，设计上保持在 AWS 免费额度内。通过 SAM 部署在 Lambda 函数 URL 之后，具备防 SSRF 的链接预览、CloudWatch 告警、零支出预算提醒，以及可选的 Google ADK 智能体。',
-      'proj.pinky': '面向朋友群体的互相监督应用。成员订立约定，每天打卡，未完成就往共同奖池里交钱，并设有逐级加码的惩罚、保护连续记录的休息日，以及需要照片证明的质疑机制。规则由带行级安全策略的 Postgres 函数强制执行，并通过网页推送每日提醒。',
-      'proj.shoebox': '可安装到手机主屏幕的好友共享相册。拍下的照片会以微微倾斜的相纸形式贴到相册墙上，用你挑选的笔迹写上配文，实时出现在每个人的手机里，并通过网页推送通知大家。每个人都能在照片上涂鸦，基于 canvas 的拼贴生成器可把几张照片（连同涂鸦）合成一张图片用于分享。照片在上传前于设备端压缩，数据表和照片存储都由行级安全策略保护。',
-      'proj.codejam': '带图形界面的小游戏，配有持久化排行榜。运用面向对象设计模式和文件读写，跨会话记录并展示最高分。',
+      'proj.pinky': '面向朋友群体的互相监督应用。成员订立约定，每天打卡，未完成就往共同奖池里交钱，并设有逐级加码的惩罚、保护连续记录的休息日，以及需要照片证明的质疑机制。规则由带行级安全策略的 Postgres 函数强制执行，约定逻辑有单元测试，并在 CI 中自动运行。可作为 PWA 安装，支持离线使用，会在主屏幕图标上显示角标，并通过网页推送每日提醒。',
+      'proj.shoebox': '可安装到手机主屏幕的好友共享相册。拍下的照片会以微微倾斜的相纸形式钉在软木板上，用你挑选的笔迹写上配文，实时出现在每个人的手机里，并通过网页推送通知大家。相册里的每个人都能评论照片、在上面涂鸦或在旁边贴便利贴，基于 canvas 的拼贴生成器可把几张照片（连同涂鸦）合成一张图片用于分享。照片在上传前于设备端压缩，数据表和照片存储都由行级安全策略保护。',
       'demo.try': '试一试', 'demo.hint': '点击短语或单个汉字', 'demo.noVoice': '此设备未安装普通话语音',
       'tone.1': '一声 · 平', 'tone.2': '二声 · 升', 'tone.3': '三声 · 降升', 'tone.4': '四声 · 降', 'tone.5': '轻声',
       'contact.label': '联系', 'contact.heading': '有项目或机会？欢迎与我联系。',
@@ -1530,7 +1516,7 @@
     { lane: 2, date: { y: 2026, m: 7 },
       msg: { en: 'Dishly at cuHacking 7: swipe-to-match recipe finder', fr: 'Dishly à cuHacking 7' + NB + ': recettes à faire défiler selon votre objectif', zh: 'cuHacking 7 项目 Dishly：滑动匹配的食谱发现应用' },
       detail: { en: 'React and Express, with Gemini reading the meal goal and Spoonacular finding recipes. Playwright integration tests and an OpenAPI spec.', fr: 'React et Express, avec Gemini pour comprendre l’objectif et Spoonacular pour trouver les recettes. Tests d’intégration Playwright et spécification OpenAPI.', zh: 'React 与 Express，由 Gemini 理解饮食目标，Spoonacular 查找食谱。配有 Playwright 集成测试与 OpenAPI 规范。' } },
-    { lane: 4, date: { y: 2026 }, refs: ['community/mchacks'], open: true,
+    { lane: 4, date: { y: 2026, m: 9 }, refs: ['community/mchacks'], open: true,
       msg: { en: 'Join McHacks 14 organizing team as Experience Coordinator', fr: 'Arrivée dans l’équipe organisatrice de McHacks 14 comme coordonnateur de l’expérience', zh: '加入 McHacks 14 组织团队，担任体验协调员' },
       detail: { en: 'Helping run McHacks 14, McGill’s student-run hackathon, after competing at McHacks13.', fr: 'J’aide à organiser McHacks 14, le hackathon étudiant de McGill, après avoir participé à McHacks13.', zh: '参加过 McHacks13 后，加入团队协助举办麦吉尔大学学生主办的黑客松 McHacks 14。' } },
     { lane: 3, date: { y: 2026, m: 6 }, refs: ['feature/ming'], open: true,
@@ -1540,10 +1526,10 @@
       msg: { en: 'Extend co-op part-time through December 2026', fr: 'Prolongation à temps partiel jusqu’en décembre 2026', zh: '实习延长为兼职，至 2026 年 12 月' } },
     { lane: 1, date: { season: 'summer', y: 2026 },
       msg: { en: 'Build AI merge conflict resolver agent', fr: 'Agent IA de résolution de conflits de fusion', zh: '构建 AI 合并冲突解决代理' },
-      detail: { en: 'Analyzes conflicting branches and proposes resolutions.', fr: 'Analyse les branches en conflit et propose des résolutions.', zh: '分析存在冲突的分支并给出解决方案。' } },
+      detail: { en: 'Resolves the conflicts between two branches and raises a Jira-linked PR with the result.', fr: 'Résout les conflits entre deux branches et ouvre une PR liée à Jira avec le résultat.', zh: '自动解决两个分支之间的冲突，并提交关联 Jira 工单的 PR。' } },
     { lane: 1, date: { season: 'summer', y: 2026 },
-      msg: { en: 'Build AI PR reviewer agent on Bitbucket webhooks', fr: 'Agent IA de revue de PR déclenché par des webhooks Bitbucket', zh: '构建由 Bitbucket webhook 触发的 AI PR 审查代理' },
-      detail: { en: 'Reviews pull requests automatically and either approves them or leaves suggestions.', fr: 'Examine automatiquement les pull requests, puis les approuve ou laisse des suggestions.', zh: '自动审查拉取请求，直接批准或给出修改建议。' } },
+      msg: { en: 'Build AI PR review agent on Claude Sonnet and Bitbucket webhooks', fr: 'Agent IA de revue de PR sur Claude Sonnet, déclenché par des webhooks Bitbucket', zh: '构建基于 Claude Sonnet、由 Bitbucket webhook 触发的 AI PR 审查代理' },
+      detail: { en: 'Written in Python and used daily by senior engineers, leads and managers. To guard against hallucinations, every finding must quote an exact diff line and cite symbols confirmed with grep. It explores the cloned branch with grep and file-read tools (capped at 10 calls), skips known false positives up front, approves clean PRs and flags only critical and high-severity bugs.', fr: 'Écrit en Python et utilisé chaque jour par des ingénieurs seniors, des responsables techniques et des gestionnaires. Pour éviter les hallucinations, chaque constat doit citer une ligne exacte du diff et des symboles confirmés avec grep. Il explore la branche clonée avec des outils grep et de lecture de fichiers (10 appels au maximum), écarte d’emblée les faux positifs connus, approuve les PR propres et ne signale que les bogues critiques ou de gravité élevée.', zh: '用 Python 编写，资深工程师、技术负责人和经理每天都在使用。为防止幻觉，每条审查意见都必须引用 diff 中的确切代码行，涉及的符号也须经 grep 确认。它通过 grep 和文件读取工具（最多 10 次调用）浏览克隆下来的分支，预先过滤已知的误报，直接批准没有问题的 PR，只标记严重和高危级别的缺陷。' } },
     { lane: 1, date: { y: 2026, m: 5 },
       msg: { en: 'Join Ciena as SWE & Tools Developer', fr: 'Arrivée chez Ciena comme développeur logiciel et d’outils', zh: '加入 Ciena，担任软件与工具开发工程师' },
       detail: { en: '4-month summer co-op in Ottawa, focused on software engineering and internal tools.', fr: 'Stage coop d’été de 4 mois à Ottawa, axé sur le génie logiciel et les outils internes.', zh: '在渥太华为期 4 个月的暑期实习，专注软件工程与内部工具开发。' } },
@@ -1557,7 +1543,7 @@
     { lane: 1, date: { season: 'summer', y: 2025 },
       msg: { en: 'Deliver demos and tutorials on the AI memory agent', fr: 'Démos et tutoriels sur l’agent mémoire IA', zh: '为 AI 内存代理进行演示与教程讲解' } },
     { lane: 1, date: { season: 'summer', y: 2025 },
-      msg: { en: 'Unit tests in C with CMocka, repo upkeep in Git and BitBucket', fr: 'Tests unitaires en C avec CMocka, maintenance du dépôt Git et BitBucket', zh: '用 CMocka 编写 C 单元测试，维护 Git 与 BitBucket 代码库' } },
+      msg: { en: 'Unit tests in C with CMocka, repo upkeep in Git and Bitbucket', fr: 'Tests unitaires en C avec CMocka, maintenance du dépôt Git et Bitbucket', zh: '用 CMocka 编写 C 单元测试，维护 Git 与 Bitbucket 代码库' } },
     { lane: 1, date: { season: 'summer', y: 2025 },
       msg: { en: 'Ship Sherlog logging facility in C/C++ and Python', fr: 'Livraison de Sherlog, système de journalisation en C/C++ et Python', zh: '交付 Sherlog 日志系统（C/C++ 与 Python）' } },
     { lane: 1, date: { season: 'summer', y: 2025 },
@@ -1567,7 +1553,7 @@
       detail: { en: '4-month summer internship in Ottawa.', fr: 'Stage d’été de 4 mois à Ottawa.', zh: '在渥太华为期 4 个月的暑期实习。' } },
     { lane: 0, date: { y: 2024, m: 8 }, refs: ['mcgill'],
       msg: { en: 'Start BSc Computer Science at McGill', fr: 'Début du baccalauréat en informatique à McGill', zh: '开始在麦吉尔大学攻读计算机科学学士' },
-      detail: { en: 'Relevant coursework: Data Structures and Algorithms, Software Systems, Linear Algebra, Calculus, Discrete Mathematics.', fr: 'Cours pertinents' + NB + ': structures de données et algorithmes, systèmes logiciels, algèbre linéaire, calcul, mathématiques discrètes.', zh: '相关课程：数据结构与算法、软件系统、线性代数、微积分、离散数学。' } },
+      detail: { en: 'Relevant coursework: Data Structures and Algorithms, Software Design, Software Systems, Computer Systems.', fr: 'Cours pertinents' + NB + ': structures de données et algorithmes, conception de logiciels, systèmes logiciels, systèmes informatiques.', zh: '相关课程：数据结构与算法、软件设计、软件系统、计算机系统。' } },
     { lane: 0, date: { y: 2024, m: 6 }, refs: ['v1.0'],
       msg: { en: 'Graduate with distinction, OCDSB Silver Medal', fr: 'Diplôme avec distinction, médaille d’argent de l’OCDSB', zh: '以优异成绩毕业，获 OCDSB 银质奖章' },
       detail: { en: 'West Carleton Secondary School. Also earned distinction in Advanced Functions.', fr: 'École secondaire West Carleton. Distinction également en fonctions avancées.', zh: 'West Carleton 中学。高等函数课程亦获优异成绩。' } },
