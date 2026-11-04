@@ -697,7 +697,7 @@
     grid-column: 3 / 5; padding-top: 0; font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--muted);
     max-height: 0; overflow: hidden; transition: max-height .3s ease, padding .3s ease;
   }
-  .grow.open .detail { max-height: 220px; padding: 2px .8rem 10px 0; }
+  .grow.open .detail { max-height: 520px; padding: 2px .8rem 10px 0; }
   .gdot { transition: transform .35s cubic-bezier(.2,.9,.3,1.4); transform-box: fill-box; transform-origin: center; }
   .gpulse { animation: gp 1.8s ease-out infinite; transform-box: fill-box; transform-origin: center; }
   @keyframes gp { 0% { transform: scale(1); opacity: .7; } 100% { transform: scale(2.6); opacity: 0; } }
@@ -981,6 +981,22 @@
 
     <div class="project-card">
       <div class="project-top">
+        <h3 class="project-name">Depth</h3>
+        <span class="project-date" data-date="2026-09">Sep 2026</span>
+      </div>
+      <p class="project-desc" data-i18n="proj.depth">Squat game that runs entirely in the browser. MediaPipe tracks your body through the webcam and every rep is scored by depth, using 3D knee angles, a per-player calibration, a One Euro filter against jitter, and a debounced rep state machine. Four game modes, a demo player for anyone without a camera, and no video ever leaves the device.</p>
+      <div class="tags">
+        <span class="tag tag-accent">MediaPipe</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">Computer vision</span>
+        <span class="tag">node:test</span>
+      </div>
+      <div class="card-links"><a class="repo-link live-link" href="https://alex-wang55.github.io/squat-counter/" target="_blank" rel="noopener" data-i18n="proj.live">Live demo ↗</a><a class="repo-link" href="https://github.com/alex-wang55/squat-counter" target="_blank" rel="noopener">↗ github.com/alex-wang55/squat-counter</a></div>
+      <div class="gh-stats" data-repo="squat-counter"></div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top">
         <h3 class="project-name">Shoebox</h3>
         <span class="project-date" data-date="2026-10">Oct 2026</span>
       </div>
@@ -1055,22 +1071,6 @@
 
     <div class="project-card">
       <div class="project-top">
-        <h3 class="project-name">Depth</h3>
-        <span class="project-date" data-date="2026-09">Sep 2026</span>
-      </div>
-      <p class="project-desc" data-i18n="proj.depth">Squat game that runs entirely in the browser. MediaPipe tracks your body through the webcam and every rep is scored by depth, using 3D knee angles, a per-player calibration, a One Euro filter against jitter, and a debounced rep state machine. Four game modes, a demo player for anyone without a camera, and no video ever leaves the device.</p>
-      <div class="tags">
-        <span class="tag tag-accent">MediaPipe</span>
-        <span class="tag">JavaScript</span>
-        <span class="tag">Computer vision</span>
-        <span class="tag">node:test</span>
-      </div>
-      <div class="card-links"><a class="repo-link live-link" href="https://alex-wang55.github.io/squat-counter/" target="_blank" rel="noopener" data-i18n="proj.live">Live demo ↗</a><a class="repo-link" href="https://github.com/alex-wang55/squat-counter" target="_blank" rel="noopener">↗ github.com/alex-wang55/squat-counter</a></div>
-      <div class="gh-stats" data-repo="squat-counter"></div>
-    </div>
-
-    <div class="project-card">
-      <div class="project-top">
         <h3 class="project-name">Dishly</h3>
         <span class="project-date" data-date="2026-07">Jul 2026</span>
       </div>
@@ -1087,10 +1087,10 @@
 
     <div class="project-card">
       <div class="project-top">
-        <h3 class="project-name">McHacks 13</h3>
+        <h3 class="project-name" data-i18n="proj.mchacks.name">AI Mock Interviewer</h3>
         <span class="project-date" data-date="2026-01">Jan 2026</span>
       </div>
-      <p class="project-desc" data-i18n="proj.mchacks">AI-powered mock interview tool. Analyzes your resume, generates contextual interview questions, and uses text-to-speech for a realistic experience.</p>
+      <p class="project-desc" data-i18n="proj.mchacks">Built at McHacks 13. Analyzes your resume, generates contextual interview questions, and uses text-to-speech for a realistic experience.</p>
       <div class="tags">
         <span class="tag">Python</span>
         <span class="tag">Flask</span>
@@ -1107,7 +1107,6 @@
   <p style="font-size: 1.5rem; font-family: 'DM Serif Display', serif; max-width: 480px; line-height: 1.4; margin-bottom: 2rem;" data-i18n="contact.heading">Have a project or opportunity? I'd love to hear from you.</p>
   <div style="display:flex; gap: 1rem; flex-wrap: wrap;">
     <a href="mailto:awang.ottawa@gmail.com" class="btn-primary">awang.ottawa@gmail.com →</a>
-    <a href="tel:+13435738677" class="btn-outline">+1 (343) 573-8677</a>
     <a href="https://www.linkedin.com/in/alex-wang55/" class="btn-outline" target="_blank" rel="noopener">LinkedIn ↗</a>
     <a href="resume.pdf" class="btn-outline" target="_blank" rel="noopener" data-i18n="hero.resume">Resume ↗</a>
   </div>
@@ -1168,7 +1167,8 @@
       'proj.tfsa': 'Educational stock screener and TFSA planner. A deterministic scoring model (no LLM) rates TSX and US stocks on trend, value, quality and income against your risk profile, and explains every score in plain English. A practice portfolio lets you trade real tickers with fake money at live prices, converting USD at the live USD/CAD rate. The FastAPI backend is tested with pytest in CI.',
       'proj.depth': 'Squat game that runs entirely in the browser. MediaPipe tracks your body through the webcam and every rep is scored by depth, using 3D knee angles, a per-player calibration, a One Euro filter against jitter, and a debounced rep state machine. Four game modes, a demo player for anyone without a camera, and no video ever leaves the device.',
       'proj.dishly': 'Built at cuHacking 7. Describe a meal goal and swipe through recipes that match it, with nutrition and dietary filters. An Express backend uses Gemini to interpret the goal and Spoonacular to find recipes. Covered by Playwright browser-to-backend tests, with the API documented in OpenAPI.',
-      'proj.mchacks': 'AI-powered mock interview tool. Analyzes your resume, generates contextual interview questions, and uses text-to-speech for a realistic experience.',
+      'proj.mchacks.name': 'AI Mock Interviewer',
+      'proj.mchacks': 'Built at McHacks 13. Analyzes your resume, generates contextual interview questions, and uses text-to-speech for a realistic experience.',
       'proj.live': 'Live demo ↗',
       'proj.stash': 'Personal link and note saver that runs on a single Lambda function and one DynamoDB table, built to stay inside the AWS free tier. Deployed with SAM behind a Lambda Function URL, with SSRF-safe link previews, CloudWatch alarms, a zero-spend budget alert, and an optional Google ADK agent.',
       'proj.pinky': 'Accountability app for friend groups. Members make a pact, check in daily, and pay into a shared pot when they miss, with escalating stakes, streak-saving off-days, and photo-proof challenges. The rules are enforced in Postgres functions with row-level security, and the pact logic is unit tested in CI. Installs as a PWA that works offline, badges its home screen icon, and sends daily push reminders.',
@@ -1203,7 +1203,8 @@
       'proj.tfsa': 'Outil éducatif de filtrage d’actions et de planification CELI. Un modèle de notation déterministe (sans LLM) évalue les actions de la TSX et des États-Unis selon la tendance, la valeur, la qualité et le revenu en fonction de votre profil de risque, et explique chaque note en langage clair. Un portefeuille d’entraînement permet d’acheter de vrais titres avec de l’argent fictif aux prix en direct, avec conversion du dollar américain au taux USD/CAD en direct. Le backend FastAPI est testé avec pytest en CI.',
       'proj.depth': 'Jeu de squats qui tourne entièrement dans le navigateur. MediaPipe suit votre corps par la webcam et chaque répétition est notée selon sa profondeur, grâce à l’angle du genou en 3D, une calibration par joueur, un filtre One Euro contre les tremblements et une machine à états anti-rebond. Quatre modes de jeu, un joueur de démonstration pour qui n’a pas de caméra, et aucune vidéo ne quitte l’appareil.',
       'proj.dishly': 'Réalisé à cuHacking 7. Décrivez un objectif de repas et faites défiler les recettes correspondantes, avec des filtres nutritionnels et alimentaires. Un backend Express utilise Gemini pour interpréter l’objectif et Spoonacular pour trouver les recettes. Couvert par des tests Playwright du navigateur au backend, avec une API documentée en OpenAPI.',
-      'proj.mchacks': 'Outil de simulation d’entrevue propulsé par l’IA. Analyse votre CV, génère des questions d’entrevue adaptées et utilise la synthèse vocale pour une expérience réaliste.',
+      'proj.mchacks.name': 'Simulateur d’entrevue IA',
+      'proj.mchacks': 'Réalisé à McHacks 13. Analyse votre CV, génère des questions d’entrevue adaptées et utilise la synthèse vocale pour une expérience réaliste.',
       'proj.live': 'Démo en ligne ↗',
       'proj.stash': 'Outil personnel pour sauvegarder des liens et des notes, qui tourne sur une seule fonction Lambda et une seule table DynamoDB, conçu pour rester dans l’offre gratuite d’AWS. Déployé avec SAM derrière une URL de fonction Lambda, avec des aperçus de liens protégés contre les SSRF, des alarmes CloudWatch, une alerte budgétaire à zéro dépense et un agent Google ADK optionnel.',
       'proj.pinky': 'Application de responsabilisation pour groupes d’amis. Les membres concluent un pacte, font un pointage chaque jour et versent dans une cagnotte commune quand ils manquent à l’appel, avec des mises croissantes, des jours de congé qui protègent les séries et des contestations avec preuve photo. Les règles sont appliquées par des fonctions Postgres avec sécurité au niveau des lignes, et la logique des pactes est couverte par des tests unitaires en CI. S’installe comme PWA qui fonctionne hors ligne, affiche une pastille sur son icône d’écran d’accueil et envoie des rappels quotidiens par notification push.',
@@ -1238,7 +1239,8 @@
       'proj.tfsa': '教育型选股与 TFSA（免税储蓄账户）规划工具。确定性评分模型（不使用大语言模型）根据你的风险偏好，从趋势、估值、质量和收益四个维度为多伦多证券交易所及美股打分，并用通俗语言解释每一个分数。模拟投资组合让你用虚拟资金按实时价格买卖真实股票，美元按实时美元兑加元汇率换算。FastAPI 后端由 pytest 测试，并在 CI 中自动运行。',
       'proj.depth': '完全在浏览器中运行的深蹲游戏。MediaPipe 通过摄像头追踪身体动作，每次深蹲按深度评分，结合 3D 膝关节角度、针对每位玩家的校准、用于消除抖动的 One Euro 滤波器，以及带防抖的动作状态机。共四种游戏模式，没有摄像头也能观看演示玩家，视频从不离开设备。',
       'proj.dishly': '在 cuHacking 7 黑客松上完成。描述你的饮食目标，然后滑动浏览匹配的食谱，并可按营养和饮食需求筛选。Express 后端用 Gemini 理解目标，再通过 Spoonacular 查找食谱。配有从浏览器到后端的 Playwright 集成测试，API 以 OpenAPI 编写文档。',
-      'proj.mchacks': 'AI 模拟面试工具。分析你的简历，生成贴合情境的面试问题，并通过语音合成营造真实的面试体验。',
+      'proj.mchacks.name': 'AI 模拟面试官',
+      'proj.mchacks': '在 McHacks 13 黑客松上完成。分析你的简历，生成贴合情境的面试问题，并通过语音合成营造真实的面试体验。',
       'proj.live': '在线演示 ↗',
       'proj.stash': '个人链接与笔记收藏工具，只用一个 Lambda 函数和一张 DynamoDB 表，设计上保持在 AWS 免费额度内。通过 SAM 部署在 Lambda 函数 URL 之后，具备防 SSRF 的链接预览、CloudWatch 告警、零支出预算提醒，以及可选的 Google ADK 智能体。',
       'proj.pinky': '面向朋友群体的互相监督应用。成员订立约定，每天打卡，未完成就往共同奖池里交钱，并设有逐级加码的惩罚、保护连续记录的休息日，以及需要照片证明的质疑机制。规则由带行级安全策略的 Postgres 函数强制执行，约定逻辑有单元测试，并在 CI 中自动运行。可作为 PWA 安装，支持离线使用，会在主屏幕图标上显示角标，并通过网页推送每日提醒。',
@@ -1496,43 +1498,26 @@
      ===================================================================== */
   const LANES = ['var(--ink)', 'var(--lane-1)', 'var(--lane-2)', 'var(--accent-ink)', 'var(--lane-4)'];
   const COMMITS = [
-    { lane: 0, date: { y: 2026, m: 10 }, refs: ['HEAD', 'main'], merge: true,
-      msg: { en: 'Merge projects: Shoebox, Stash, Pinky, Depth, TFSA Teacher, Dishly', fr: 'Fusion de projets' + NB + ': Shoebox, Stash, Pinky, Depth, TFSA Teacher, Dishly', zh: '合并项目：Shoebox、Stash、Pinky、Depth、TFSA Teacher、Dishly' } },
-    { lane: 2, date: { y: 2026, m: 10 },
-      msg: { en: 'Shoebox: shared photo boards for friends, straight from the camera', fr: 'Shoebox' + NB + ': tableaux de photos partagés entre amis, directement depuis l’appareil photo', zh: 'Shoebox：直接用相机拍照的好友共享相册' },
-      detail: { en: 'Installable PWA with on-device photo compression, Supabase realtime and storage behind row-level security, web push, finger doodles on photos, and a canvas collage maker. Live at shoebox-five.vercel.app.', fr: 'PWA installable avec compression des photos sur l’appareil, temps réel et stockage Supabase protégés par la sécurité au niveau des lignes, notifications push, gribouillis au doigt sur les photos et créateur de collages sur canvas. En ligne sur shoebox-five.vercel.app.', zh: '可安装的 PWA，照片在设备端压缩，Supabase 实时同步与存储受行级安全策略保护，支持网页推送和在照片上手指涂鸦，并带有基于 canvas 的拼贴生成器。已上线：shoebox-five.vercel.app。' } },
-    { lane: 2, date: { y: 2026, m: 10 },
-      msg: { en: 'Stash: serverless link saver on Lambda and DynamoDB', fr: 'Stash' + NB + ': sauvegarde de liens serverless sur Lambda et DynamoDB', zh: 'Stash：基于 Lambda 和 DynamoDB 的无服务器链接收藏工具' },
-      detail: { en: 'One Lambda function, one DynamoDB table, deployed with SAM and built to stay inside the AWS free tier. SSRF-safe link previews and an optional Google ADK agent.', fr: 'Une seule fonction Lambda et une seule table DynamoDB, déployées avec SAM et pensées pour rester dans l’offre gratuite d’AWS. Aperçus de liens protégés contre les SSRF et agent Google ADK optionnel.', zh: '一个 Lambda 函数加一张 DynamoDB 表，用 SAM 部署，设计上保持在 AWS 免费额度内。链接预览防 SSRF，并可选配 Google ADK 智能体。' } },
-    { lane: 2, date: { y: 2026, m: 10 },
-      msg: { en: 'Pinky: friend-group accountability pacts with a shared pot', fr: 'Pinky' + NB + ': pactes de responsabilisation entre amis avec cagnotte commune', zh: 'Pinky：朋友间互相监督的打卡约定与共同奖池' },
-      detail: { en: 'Daily check-ins, escalating stakes, streak-saving off-days and photo-proof challenges, enforced in Postgres with row-level security. Live at pinky-lemon.vercel.app.', fr: 'Pointages quotidiens, mises croissantes, jours de congé qui protègent les séries et contestations avec preuve photo, le tout appliqué dans Postgres avec sécurité au niveau des lignes. En ligne sur pinky-lemon.vercel.app.', zh: '每日打卡、逐级加码、保护连续记录的休息日，以及需要照片证明的质疑机制，全部由 Postgres 行级安全策略强制执行。已上线：pinky-lemon.vercel.app。' } },
-    { lane: 2, date: { y: 2026, m: 9 },
-      msg: { en: 'Depth: webcam squat game with in-browser pose tracking', fr: 'Depth' + NB + ': jeu de squats par webcam avec suivi de pose dans le navigateur', zh: 'Depth：在浏览器内追踪姿态的摄像头深蹲游戏' },
-      detail: { en: 'MediaPipe, 3D knee angles, a One Euro filter and a rep state machine, unit tested with node:test. Live at alex-wang55.github.io/squat-counter.', fr: 'MediaPipe, angle du genou en 3D, filtre One Euro et machine à états des répétitions, testés avec node:test. En ligne sur alex-wang55.github.io/squat-counter.', zh: 'MediaPipe、3D 膝关节角度、One Euro 滤波器与动作状态机，并用 node:test 做单元测试。已上线：alex-wang55.github.io/squat-counter。' } },
-    { lane: 2, date: { y: 2026, m: 9 },
-      msg: { en: 'TFSA Investment Teacher: stock scoring with plain-English reasons', fr: 'TFSA Investment Teacher' + NB + ': notation d’actions expliquée en langage clair', zh: 'TFSA Investment Teacher：用通俗语言解释的股票评分' },
-      detail: { en: 'FastAPI, SQLAlchemy, yfinance, React 19, TypeScript. Tracks TFSA contribution room and runs a practice portfolio at live prices. Live at tfsa-advisor-luqn.vercel.app.', fr: 'FastAPI, SQLAlchemy, yfinance, React 19, TypeScript. Suit les droits de cotisation au CELI et gère un portefeuille d’entraînement aux prix en direct. En ligne sur tfsa-advisor-luqn.vercel.app.', zh: 'FastAPI、SQLAlchemy、yfinance、React 19、TypeScript。追踪 TFSA 供款额度，并提供按实时价格交易的模拟投资组合。已上线：tfsa-advisor-luqn.vercel.app。' } },
-    { lane: 2, date: { y: 2026, m: 7 },
-      msg: { en: 'Dishly at cuHacking 7: swipe-to-match recipe finder', fr: 'Dishly à cuHacking 7' + NB + ': recettes à faire défiler selon votre objectif', zh: 'cuHacking 7 项目 Dishly：滑动匹配的食谱发现应用' },
-      detail: { en: 'React and Express, with Gemini reading the meal goal and Spoonacular finding recipes. Playwright integration tests and an OpenAPI spec.', fr: 'React et Express, avec Gemini pour comprendre l’objectif et Spoonacular pour trouver les recettes. Tests d’intégration Playwright et spécification OpenAPI.', zh: 'React 与 Express，由 Gemini 理解饮食目标，Spoonacular 查找食谱。配有 Playwright 集成测试与 OpenAPI 规范。' } },
+    { lane: 0, date: { y: 2026, m: 10 }, refs: ['HEAD', 'main'],
+      msg: { en: 'Ship side projects: Shoebox, Stash, Pinky, Depth, TFSA Teacher, Dishly', fr: 'Livraison de projets' + NB + ': Shoebox, Stash, Pinky, Depth, TFSA Teacher, Dishly', zh: '发布个人项目：Shoebox、Stash、Pinky、Depth、TFSA Teacher、Dishly' },
+      detail: { en: 'Write-ups, live demos and code for each one are in Projects below.', fr: 'Description, démo en ligne et code de chacun dans la section Projets ci-dessous.', zh: '每个项目的介绍、在线演示和代码都在下方的“项目”部分。' } },
+    { lane: 1, date: { season: 'fall', y: 2026 }, refs: ['work/ciena'], open: true,
+      msg: { en: 'Extend co-op part-time through December 2026', fr: 'Prolongation à temps partiel jusqu’en décembre 2026', zh: '实习延长为兼职，至 2026 年 12 月' } },
+    { lane: 1, date: { season: 'summer', y: 2026 },
+      msg: { en: 'Build AI merge conflict resolver agent', fr: 'Agent IA de résolution de conflits de fusion', zh: '构建 AI 合并冲突解决代理' },
+      detail: { en: 'Resolves the conflicts between two branches and raises a Jira-linked PR with the result.', fr: 'Résout les conflits entre deux branches et ouvre une PR liée à Jira avec le résultat.', zh: '自动解决两个分支之间的冲突，并提交关联 Jira 工单的 PR。' } },
+    { lane: 1, date: { season: 'summer', y: 2026 }, expanded: true,
+      msg: { en: 'Build AI PR review agent on Claude Sonnet and Bitbucket webhooks', fr: 'Agent IA de revue de PR sur Claude Sonnet, déclenché par des webhooks Bitbucket', zh: '构建基于 Claude Sonnet、由 Bitbucket webhook 触发的 AI PR 审查代理' },
+      detail: { en: 'Written in Python and used daily by senior engineers, leads and managers. To guard against hallucinations, every finding must quote an exact diff line and cite symbols confirmed with grep. It explores the cloned branch with grep and file-read tools (capped at 10 calls), skips known false positives up front, approves clean PRs and flags only critical and high-severity bugs.', fr: 'Écrit en Python et utilisé chaque jour par des ingénieurs seniors, des responsables techniques et des gestionnaires. Pour éviter les hallucinations, chaque constat doit citer une ligne exacte du diff et des symboles confirmés avec grep. Il explore la branche clonée avec des outils grep et de lecture de fichiers (10 appels au maximum), écarte d’emblée les faux positifs connus, approuve les PR propres et ne signale que les bogues critiques ou de gravité élevée.', zh: '用 Python 编写，资深工程师、技术负责人和经理每天都在使用。为防止幻觉，每条审查意见都必须引用 diff 中的确切代码行，涉及的符号也须经 grep 确认。它通过 grep 和文件读取工具（最多 10 次调用）浏览克隆下来的分支，预先过滤已知的误报，直接批准没有问题的 PR，只标记严重和高危级别的缺陷。' } },
+    { lane: 1, date: { y: 2026, m: 5 },
+      msg: { en: 'Return to Ciena as SWE & Tools Developer', fr: 'Retour chez Ciena comme développeur logiciel et d’outils', zh: '重返 Ciena，担任软件与工具开发工程师' },
+      detail: { en: 'Second 4-month summer co-op in Ottawa, focused on software engineering and internal tools.', fr: 'Deuxième stage coop d’été de 4 mois à Ottawa, axé sur le génie logiciel et les outils internes.', zh: '在渥太华的第二段为期 4 个月的暑期实习，专注软件工程与内部工具开发。' } },
     { lane: 4, date: { y: 2026, m: 9 }, refs: ['community/mchacks'], open: true,
       msg: { en: 'Join McHacks 14 organizing team as Experience Coordinator', fr: 'Arrivée dans l’équipe organisatrice de McHacks 14 comme coordonnateur de l’expérience', zh: '加入 McHacks 14 组织团队，担任体验协调员' },
       detail: { en: 'Helping run McHacks 14, McGill’s student-run hackathon, after competing at McHacks13.', fr: 'J’aide à organiser McHacks 14, le hackathon étudiant de McGill, après avoir participé à McHacks13.', zh: '参加过 McHacks13 后，加入团队协助举办麦吉尔大学学生主办的黑客松 McHacks 14。' } },
     { lane: 3, date: { y: 2026, m: 6 }, refs: ['feature/ming'], open: true,
       msg: { en: 'Persona-based AI coaches with spaced repetition', fr: 'Coachs IA à personas et répétition espacée', zh: '基于角色的 AI 教练与间隔重复' },
       detail: { en: 'Ming 明 · AI Mandarin coach, live at ming-wine.vercel.app. Next.js, Claude API, Google Cloud TTS, Whisper, Supabase.', fr: 'Ming 明 · coach de mandarin propulsé par l’IA, en ligne sur ming-wine.vercel.app. Next.js, Claude API, Google Cloud TTS, Whisper, Supabase.', zh: 'Ming 明 · AI 普通话教练，已上线：ming-wine.vercel.app。Next.js、Claude API、Google Cloud TTS、Whisper、Supabase。' } },
-    { lane: 1, date: { season: 'fall', y: 2026 }, refs: ['work/ciena'], open: true,
-      msg: { en: 'Extend co-op part-time through December 2026', fr: 'Prolongation à temps partiel jusqu’en décembre 2026', zh: '实习延长为兼职，至 2026 年 12 月' } },
-    { lane: 1, date: { season: 'summer', y: 2026 },
-      msg: { en: 'Build AI merge conflict resolver agent', fr: 'Agent IA de résolution de conflits de fusion', zh: '构建 AI 合并冲突解决代理' },
-      detail: { en: 'Resolves the conflicts between two branches and raises a Jira-linked PR with the result.', fr: 'Résout les conflits entre deux branches et ouvre une PR liée à Jira avec le résultat.', zh: '自动解决两个分支之间的冲突，并提交关联 Jira 工单的 PR。' } },
-    { lane: 1, date: { season: 'summer', y: 2026 },
-      msg: { en: 'Build AI PR review agent on Claude Sonnet and Bitbucket webhooks', fr: 'Agent IA de revue de PR sur Claude Sonnet, déclenché par des webhooks Bitbucket', zh: '构建基于 Claude Sonnet、由 Bitbucket webhook 触发的 AI PR 审查代理' },
-      detail: { en: 'Written in Python and used daily by senior engineers, leads and managers. To guard against hallucinations, every finding must quote an exact diff line and cite symbols confirmed with grep. It explores the cloned branch with grep and file-read tools (capped at 10 calls), skips known false positives up front, approves clean PRs and flags only critical and high-severity bugs.', fr: 'Écrit en Python et utilisé chaque jour par des ingénieurs seniors, des responsables techniques et des gestionnaires. Pour éviter les hallucinations, chaque constat doit citer une ligne exacte du diff et des symboles confirmés avec grep. Il explore la branche clonée avec des outils grep et de lecture de fichiers (10 appels au maximum), écarte d’emblée les faux positifs connus, approuve les PR propres et ne signale que les bogues critiques ou de gravité élevée.', zh: '用 Python 编写，资深工程师、技术负责人和经理每天都在使用。为防止幻觉，每条审查意见都必须引用 diff 中的确切代码行，涉及的符号也须经 grep 确认。它通过 grep 和文件读取工具（最多 10 次调用）浏览克隆下来的分支，预先过滤已知的误报，直接批准没有问题的 PR，只标记严重和高危级别的缺陷。' } },
-    { lane: 1, date: { y: 2026, m: 5 },
-      msg: { en: 'Join Ciena as SWE & Tools Developer', fr: 'Arrivée chez Ciena comme développeur logiciel et d’outils', zh: '加入 Ciena，担任软件与工具开发工程师' },
-      detail: { en: '4-month summer co-op in Ottawa, focused on software engineering and internal tools.', fr: 'Stage coop d’été de 4 mois à Ottawa, axé sur le génie logiciel et les outils internes.', zh: '在渥太华为期 4 个月的暑期实习，专注软件工程与内部工具开发。' } },
     { lane: 0, date: { y: 2026, m: 1 }, merge: true,
       msg: { en: 'Merge projects: McHacks13 AI mock interviewer', fr: 'Fusion de projets' + NB + ': simulateur d’entrevue IA McHacks13', zh: '合并项目：McHacks13 AI 模拟面试' },
       detail: { en: 'Built at McGill’s hackathon: Gemini writes and analyzes answers, ElevenLabs speaks the questions, Flask ties it together.', fr: 'Réalisé au hackathon de McGill' + NB + ': Gemini génère et analyse les réponses, ElevenLabs lit les questions, Flask relie le tout.', zh: '在麦吉尔黑客松完成：Gemini 生成并分析回答，ElevenLabs 朗读问题，Flask 负责前后端衔接。' } },
@@ -1547,7 +1532,8 @@
     { lane: 1, date: { season: 'summer', y: 2025 },
       msg: { en: 'Ship Sherlog logging facility in C/C++ and Python', fr: 'Livraison de Sherlog, système de journalisation en C/C++ et Python', zh: '交付 Sherlog 日志系统（C/C++ 与 Python）' } },
     { lane: 1, date: { season: 'summer', y: 2025 },
-      msg: { en: 'Build AI memory leak detection agent in C', fr: 'Agent IA de détection de fuites de mémoire en C', zh: '用 C 构建 AI 内存泄漏检测与分析代理' } },
+      msg: { en: 'Build AI memory leak detection agent for C code', fr: 'Agent IA de détection de fuites de mémoire pour du code C', zh: '为 C 代码构建 AI 内存泄漏检测代理' },
+      detail: { en: 'Analyzes LeakSanitizer and Heaptrack output to detect and explain memory leaks in C code. It caught a real leak when run on a Ciena repo.', fr: 'Analyse la sortie de LeakSanitizer et de Heaptrack pour détecter et expliquer les fuites de mémoire dans du code C. Il a repéré une vraie fuite lors d’un essai sur un dépôt de Ciena.', zh: '分析 LeakSanitizer 和 Heaptrack 的输出，检测并解释 C 代码中的内存泄漏。在 Ciena 的一个代码库上运行时，它发现了一处真实的泄漏。' } },
     { lane: 1, date: { y: 2025, m: 5 },
       msg: { en: 'Join Ciena as Software Developer Intern', fr: 'Arrivée chez Ciena comme stagiaire en développement logiciel', zh: '加入 Ciena，担任软件开发实习生' },
       detail: { en: '4-month summer internship in Ottawa.', fr: 'Stage d’été de 4 mois à Ottawa.', zh: '在渥太华为期 4 个月的暑期实习。' } },
@@ -1599,7 +1585,9 @@
     gitBody.style.setProperty('--gw', (GX * 2 + LW * 5 + 6) + 'px');
     gitRows = COMMITS.map((c, i) => {
       const r = document.createElement('div');
-      r.className = 'grow' + (c.detail ? ' clickable' : '') + (openSet.has(i) ? ' open' : '') + (gitPlayed || REDUCED ? '' : ' pre');
+      // First build opens rows marked expanded; later rebuilds (resize, language) keep whatever the visitor toggled.
+      const isOpen = gitRows.length ? openSet.has(i) : !!c.expanded;
+      r.className = 'grow' + (c.detail ? ' clickable' : '') + (isOpen ? ' open' : '') + (gitPlayed || REDUCED ? '' : ' pre');
       const refs = (c.refs || []).map(n => '<span class="ref' + (n === 'HEAD' ? ' head' : '') + '" style="color:' + LANES[c.lane] + '">' + n + '</span>').join('');
       const msg = pick(c.msg);
       r.innerHTML = '<span></span><span class="h">' + hash(c.msg.en) + '</span>' +
