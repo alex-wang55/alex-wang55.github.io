@@ -466,6 +466,8 @@
     padding: 1.4rem;
     transition: border-color 0.2s, transform 0.2s;
     cursor: default;
+    display: flex;
+    flex-direction: column;
   }
 
   .project-card:hover {
@@ -670,7 +672,7 @@
     margin-bottom: .8rem; padding-bottom: .8rem; border-bottom: 1px dashed var(--border);
   }
   .git-head .p { color: var(--accent-ink); }
-  .git-hint { margin-left: auto; font-size: 10.5px; }
+  .git-hint { margin-left: auto; font-size: 11.5px; }
   .git-body { position: relative; }
   .git-svg { position: absolute; left: 0; top: 0; pointer-events: none; overflow: visible; }
   .grow {
@@ -685,7 +687,7 @@
   .grow .h { color: var(--hash); }
   .grow .m { font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--ink); display: flex; align-items: center; gap: .45rem; min-width: 0; }
   .grow .m .txt { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .grow .chev { color: var(--muted); font-size: 10px; transition: transform .25s; flex-shrink: 0; }
+  .grow .chev { color: var(--accent-ink); font-size: 15px; line-height: 1; transition: transform .25s; flex-shrink: 0; }
   .grow.open .chev { transform: rotate(180deg); }
   .grow .d { color: var(--muted); font-size: 11.5px; padding-right: .8rem; white-space: nowrap; }
   .ref {
@@ -726,13 +728,40 @@
     border-radius: 100px; margin-top: .9rem; transition: background .2s;
   }
   .repo-link:hover { background: var(--accent-light); }
-  .card-links { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .9rem; }
+  .card-links { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: auto; padding-top: .9rem; }
+  /* long write-ups fold to five lines; "More" opens them (added by script only when the text overflows) */
+  .project-desc.clamp { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 5; line-clamp: 5; overflow: hidden; }
+  .desc-more {
+    align-self: flex-start; background: none; border: none; padding: 4px 0; margin: -.7rem 0 .7rem; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; font-size: 12.5px; font-weight: 500; color: var(--accent-ink);
+  }
+  .desc-more:hover { text-decoration: underline; }
+  .desc-more[hidden] { display: none; }
+  @media (min-width: 900px) { .featured .project-desc.clamp { display: block; overflow: visible; } }
   .card-links .repo-link { margin-top: 0; }
   .repo-link.live-link { background: var(--accent-ink); border-color: var(--accent-ink); color: var(--on-accent); }
   .repo-link.live-link:hover { background: var(--accent-ink); filter: brightness(1.08); }
   @media (min-width: 640px) { .projects-grid .featured { grid-column: span 2; } }
   .feat-grid { display: grid; gap: 1.4rem; }
   @media (min-width: 900px) { .feat-grid { grid-template-columns: 1.1fr 1fr; align-items: start; } }
+
+  /* ===================== phone polish ===================== */
+  @media (max-width: 820px) {
+    .nav-links { padding: 0 0 2px; }
+    .nav-links a { font-size: 13px; padding: 11px 0; }
+    .nav-links a.active::after { bottom: 5px; }
+    .lang-seg button { font-size: 12px; padding: 8px 12px; }
+    .flip-btn { min-height: 40px; }
+    .contact-strip { gap: .2rem 1.5rem; }
+    .contact-strip .dot { display: none; }
+    .contact-item { font-size: 13px; padding: 7px 0; }
+    .lang-pill { min-height: 40px; }
+    .project-desc { font-size: 14.5px; }
+    .project-date, .gh-stats, .grow .d { font-size: 12px; }
+    .repo-link { font-size: 12.5px; padding: 9px 16px; }
+    .md-chip { min-height: 36px; }
+    .desc-more { font-size: 13.5px; padding: 8px 0; }
+  }
 
   /* ===================== ming demo ===================== */
   .ming-demo { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.1rem; }
@@ -824,7 +853,7 @@
     </div>
     <button class="flip-btn" id="flipBtn" data-i18n-title="theme.title" title="Toggle dark mode" aria-label="Toggle dark mode">
       <span class="ico" id="ico"></span>
-      <span id="btnLabel">Click me</span>
+      <span id="btnLabel">Dark</span>
     </button>
   </div>
 </nav>
@@ -958,7 +987,7 @@
             <span class="tag">Expo</span>
             <span class="tag">Vercel</span>
           </div>
-          <div class="card-links"><a class="repo-link live-link" href="https://ming-wine.vercel.app" target="_blank" rel="noopener" data-i18n="proj.live">Live demo ↗</a><a class="repo-link" href="https://github.com/alex-wang55/ming" target="_blank" rel="noopener">↗ github.com/alex-wang55/ming</a></div>
+          <div class="card-links"><a class="repo-link live-link" href="https://ming-wine.vercel.app" target="_blank" rel="noopener" data-i18n="proj.live">Live demo ↗</a><a class="repo-link" href="https://github.com/alex-wang55/ming" target="_blank" rel="noopener" data-i18n="proj.code">Code ↗</a></div>
           <div class="gh-stats" data-repo="ming"></div>
         </div>
         <div class="ming-demo" id="mingDemo">
@@ -991,7 +1020,7 @@
         <span class="tag">Computer vision</span>
         <span class="tag">node:test</span>
       </div>
-      <div class="card-links"><a class="repo-link live-link" href="https://alex-wang55.github.io/squat-counter/" target="_blank" rel="noopener" data-i18n="proj.live">Live demo ↗</a><a class="repo-link" href="https://github.com/alex-wang55/squat-counter" target="_blank" rel="noopener">↗ github.com/alex-wang55/squat-counter</a></div>
+      <div class="card-links"><a class="repo-link live-link" href="https://alex-wang55.github.io/squat-counter/" target="_blank" rel="noopener" data-i18n="proj.live">Live demo ↗</a><a class="repo-link" href="https://github.com/alex-wang55/squat-counter" target="_blank" rel="noopener" data-i18n="proj.code">Code ↗</a></div>
       <div class="gh-stats" data-repo="squat-counter"></div>
     </div>
 
@@ -1010,7 +1039,7 @@
         <span class="tag">Tailwind CSS</span>
         <span class="tag">Vercel</span>
       </div>
-      <div class="card-links"><a class="repo-link live-link" href="https://shoebox-five.vercel.app" target="_blank" rel="noopener" data-i18n="proj.live">Live demo ↗</a><a class="repo-link" href="https://github.com/alex-wang55/image_collager" target="_blank" rel="noopener">↗ github.com/alex-wang55/image_collager</a></div>
+      <div class="card-links"><a class="repo-link live-link" href="https://shoebox-five.vercel.app" target="_blank" rel="noopener" data-i18n="proj.live">Live demo ↗</a><a class="repo-link" href="https://github.com/alex-wang55/image_collager" target="_blank" rel="noopener" data-i18n="proj.code">Code ↗</a></div>
       <div class="gh-stats" data-repo="image_collager"></div>
     </div>
 
@@ -1028,7 +1057,7 @@
         <span class="tag">Google ADK</span>
         <span class="tag">pytest</span>
       </div>
-      <div class="card-links"><a class="repo-link" href="https://github.com/alex-wang55/stash" target="_blank" rel="noopener">↗ github.com/alex-wang55/stash</a></div>
+      <div class="card-links"><a class="repo-link" href="https://github.com/alex-wang55/stash" target="_blank" rel="noopener" data-i18n="proj.code">Code ↗</a></div>
       <div class="gh-stats" data-repo="stash"></div>
     </div>
 
@@ -1046,7 +1075,7 @@
         <span class="tag">Tailwind CSS</span>
         <span class="tag">Vercel</span>
       </div>
-      <div class="card-links"><a class="repo-link live-link" href="https://pinky-lemon.vercel.app" target="_blank" rel="noopener" data-i18n="proj.live">Live demo ↗</a><a class="repo-link" href="https://github.com/alex-wang55/pinky" target="_blank" rel="noopener">↗ github.com/alex-wang55/pinky</a></div>
+      <div class="card-links"><a class="repo-link live-link" href="https://pinky-lemon.vercel.app" target="_blank" rel="noopener" data-i18n="proj.live">Live demo ↗</a><a class="repo-link" href="https://github.com/alex-wang55/pinky" target="_blank" rel="noopener" data-i18n="proj.code">Code ↗</a></div>
       <div class="gh-stats" data-repo="pinky"></div>
     </div>
 
@@ -1065,7 +1094,7 @@
         <span class="tag">TypeScript</span>
         <span class="tag">Tailwind CSS</span>
       </div>
-      <div class="card-links"><a class="repo-link live-link" href="https://tfsa-advisor-luqn.vercel.app" target="_blank" rel="noopener" data-i18n="proj.live">Live demo ↗</a><a class="repo-link" href="https://github.com/alex-wang55/tfsa-advisor" target="_blank" rel="noopener">↗ github.com/alex-wang55/tfsa-advisor</a></div>
+      <div class="card-links"><a class="repo-link live-link" href="https://tfsa-advisor-luqn.vercel.app" target="_blank" rel="noopener" data-i18n="proj.live">Live demo ↗</a><a class="repo-link" href="https://github.com/alex-wang55/tfsa-advisor" target="_blank" rel="noopener" data-i18n="proj.code">Code ↗</a></div>
       <div class="gh-stats" data-repo="tfsa-advisor"></div>
     </div>
 
@@ -1097,6 +1126,8 @@
         <span class="tag tag-accent">Gemini API</span>
         <span class="tag tag-accent">ElevenLabs API</span>
       </div>
+      <div class="card-links"><a class="repo-link" href="https://github.com/alex-wang55/McHacks-13" target="_blank" rel="noopener" data-i18n="proj.code">Code ↗</a></div>
+      <div class="gh-stats" data-repo="McHacks-13"></div>
     </div>
 
   </div>
@@ -1152,7 +1183,7 @@
   const I18N = {
     en: {
       'nav.skills': 'Skills', 'nav.experience': 'Experience', 'nav.projects': 'Projects', 'nav.contact': 'Contact',
-      'theme.click': 'Click me', 'theme.dark': 'Dark', 'theme.light': 'Light', 'theme.title': 'Toggle dark mode',
+      'theme.dark': 'Dark', 'theme.light': 'Light', 'theme.title': 'Toggle dark mode',
       'hero.eyebrow': 'CS Student & Software Developer',
       'hero.sub': 'SWE & Tools Developer at Ciena · CS student at McGill University · Building software at the intersection of AI and systems.',
       'hero.open': 'Open to Summer 2027 SWE internships', 'hero.grad': 'Graduating May 2028',
@@ -1169,7 +1200,7 @@
       'proj.dishly': 'Built at cuHacking 7. Describe a meal goal and swipe through recipes that match it, with nutrition and dietary filters. An Express backend uses Gemini to interpret the goal and Spoonacular to find recipes. Covered by Playwright browser-to-backend tests, with the API documented in OpenAPI.',
       'proj.mchacks.name': 'AI Mock Interviewer',
       'proj.mchacks': 'Built at McHacks 13. Analyzes your resume, generates contextual interview questions, and uses text-to-speech for a realistic experience.',
-      'proj.live': 'Live demo ↗',
+      'proj.live': 'Live demo ↗', 'proj.code': 'Code ↗', 'proj.more': 'More', 'proj.less': 'Less',
       'proj.stash': 'Personal link and note saver that runs on a single Lambda function and one DynamoDB table, built to stay inside the AWS free tier. Deployed with SAM behind a Lambda Function URL, with SSRF-safe link previews, CloudWatch alarms, a zero-spend budget alert, and an optional Google ADK agent.',
       'proj.pinky': 'Accountability app for friend groups. Members make a pact, check in daily, and pay into a shared pot when they miss, with escalating stakes, streak-saving off-days, and photo-proof challenges. The rules are enforced in Postgres functions with row-level security, and the pact logic is unit tested in CI. Installs as a PWA that works offline, badges its home screen icon, and sends daily push reminders.',
       'proj.shoebox': 'Shared photo boards for friends that install to the home screen. Snap a picture and it gets pinned to a cork board as a tilted print, captioned in your choice of pen, appears live on everyone\'s phone, and pings them with a web push. Anyone on the board can comment on a photo, doodle on it or stick a note beside it, and a canvas collage maker turns a few into one image to post, drawings included. Photos are shrunk on the device before upload, and row-level security guards both the tables and the photo storage.',
@@ -1188,7 +1219,7 @@
     },
     fr: {
       'nav.skills': 'Compétences', 'nav.experience': 'Expérience', 'nav.projects': 'Projets', 'nav.contact': 'Contact',
-      'theme.click': 'Cliquez-moi', 'theme.dark': 'Sombre', 'theme.light': 'Clair', 'theme.title': 'Basculer le mode sombre',
+      'theme.dark': 'Sombre', 'theme.light': 'Clair', 'theme.title': 'Basculer le mode sombre',
       'hero.eyebrow': 'Étudiant en informatique et développeur logiciel',
       'hero.sub': 'Développeur logiciel et d’outils chez Ciena · Étudiant en informatique à l’Université McGill · Je conçois des logiciels à la croisée de l’IA et des systèmes.',
       'hero.open': 'En recherche de stage · été 2027', 'hero.grad': 'Diplôme prévu en mai 2028',
@@ -1205,7 +1236,7 @@
       'proj.dishly': 'Réalisé à cuHacking 7. Décrivez un objectif de repas et faites défiler les recettes correspondantes, avec des filtres nutritionnels et alimentaires. Un backend Express utilise Gemini pour interpréter l’objectif et Spoonacular pour trouver les recettes. Couvert par des tests Playwright du navigateur au backend, avec une API documentée en OpenAPI.',
       'proj.mchacks.name': 'Simulateur d’entrevue IA',
       'proj.mchacks': 'Réalisé à McHacks 13. Analyse votre CV, génère des questions d’entrevue adaptées et utilise la synthèse vocale pour une expérience réaliste.',
-      'proj.live': 'Démo en ligne ↗',
+      'proj.live': 'Démo en ligne ↗', 'proj.code': 'Code ↗', 'proj.more': 'Plus', 'proj.less': 'Moins',
       'proj.stash': 'Outil personnel pour sauvegarder des liens et des notes, qui tourne sur une seule fonction Lambda et une seule table DynamoDB, conçu pour rester dans l’offre gratuite d’AWS. Déployé avec SAM derrière une URL de fonction Lambda, avec des aperçus de liens protégés contre les SSRF, des alarmes CloudWatch, une alerte budgétaire à zéro dépense et un agent Google ADK optionnel.',
       'proj.pinky': 'Application de responsabilisation pour groupes d’amis. Les membres concluent un pacte, font un pointage chaque jour et versent dans une cagnotte commune quand ils manquent à l’appel, avec des mises croissantes, des jours de congé qui protègent les séries et des contestations avec preuve photo. Les règles sont appliquées par des fonctions Postgres avec sécurité au niveau des lignes, et la logique des pactes est couverte par des tests unitaires en CI. S’installe comme PWA qui fonctionne hors ligne, affiche une pastille sur son icône d’écran d’accueil et envoie des rappels quotidiens par notification push.',
       'proj.shoebox': 'Tableaux de photos partagés entre amis, installables sur l’écran d’accueil. Une photo prise est épinglée sur un tableau de liège comme un tirage incliné, légendée avec le stylo de son choix, apparaît en direct sur le téléphone de chacun et les avertit par notification push. Chaque membre du tableau peut commenter une photo, y gribouiller ou coller une note à côté, et un créateur de collages sur canvas en assemble quelques-unes en une seule image à publier, dessins compris. Les photos sont réduites sur l’appareil avant l’envoi, et la sécurité au niveau des lignes protège à la fois les tables et le stockage des photos.',
@@ -1224,7 +1255,7 @@
     },
     zh: {
       'nav.skills': '技能', 'nav.experience': '经历', 'nav.projects': '项目', 'nav.contact': '联系',
-      'theme.click': '点我', 'theme.dark': '深色', 'theme.light': '浅色', 'theme.title': '切换深色模式',
+      'theme.dark': '深色', 'theme.light': '浅色', 'theme.title': '切换深色模式',
       'hero.eyebrow': '计算机科学学生 · 软件开发者',
       'hero.sub': 'Ciena 软件与工具开发工程师 · 麦吉尔大学计算机科学专业学生 · 专注于人工智能与系统交叉领域的软件开发。',
       'hero.open': '正在寻找 2027 年夏季软件开发实习', 'hero.grad': '预计 2028 年 5 月毕业',
@@ -1241,7 +1272,7 @@
       'proj.dishly': '在 cuHacking 7 黑客松上完成。描述你的饮食目标，然后滑动浏览匹配的食谱，并可按营养和饮食需求筛选。Express 后端用 Gemini 理解目标，再通过 Spoonacular 查找食谱。配有从浏览器到后端的 Playwright 集成测试，API 以 OpenAPI 编写文档。',
       'proj.mchacks.name': 'AI 模拟面试官',
       'proj.mchacks': '在 McHacks 13 黑客松上完成。分析你的简历，生成贴合情境的面试问题，并通过语音合成营造真实的面试体验。',
-      'proj.live': '在线演示 ↗',
+      'proj.live': '在线演示 ↗', 'proj.code': '代码 ↗', 'proj.more': '展开', 'proj.less': '收起',
       'proj.stash': '个人链接与笔记收藏工具，只用一个 Lambda 函数和一张 DynamoDB 表，设计上保持在 AWS 免费额度内。通过 SAM 部署在 Lambda 函数 URL 之后，具备防 SSRF 的链接预览、CloudWatch 告警、零支出预算提醒，以及可选的 Google ADK 智能体。',
       'proj.pinky': '面向朋友群体的互相监督应用。成员订立约定，每天打卡，未完成就往共同奖池里交钱，并设有逐级加码的惩罚、保护连续记录的休息日，以及需要照片证明的质疑机制。规则由带行级安全策略的 Postgres 函数强制执行，约定逻辑有单元测试，并在 CI 中自动运行。可作为 PWA 安装，支持离线使用，会在主屏幕图标上显示角标，并通过网页推送每日提醒。',
       'proj.shoebox': '可安装到手机主屏幕的好友共享相册。拍下的照片会以微微倾斜的相纸形式钉在软木板上，用你挑选的笔迹写上配文，实时出现在每个人的手机里，并通过网页推送通知大家。相册里的每个人都能评论照片、在上面涂鸦或在旁边贴便利贴，基于 canvas 的拼贴生成器可把几张照片（连同涂鸦）合成一张图片用于分享。照片在上传前于设备端压缩，数据表和照片存储都由行级安全策略保护。',
@@ -1331,7 +1362,7 @@
   function renderThemeBtn() {
     const dark = document.body.classList.contains('dark');
     ico.innerHTML = dark ? SUN : MOON;
-    btnLabel.textContent = hasClicked ? t(dark ? 'theme.light' : 'theme.dark') : t('theme.click');
+    btnLabel.textContent = t(dark ? 'theme.light' : 'theme.dark');
   }
   function toggleTheme() {
     hasClicked = true; retireSweep();
@@ -1393,12 +1424,32 @@
       if (!m) return;
       const parts = [];
       if (m.language) parts.push('<span class="gh-stat"><span class="gh-dot"></span>' + m.language + '</span>');
-      parts.push('<span class="gh-stat">★ ' + m.stars + '</span>');
+      if (m.stars > 0) parts.push('<span class="gh-stat">★ ' + m.stars + '</span>');
       if (m.pushed) parts.push('<span class="gh-stat">⟳ ' + t('gh.pushed', { when: relTime(m.pushed) }) + '</span>');
       box.innerHTML = parts.join('');
     });
   }
   onLang(renderStats);
+
+  /* Long project write-ups fold to five lines. The toggle only shows where the text really overflows. */
+  const descs = $$('.project-desc').map(p => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'desc-more'; b.hidden = true;
+    p.classList.add('clamp'); p.after(b);
+    b.addEventListener('click', () => { p.classList.toggle('clamp'); fitDescs(); });
+    return { p, b };
+  });
+  function fitDescs() {
+    descs.forEach(({ p, b }) => {
+      const open = !p.classList.contains('clamp');
+      if (!open) b.hidden = p.scrollHeight <= p.clientHeight + 1;
+      b.textContent = t(open ? 'proj.less' : 'proj.more');
+      b.setAttribute('aria-expanded', open);
+    });
+  }
+  onLang(fitDescs);
+  addEventListener('resize', fitDescs);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitDescs);
 
   /* =====================================================================
      5. Commit art behind the hero
